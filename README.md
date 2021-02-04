@@ -1,2 +1,1 @@
-# JustForYouClient
-User site client
+help
