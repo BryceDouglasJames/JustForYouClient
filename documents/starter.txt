@@ -1,2 +1,17 @@
-Hello
-:)
+Group 5 project proposal
+
+Group Members: Bryce, Ziad, and Richard
+
+Project Title: Just For You
+
+Target Audience: General public focused on self-wellness. Any age.
+
+Project Details: In today's age, it seems almost impossible to see the light at the end of the tunnel. With COVID-19 running amuck, it's hard to remain sane nowadays. Social media provides people with a sense of community and purpose. It is more important to tend to our mental and physical health than it ever has been, yet platforms don't pay much mind to such things. There needs to be more focused towards this topic and attend to users who are in need. That is why this is Just For You. Just For You focuses on the user to a very individual level, asking them questions in regards to their eating habits, mood, and overall mental health. Features include:
+Daily health recommendations
+Community forums based on user preferences
+Progress page
+Local community event scheduler
+Much more
+Ideally with Just For You, we plan on providing you with a community dedicated towards you, you and you. The goal of this is to provide each user with a comforting experience and a platform that provides them access with people just like them locally or globally. To be the best you, you must take care of yourself first. We hope to be able to thoroughly integrate a ML assistant service that provides each user with a health recommendation agent and route them to communities they may enjoy being a part of or possibly even local facilities for them to talk to someone. This is a very ambitious project, however we have nothing but the best intentions for people in need.
+
+Technologies:	HTML, CSS, Javascript, SQL, PHP, XAMPP
