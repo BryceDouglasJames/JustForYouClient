@@ -32,16 +32,18 @@ export default function AuthenticationProvider({ children }) {
   });
 
   useEffect(() => {
-    async function authenticate({ username, password, newSignup }) {
+    async function authenticate({ username, password}) {
+      const {newSignup} = SignupPayload;
       if(!newSignup){
         if (!username || !password) return;
-
+    
         setState((state) => ({ ...state, isFetching: true }));
         try {
-          await api.authenticateUser({ username, password });
-        } catch (err) {
+          await api.authenticateUser({ username, password })
+        }catch(err) {
           setState((state) => ({ ...state, error: true }));
         }
+
         setState((state) => ({
           ...state,
           isFetching: false,
@@ -49,14 +51,12 @@ export default function AuthenticationProvider({ children }) {
           username: "",
           password: "",
         }));
-
-        console.log(state);
       }else{
         console.log("YO");
       }
     }
 
-    authenticate({ ...loginPayload });
+    authenticate({ ...loginPayload});
   }, [SignupPayload, loginPayload, api]);
 
   return (

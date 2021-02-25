@@ -1,10 +1,3 @@
-<<<<<<< Updated upstream
-import React from "react";
-import './App.css';
-import { Login } from './Components/Login/index'
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import UserProvider from './Components/User/UserProvider'
-=======
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { createPHPCallInstance} from "./api/fetch";
 import {API} from './api/api';
@@ -19,13 +12,12 @@ import APIProvider from "./Components/APIContext";
 import AuthenticationProvider from "./Components/User/AuthenticationProvider"
 import UserProvider from './Components/User/UserProvider';
 
->>>>>>> Stashed changes
 
 function App() {
   
   const apiInstance = new API({
     callbackInstance: createPHPCallInstance(
-      { baseUrl: "http://192.168.64.2/JustForYouAPI/public/" }
+      { baseUrl: "http://192.168.64.3/justforyouapi/public/" }
     ),
   });
 
@@ -33,19 +25,6 @@ function App() {
   //TODO: Need authentication layer!
   //Third: Need User context for api
   return (
-<<<<<<< Updated upstream
-    <>
-      <UserProvider>
-        <Router>
-          <Switch>
-            <Route path = "/">
-              <Login></Login>
-            </Route>
-          </Switch>
-        </Router>
-      </UserProvider>
-    </>
-=======
       <APIProvider api = {apiInstance}>
         <AuthenticationProvider>
           <UserProvider>
@@ -62,7 +41,6 @@ function App() {
           </UserProvider>
         </AuthenticationProvider>
       </APIProvider>
->>>>>>> Stashed changes
   );
 }
 

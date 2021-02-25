@@ -18,25 +18,28 @@ export class API{
         };
 
         //wait for response from server, if there is an error do not move forward.
-        const resp = await this.callbackInstance.post(endpoint, formattedPayload);
+        let resp = await this.callbackInstance.post(endpoint, formattedPayload)
+        
+        /******DEBBUG AND SEE RESPONSE PAYLOAD**********
+        .then(r =>{
+            console.log(r.data);
+          });
+        */
+
         if(resp.headers = 501){
-            throw new Error("Post failed. ")
-            
+            throw new Error("Post failed.")
         }else{
             window.sessionStorage.setItem("pass", "HELLO");
-            console.log(resp);
+            console.log(resp.data);
         }
         return resp.data;
     }
 
     async authenticateUser({username, password}){
         const response = await this.API_POST({
-            endpoint: "http://192.168.64.2/JustForYouAPI/public/auth",
+            endpoint: "http://192.168.64.3/justforyouapi/public/users/grab/all",
             payload: { username, password },
         });
-
-        window.sessionStorage.setItem("pass", "HOEEEE");
-        console.log(response);
     }
 
     get isAuthenticated() {

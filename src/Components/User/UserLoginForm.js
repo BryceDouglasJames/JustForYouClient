@@ -32,44 +32,51 @@ export default function LoginPage() {
     const { username, password } = state;
 
     return(
-        <div className="base-container">
-            <div className="header">Login</div>
-            <div className="content" >
-                <div className="image">
-                    <center> <img src="mh.png" height="60px" width="60px" /></center>
-                </div>
-                <div className="form">
-                    <div className="form-group">
-                        <label htmlFor="username">Username</label >
-                        <input 
-                            type="username" 
-                            name ="username"    
-                            placeholder="Enter your username"
-                            onChange={setUsername}/>
+        <form onSubmit={onSubmit}>
+            <div className="base-container">
+                <div className="header">Login</div>
+                <div className="content" >
+                    <div className="image">
+                        <center> <img src="mh.png" height="60px" width="60px" /></center>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
+                    <div className="form" >
+                        <div className="form-group">
+                            <label htmlFor="username">Username</label >
+                            <input 
+                                type="username" 
+                                name ="username"    
+                                placeholder="Enter your username"
+                                onChange={setUsername}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Password</label>
+                            <input 
+                                type="password" 
+                                name="password" 
+                                placeholder="Enter your password"
+                                onChange={setPassword}/>
+                        </div>
+                    </div>
+                </div>
+                <div className="footer">
+                    <button 
+                        type="submit" 
+                        className="btn" 
+                        value="Login"
+                        onClick={onSubmit}>
+                        Login
+                    </button>
+                </div>
+                <br></br>
+                <div name="form-group">
+                    <div name="custom-control custom-checkbox">
                         <input 
-                            type="password" 
-                            name="password" 
-                            placeholder="Enter your password"
-                            onChange={setPassword}/>
+                            type="checkbox" name="custom-control-input" id="customCheck" />
+                        <label name="custom-control-label" htmlFor="customCheck1">Remember me</label>
                     </div>
                 </div>
             </div>
-            <div className="fotter">
-                <button type="submit" className="btn" value="Login">
-                    Login
-                </button>
-            </div>
-            <div name="form-group">
-                <div name="custom-control custom-checkbox">
-                    <input 
-                        type="checkbox" name="custom-control-input" id="customCheck" />
-                    <label name="custom-control-label" htmlFor="customCheck1">Remember me</label>
-                </div>
-            </div>
-        </div>
+        </form>
     );
 
 

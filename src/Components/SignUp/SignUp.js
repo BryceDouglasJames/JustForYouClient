@@ -76,7 +76,7 @@ export default function SignUpPage() {
                     </div>
                 </div>
             </div>
-            <div className="fotter">
+            <div className="footer">
                 <button 
                     type="button" 
                     className="btn" 
@@ -85,6 +85,7 @@ export default function SignUpPage() {
                     Sign Up
                 </button>
             </div>
+            <br></br>
             <div name="form-group">
                 <div name="custom-control custom-checkbox">
                     <input 
