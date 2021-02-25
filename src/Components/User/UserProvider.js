@@ -5,25 +5,91 @@ With context, you can create subscriptions all throughout the application and yo
 Every user feature should be added here.
 */
 
-import React, {createContext, Component} from "react";
+import React, {createContext, useContext, useState, useEffect} from "react";
+import {APIContext} from "../APIContext"
 
-export const UserContext = new createContext({});
+/*export const UserContext = new createContext();
 
-export default class UserProvider extends Component{
-    constructor(){
-        super();
-    }
+export default function UserProvider ({children}){
 
-    state = {
-        thisUser: null
-    }
+    const api = useContext(APIContext);
 
-    render(){
-        const UserAttributes = {
-            userState: this.state
+    const [state, setState] = useState({
+        id: null,
+        user: "",
+        isFetching: false,
+        userRole: null,
+        error: false,
+    });
+
+    useEffect(() =>{
+
+        //async function purposed towards updating user status every time a new page is fetched along with error handling
+        //needs an await keyword in order to initiate.
+        async function getCurrentUser() {
+            setState((state) => ({ ...state, isFetching: true }));
+            try {
+              const { id, user: user, userRole } = await api.getCurrentUser();
+              setState((state) => ({
+                ...state,
+                id,
+                user,
+                userRole,
+                error: false,
+              }));
+            } catch (err) {
+              console.log(err);
+              setState((state) => ({ ...state, error: true }));
+            }
+            setState((state) => ({ ...state, isFetching: false }));
+            console.log(state);
         }
-        return(
-            <UserContext.Provider value = {UserAttributes}>{this.props.children}</UserContext.Provider>
-        )
-    }
-}
+      
+        //grab the current user
+        getCurrentUser();
+    },[api]);
+
+    return(
+        <UserContext.Provider value = {{...state}}>{children}</UserContext.Provider>
+    )
+}*/
+
+export const UserContext = new createContext();
+export default function UserProvider({ provider, children }) {
+    const api = useContext(APIContext);
+    const [state, setState] = useState({
+      id: null,
+      userName: "",
+      isFetching: false,
+      userRole: null,
+      error: false,
+    });
+  
+    useEffect(() => {
+      async function getCurrentUser() {
+        setState((state) => ({ ...state, isFetching: true }));
+        try {
+          //const { id, username: userName, userRole } = await api.getCurrentUser();
+          const { id, username: userName, userRole } = {id:"999", username:"Bryce"}
+          setState((state) => ({
+            ...state,
+            id,
+            userName,
+            userRole,
+            error: false,
+          }));
+        } catch (err) {
+          console.log(err);
+          setState((state) => ({ ...state, error: true }));
+        }
+        setState((state) => ({ ...state, isFetching: false }));
+      }
+  
+      getCurrentUser();
+    }, [api]);
+  
+    return (
+      <UserContext.Provider value={{ ...state }}>{children}</UserContext.Provider>
+    );
+  }
+
