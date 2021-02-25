@@ -1,6 +1,7 @@
+import React from "react";
 import './App.css';
+import { Login } from './Components/Login/index'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import LoginPage from './Components/Login/LoginPage'
 import UserProvider from './Components/User/UserProvider'
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
         <Router>
           <Switch>
             <Route path = "/">
-              <LoginPage></LoginPage>
+              <Login></Login>
             </Route>
           </Switch>
         </Router>
