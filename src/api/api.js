@@ -37,7 +37,7 @@ export class API{
 
     async authenticateUser({username, password}){
         const response = await this.API_POST({
-            endpoint: "http://192.168.64.3/justforyouapi/public/users/grab/all",
+            endpoint: "http://137.140.141.39/justforyouapi/public/users/grab/all",
             payload: { username, password },
         });
     }

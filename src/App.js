@@ -1,11 +1,14 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink, Switch } from "react-router-dom";
 import { createPHPCallInstance} from "./api/fetch";
 import {API} from './api/api';
 import './App.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 //==========COMPONENTS============
 import LoginPage from './Components/Login/LoginPage';
 import SignUp from './Components/SignUp/SignUp';
+import Navbar from './Components/Navbar';
+import Home from './Components/Pages/Home';
 
 //==========PROVIDERS============
 import APIProvider from "./Components/APIContext";
@@ -17,7 +20,7 @@ function App() {
   
   const apiInstance = new API({
     callbackInstance: createPHPCallInstance(
-      { baseUrl: "http://192.168.64.3/justforyouapi/public/" }
+      { baseUrl: "http://137.140.141.39/JustForYouAPI/public/" }
     ),
   });
 
@@ -30,7 +33,10 @@ function App() {
           <UserProvider>
             <Router>
               <Switch>
-                <Route path = "/login">
+                <Route path="/home/" component={Home}>
+                  <Navbar></Navbar>
+                </Route>
+                <Route path = "/login"> 
                   <LoginPage></LoginPage>
                 </Route>
                 <Route path = "/signup">

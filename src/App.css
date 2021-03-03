@@ -1,7 +1,10 @@
 .App {
    text-align: center;
+   box-sizing: border-box;
+   padding: 1;
+   margin: 1;
    display: flex;
    justify-content: center;
    align-items: center;
-   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   font-family: 'Montserrat', sans-serif;
 }

@@ -55,7 +55,7 @@ export default function SignUpPage() {
                         <input 
                             type="text" 
                             name ="username" 
-                            placerholder="enter username" 
+                            placeholder="Enter username" 
                             onChange={setUsername}/>
                     </div>
                     <div className="form-group">
@@ -63,7 +63,7 @@ export default function SignUpPage() {
                         <input 
                             type="email" 
                             name ="email" 
-                            placerholder="enter email" 
+                            placeholder="Enter email" 
                             onChange={setEmail}/>
                     </div>
                     <div className="form-group">
@@ -71,7 +71,15 @@ export default function SignUpPage() {
                         <input 
                             type="password" 
                             name="password" 
-                            placeholder="enter password"
+                            placeholder="Enter password"
+                            onChange={setPassword}/>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="password">Confirm Password</label>
+                        <input 
+                            type="password" 
+                            name="password" 
+                            placeholder="Re-enter password"
                             onChange={setPassword}/>
                     </div>
                 </div>
