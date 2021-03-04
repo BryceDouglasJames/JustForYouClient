@@ -33,11 +33,12 @@ function App() {
           <UserProvider>
             <Router>
               <Switch>
-                <Route path="/home/" component={Home}>
-                  <Navbar></Navbar>
-                </Route>
-                <Route path = "/login"> 
+                <Route path = "/login" exact component={LoginPage}> 
                   <LoginPage></LoginPage>
+                </Route>
+                <Route path='/home' exact component={Home}>
+                  <Navbar/>
+                  <Home/>
                 </Route>
                 <Route path = "/signup">
                   <SignUp></SignUp>

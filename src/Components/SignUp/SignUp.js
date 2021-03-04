@@ -2,6 +2,7 @@ import React, {useContext, useState} from "react"
 import {AuthenticationContext} from "../User/AuthenticationProvider"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "../style.scss";
+import '../../App.css'
 
 export default function SignUpPage() {
     const { setLoginPayload, isChecked, setSignupPayload } = useContext(

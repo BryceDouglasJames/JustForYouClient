@@ -1,5 +1,6 @@
 import React from 'react'
 import './Button.css'
+import {Link} from 'react-router-dom';
 
 //primary color of the button
 const STYLES = [
@@ -25,8 +26,10 @@ export const Button = ({
     const checkButtonSIze = SIZES.includes(buttonSize) ? buttonSize : SIZES[0]
 
     return (
-        <button className={'btn ${checkButtonStyle} ${checkButtonSize}'} onClick={onClick} type={type} >
-            {children}
-        </button>
+        <Link to='User-Profile'>
+            <button className={'btn ${checkButtonStyle} ${checkButtonSize}'} onClick={onClick} type={type} >
+                {children}
+            </button>
+        </Link>
     )
 }
