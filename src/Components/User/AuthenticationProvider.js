@@ -4,9 +4,6 @@ import React, {
     useState,
     useEffect, 
 } from "react";
-import { Redirect } from 'react-router-dom';
-
-
 import {APIContext} from "../APIContext"
 
 export const AuthenticationContext = createContext();
@@ -14,6 +11,8 @@ export const AuthenticationContext = createContext();
 export default function AuthenticationProvider({ children }) {
   const api = useContext(APIContext);
 
+
+  //GETTER AND SETTER STATES
   const [state, setState] = useState({
     isAuthenticated: api.isAuthenticated,
     isChecked: false,
@@ -31,11 +30,14 @@ export default function AuthenticationProvider({ children }) {
     email:"",
     password:"",
     newSignup: false,
-    signupSuccess: false
+    signupSuccess: false,
+    backToLogin: false
   });
 
   useEffect(() => {
     console.log(SignupPayload);
+
+    //This function handles every authentication state passed from provider children
     async function authenticate({ username, password }) {
         if (!username || !password) return;
         setState((state) => ({ ...state, isFetching: true }));
@@ -59,6 +61,7 @@ export default function AuthenticationProvider({ children }) {
               
     }
 
+    //When user decides to signup, send payload and verify with server
     async function signup({username, password, email}){
       if (!username || !password) return;
       setState((state) => ({ ...state, isFetching: true }));
@@ -81,6 +84,7 @@ export default function AuthenticationProvider({ children }) {
         }
     }
 
+    //CONDITIONAL STATE CONTROL
     const {newSignup} = SignupPayload;
     if(!newSignup){
       authenticate({ ...loginPayload});
@@ -90,6 +94,7 @@ export default function AuthenticationProvider({ children }) {
 
   }, [SignupPayload, loginPayload, api]);
 
+  //Export provider
   return (
     <AuthenticationContext.Provider
       value={{

@@ -35,7 +35,7 @@ export default function LoginPage() {
     };
 
     const goToSignUp = (e) =>{
-        setSignupPayload({ newSignup: true });
+        setSignupPayload({ newSignup: true, backToLogin : false });
     }
 
   
@@ -45,8 +45,9 @@ export default function LoginPage() {
     return(
         <form onSubmit={onSubmit}>
             <div className="base-container">
-                <div className="header">Login</div>
-                <div className="content" >
+                <div className="header">Welcome to Just For You</div>
+                <div className="content" style = {{animation: "fadeIn ease 10s", WebkitAnimation: "fadeIn ease 10s"}}>
+                    <br></br><br></br>
                     <div className="image">
                         <center> <img src="mh.png" height="60px" width="60px" /></center>
                     </div>
@@ -80,6 +81,7 @@ export default function LoginPage() {
                     </button>
                     &ensp;&ensp;&ensp;&ensp;
                     <button 
+                        type="button"
                         value="Login"
                         className="btn px-2 m-auto" 
                         style={{fontSize:"18px"}}

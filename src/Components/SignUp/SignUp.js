@@ -13,6 +13,7 @@ export default function SignUpPage() {
 
     const history = useHistory();
 
+    //constrols state of function features
     const [state, setState] = new useState({
         username:'',
         email:'',
@@ -20,6 +21,7 @@ export default function SignUpPage() {
         isChecked: false
     });
 
+    //GETTERS AND SETTERS
     const setUsername = (e) => {
         let user = e.target.value;
         setState((state) => ({ ...state, username: user}));
@@ -40,14 +42,18 @@ export default function SignUpPage() {
         setState((state)=>({...state, isChecked: check}));
     }
 
+    //pushed request to go back to the provider
     const goToLogin = (e) =>{
-        setSignupPayload({ newSignup: false });
-        <Redirect to="/login"></Redirect>
+        e.preventDefault();
+        setSignupPayload({ newSignup: false, backToLogin : true }); 
     }
     
+    //upon submission, send sign up data across for providers to ingest and handle.
     const onSubmit = (e) => {
         e.preventDefault();
-        setSignupPayload({ username, email, password, newSignup: true});
+        setSignupPayload({ username, email, password, newSignup: true });
+        return <Redirect to="/"></Redirect>
+
     };
 
     const { username, password, email } = state;
@@ -97,6 +103,7 @@ export default function SignUpPage() {
                 </div>
                 <div className="footer">
                     <button 
+                        type="button"
                         className="btn p-2 m-auto" 
                         value="Login"
                         style={{fontSize:"18px"}}
@@ -112,17 +119,6 @@ export default function SignUpPage() {
                         onClick={onSubmit}>
                         Create account
                     </button>
-                </div>
-                <br></br>
-                <div name="form-group">
-                    <div name="custom-control custom-checkbox">
-                        <input 
-                            type="checkbox" 
-                            name="custom-control-input" 
-                            id="customCheck" 
-                            onChange={setRemember}/>
-                        <label name="custom-control-label" htmlFor="customCheck1">Remember me</label>
-                    </div>
                 </div>
             </div>
         </form>

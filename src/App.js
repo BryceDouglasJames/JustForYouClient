@@ -12,6 +12,7 @@ import Navbar from './Components/navbar';
 import Home from './Components/Pages/Home';
 import Forum from './Components/Forum/ForumPage';
 import UserSettings from './Components/User/UserSettings';
+import SignUpControl from './Components/SignUp/SignUpControl';
 
 //==========PROVIDERS============
 import APIProvider from "./Components/APIContext";
@@ -41,10 +42,10 @@ function App() {
                   <Home></Home>
                 </Route>
                 <Route exact path = "/"> 
-                  <LoginPage></LoginPage>
+                    <LoginPage></LoginPage>
                 </Route>
                 <Route exact path = "/signup">
-                  <SignUp></SignUp>
+                    <SignUpControl></SignUpControl>
                 </Route>
                 <Route exact path = "/forum">
                   <Navbar></Navbar>

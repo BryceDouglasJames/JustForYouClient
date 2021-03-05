@@ -10,6 +10,7 @@ export class API{
         this.headers = {};
     }
 
+    //universal post function. Returns response for user to synthesize.
     async API_POST({endpoint, payload}){
         //for the purpose of sending data neatly, we create a form so that a key can be assigned to each value
         let response;
@@ -33,6 +34,7 @@ export class API{
         return response;
     }
 
+    //handles authentication call
     async authenticateUser({username, password}){
         return await this.API_POST({
             endpoint: "http://192.168.64.3/justforyouapi/public/users/auth",
@@ -40,15 +42,17 @@ export class API{
         })
     }
 
-    get isAuthenticated() {
-        return false;
-    }
-
+    //handles sneding post payload with new user signup
     async addUser({username, email, password}){
         return await this.API_POST({
             endpoint: "http://192.168.64.3/justforyouapi/public/users/create",
             payload: { username, password, email },
         })
+    }
+
+    //GETTERS AND SETTERS
+    get isAuthenticated() {
+        return false;
     }
 }
 

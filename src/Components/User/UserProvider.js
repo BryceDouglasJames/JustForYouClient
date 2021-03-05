@@ -57,6 +57,8 @@ export default function UserProvider ({children}){
 export const UserContext = new createContext();
 export default function UserProvider({ provider, children }) {
     const api = useContext(APIContext);
+
+    //GETTER AND SETTER STATE
     const [state, setState] = useState({
       id: null,
       userName: "",
@@ -66,6 +68,7 @@ export default function UserProvider({ provider, children }) {
     });
   
     useEffect(() => {
+      //Sends request to server to get updates about user, session data, cookies, etc.
       async function getCurrentUser() {
         setState((state) => ({ ...state, isFetching: true }));
         try {
