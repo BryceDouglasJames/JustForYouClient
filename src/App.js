@@ -1,14 +1,17 @@
 import { BrowserRouter as Router, Route, NavLink, Switch } from "react-router-dom";
 import { createPHPCallInstance} from "./api/fetch";
 import {API} from './api/api';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './App.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 //==========COMPONENTS============
 import LoginPage from './Components/Login/LoginPage';
 import SignUp from './Components/SignUp/SignUp';
-import Navbar from './Components/Navbar';
+import Navbar from './Components/navbar';
 import Home from './Components/Pages/Home';
+import Forum from './Components/Forum/ForumPage';
+import UserSettings from './Components/User/UserSettings';
 
 //==========PROVIDERS============
 import APIProvider from "./Components/APIContext";
@@ -20,7 +23,7 @@ function App() {
   
   const apiInstance = new API({
     callbackInstance: createPHPCallInstance(
-      { baseUrl: "http://137.140.141.39/JustForYouAPI/public/" }
+      { baseUrl: "http://192.168.64.3/justforyouapi/public/" }
     ),
   });
 
@@ -33,15 +36,23 @@ function App() {
           <UserProvider>
             <Router>
               <Switch>
-                <Route path = "/login" exact component={LoginPage}> 
+                <Route exact path="/home">
+                  <Navbar></Navbar>
+                  <Home></Home>
+                </Route>
+                <Route exact path = "/"> 
                   <LoginPage></LoginPage>
                 </Route>
-                <Route path='/home' exact component={Home}>
-                  <Navbar/>
-                  <Home/>
-                </Route>
-                <Route path = "/signup">
+                <Route exact path = "/signup">
                   <SignUp></SignUp>
+                </Route>
+                <Route exact path = "/forum">
+                  <Navbar></Navbar>
+                  <Forum></Forum>
+                </Route>
+                <Route exact path = "/settings">
+                  <Navbar></Navbar>
+                  <UserSettings></UserSettings>
                 </Route>
               </Switch>
             </Router>

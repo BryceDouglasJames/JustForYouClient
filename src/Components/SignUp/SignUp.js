@@ -1,13 +1,17 @@
 import React, {useContext, useState} from "react"
+import { Redirect , useHistory} from 'react-router-dom';
 import {AuthenticationContext} from "../User/AuthenticationProvider"
+import UserLoginForm from '../User/UserLoginForm'
 import "bootstrap/dist/css/bootstrap.min.css"
 import "../style.scss";
 import '../../App.css'
 
 export default function SignUpPage() {
-    const { setLoginPayload, isChecked, setSignupPayload } = useContext(
+    const { setSignupPayload, signupSuccess } = useContext(
       AuthenticationContext
     );
+
+    const history = useHistory();
 
     const [state, setState] = new useState({
         username:'',
@@ -35,6 +39,11 @@ export default function SignUpPage() {
         let check = e.target.value;
         setState((state)=>({...state, isChecked: check}));
     }
+
+    const goToLogin = (e) =>{
+        setSignupPayload({ newSignup: false });
+        <Redirect to="/login"></Redirect>
+    }
     
     const onSubmit = (e) => {
         e.preventDefault();
@@ -44,67 +53,78 @@ export default function SignUpPage() {
     const { username, password, email } = state;
 
     return(
-        <div className="base-container">
-            <div className="header">Sign Up</div>
-            <div className="content" >
-                <div className="image">
-                    <center> <img src="mh.png" height="60px" width="60px" /></center>
+        <form onSubmit = {onSubmit}>
+            <div className="base-container">
+                <div className="header">Sign Up</div>
+                <div className="content" >
+                    <div className="image">
+                        <center> <img src="mh.png" height="60px" width="60px" /></center>
+                    </div>
+                    <div className="form">
+                        <div className="form-group">
+                            <label htmlFor="username">Username</label>
+                            <input 
+                                type="text" 
+                                name ="username" 
+                                placeholder="Enter username" 
+                                onChange={setUsername}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="email">Email</label>
+                            <input 
+                                type="email" 
+                                name ="email" 
+                                placeholder="Enter email" 
+                                onChange={setEmail}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Password</label>
+                            <input 
+                                type="password" 
+                                name="password" 
+                                placeholder="Enter password"
+                                onChange={setPassword}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Confirm Password</label>
+                            <input 
+                                type="password" 
+                                name="password" 
+                                placeholder="Re-enter password"
+                                onChange={setPassword}/>
+                        </div>
+                    </div>
                 </div>
-                <div className="form">
-                    <div className="form-group">
-                        <label htmlFor="username">Username</label>
+                <div className="footer">
+                    <button 
+                        className="btn p-2 m-auto" 
+                        value="Login"
+                        style={{fontSize:"18px"}}
+                        onClick={goToLogin}>
+                        Back to login
+                    </button>
+                    &ensp;&ensp;&ensp;&ensp;
+                    <button 
+                        type="submit" 
+                        className="btn p-2 m-auto" 
+                        style={{fontSize:"18px"}}
+                        value="Sign Up"
+                        onClick={onSubmit}>
+                        Create account
+                    </button>
+                </div>
+                <br></br>
+                <div name="form-group">
+                    <div name="custom-control custom-checkbox">
                         <input 
-                            type="text" 
-                            name ="username" 
-                            placeholder="Enter username" 
-                            onChange={setUsername}/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="email">Email</label>
-                        <input 
-                            type="email" 
-                            name ="email" 
-                            placeholder="Enter email" 
-                            onChange={setEmail}/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <input 
-                            type="password" 
-                            name="password" 
-                            placeholder="Enter password"
-                            onChange={setPassword}/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Confirm Password</label>
-                        <input 
-                            type="password" 
-                            name="password" 
-                            placeholder="Re-enter password"
-                            onChange={setPassword}/>
+                            type="checkbox" 
+                            name="custom-control-input" 
+                            id="customCheck" 
+                            onChange={setRemember}/>
+                        <label name="custom-control-label" htmlFor="customCheck1">Remember me</label>
                     </div>
                 </div>
             </div>
-            <div className="footer">
-                <button 
-                    type="button" 
-                    className="btn" 
-                    value="Sign Up"
-                    onSubmit={onSubmit}>
-                    Sign Up
-                </button>
-            </div>
-            <br></br>
-            <div name="form-group">
-                <div name="custom-control custom-checkbox">
-                    <input 
-                        type="checkbox" 
-                        name="custom-control-input" 
-                        id="customCheck" 
-                        onChange={setRemember}/>
-                    <label name="custom-control-label" htmlFor="customCheck1">Remember me</label>
-                </div>
-            </div>
-        </div>
+        </form>
     );
 }

@@ -4,6 +4,8 @@ import React, {
     useState,
     useEffect, 
 } from "react";
+import { Redirect } from 'react-router-dom';
+
 
 import {APIContext} from "../APIContext"
 
@@ -28,41 +30,71 @@ export default function AuthenticationProvider({ children }) {
     username:"",
     email:"",
     password:"",
-    newSignup: false
+    newSignup: false,
+    signupSuccess: false
   });
 
   useEffect(() => {
-    async function authenticate({ username, password}) {
-      const {newSignup} = SignupPayload;
-      if(!newSignup){
+    console.log(SignupPayload);
+    async function authenticate({ username, password }) {
         if (!username || !password) return;
-    
         setState((state) => ({ ...state, isFetching: true }));
         try {
           await api.authenticateUser({ username, password })
+          .then(resp => {
+            console.log(resp);
+            if(resp !== undefined){
+              setState((state) => ({
+                ...state,
+                isFetching: false,
+                isAuthenticated: resp.data,
+                username: "",
+                password: "",
+              }));
+            }
+          })
         }catch(err) {
           setState((state) => ({ ...state, error: true }));
         }
-
-        setState((state) => ({
-          ...state,
-          isFetching: false,
-          isAuthenticated: api.isAuthenticated,
-          username: "",
-          password: "",
-        }));
-      }else{
-        console.log("YO");
-      }
+              
     }
 
-    authenticate({ ...loginPayload});
+    async function signup({username, password, email}){
+      if (!username || !password) return;
+      setState((state) => ({ ...state, isFetching: true }));
+        try {
+          await api.addUser({ username, email, password })
+          .then(resp => {
+            console.log(resp);
+            if(resp !== undefined){
+              setSignupPayload((SignupPayload)=>({
+                ...SignupPayload,
+                signupSuccess: resp.data,
+                newSignup: false,
+                username: "",
+                password: "",
+              }));
+            }
+          })
+        }catch(err) {
+          setState((state) => ({ ...state, error: true }));
+        }
+    }
+
+    const {newSignup} = SignupPayload;
+    if(!newSignup){
+      authenticate({ ...loginPayload});
+    }else{
+      signup({...SignupPayload});
+    }
+
   }, [SignupPayload, loginPayload, api]);
 
   return (
     <AuthenticationContext.Provider
       value={{
         ...state,
+        ...SignupPayload,
         setLoginPayload,
         setSignupPayload
       }}

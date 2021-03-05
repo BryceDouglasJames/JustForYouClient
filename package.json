@@ -18,12 +18,14 @@
     "css-loader": "^2.1.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^3.0.1",
+    "jquery": "^3.6.0",
     "node-sass": "^4.11.0",
     "path": "^0.12.7",
+    "popper.js": "^1.16.1",
     "postcss-flexibility": "^2.0.0",
     "postcss-loader": "^3.0.0",
     "react": "^17.0.1",
-    "react-bootstrap": "^1.5.0",
+    "react-bootstrap": "^1.5.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
@@ -57,5 +59,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/bootstrap": "^5.0.8",
+    "@types/jquery": "^3.5.5"
   }
 }

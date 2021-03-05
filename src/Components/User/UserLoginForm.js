@@ -1,13 +1,18 @@
 import React, {useContext, useState} from "react"
+import { Redirect } from 'react-router-dom';
 import {AuthenticationContext} from "../User/AuthenticationProvider"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "../style.scss";
 
 export default function LoginPage() {
-    const { setLoginPayload } = useContext(
+    const { setLoginPayload, setSignupPayload } = useContext(
       AuthenticationContext
     );
   
+    const [error, setError] = new useState({
+        error: false
+    });
+
     const [state, setState] = useState({
       username: "",
       password: "",
@@ -26,10 +31,16 @@ export default function LoginPage() {
   
     const onSubmit = (e) => {
         e.preventDefault();
-        setLoginPayload({ username, password });
+        setLoginPayload({ username, password });        
     };
+
+    const goToSignUp = (e) =>{
+        setSignupPayload({ newSignup: true });
+    }
+
   
     const { username, password } = state;
+
 
     return(
         <form onSubmit={onSubmit}>
@@ -61,17 +72,30 @@ export default function LoginPage() {
                 <div className="footer">
                     <button 
                         type="submit" 
-                        className="btn" 
                         value="Login"
+                        className="btn px-2 m-auto" 
+                        style={{fontSize:"18px"}}
                         onClick={onSubmit}>
                         Login
                     </button>
+                    &ensp;&ensp;&ensp;&ensp;
+                    <button 
+                        value="Login"
+                        className="btn px-2 m-auto" 
+                        style={{fontSize:"18px"}}
+                        onClick={goToSignUp}>
+                        Sign Up
+                    </button>
                 </div>
-                <br></br>
+                <br></br><br></br>
                 <div name="form-group">
-                    <div name="custom-control custom-checkbox">
+                    <div name="custom-control custom-checkbox" className = "p-auto m-auto">
                         <input 
-                            type="checkbox" name="custom-control-input" id="customCheck" />
+                            type="checkbox" 
+                            name="custom-control-input" 
+                            id="customCheck" 
+                        />
+                        &ensp;&ensp;
                         <label name="custom-control-label" htmlFor="customCheck1">Remember me</label>
                     </div>
                 </div>
