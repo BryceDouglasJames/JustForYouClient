@@ -2,6 +2,7 @@
   "name": "justforyouclient",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://localhost/build/",
   "dependencies": {
     "@babel/core": "^7.0.0-rc.1",
     "@babel/plugin-proposal-decorators": "^7.2.3",
