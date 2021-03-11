@@ -59,23 +59,24 @@ export default function UserProvider({ provider, children }) {
     const api = useContext(APIContext);
 
     //GETTER AND SETTER STATE
-    const [state, setState] = useState({
+    const [userState, setUserState] = useState({
       id: null,
       userName: "",
       isFetching: false,
       userRole: null,
-      error: false,
+      showQuestions: true,
+      error: false
     });
   
     useEffect(() => {
       //Sends request to server to get updates about user, session data, cookies, etc.
       async function getCurrentUser() {
-        setState((state) => ({ ...state, isFetching: true }));
+        setUserState((state) => ({ ...state, isFetching: true }));
         try {
           //const { id, username: userName, userRole } = await api.getCurrentUser();
           const { id, username: userName, userRole } = {id:"999", username:"Bryce"}
-          setState((state) => ({
-            ...state,
+          setUserState((userState) => ({
+            ...userState,
             id,
             userName,
             userRole,
@@ -83,16 +84,19 @@ export default function UserProvider({ provider, children }) {
           }));
         } catch (err) {
           console.log(err);
-          setState((state) => ({ ...state, error: true }));
+          setUserState((userState) => ({ ...userState, error: true }));
         }
-        setState((state) => ({ ...state, isFetching: false }));
+        setUserState((userState) => ({ ...userState, isFetching: false }));
       }
   
       getCurrentUser();
     }, [api]);
   
     return (
-      <UserContext.Provider value={{ ...state }}>{children}</UserContext.Provider>
+      <UserContext.Provider value={{ 
+        ...userState,
+        setUserState 
+      }}>{children}</UserContext.Provider>
     );
   }
 
