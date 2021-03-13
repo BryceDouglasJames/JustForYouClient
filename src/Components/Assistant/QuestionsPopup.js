@@ -24,7 +24,7 @@ export default function QuestionPopup(){
         <div className = "row m-auto p-5">
                 <div className = "card m-auto p-3" style = {{width: "auto", height: "auto", alignItems: "center", backgroundColor: "gainsboro"}}>
                     <div className = "card-title p-5 m-auto" style = {{textAlign:"center"}}>
-                        <h3>Hello! How are you feeling today?</h3>
+                        <h3 style={{fontOpticalSizing:'auto'}}>Hello! How are you feeling today?</h3>
                     </div>
                     <div className = "card-body m-auto" style = {{border:"2px ridge black", borderRadius:"5px", width:"100%"}}>
                         <div className="container" style ={{textAlign:"center"}}>

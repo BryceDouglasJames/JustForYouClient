@@ -1,3 +1,4 @@
+import { data } from "jquery";
 import React, {
     createContext, 
     useContext, 
@@ -35,26 +36,25 @@ export default function AuthenticationProvider({ children }) {
   });
 
   useEffect(() => {
-    console.log(SignupPayload);
-
     //This function handles every authentication state passed from provider children
     async function authenticate({ username, password }) {
         if (!username || !password) return;
         setState((state) => ({ ...state, isFetching: true }));
         try {
-          await api.authenticateUser({ username, password })
-          .then(resp => {
-            console.log(resp);
-            if(resp !== undefined){
-              setState((state) => ({
-                ...state,
-                isFetching: false,
-                isAuthenticated: resp.data,
-                username: "",
-                password: "",
-              }));
-            }
-          })
+          let result = false;
+          console.log(username);
+          await api.authenticateUser({ username, password }).then(resp =>{
+            (resp === null) ? setState((state) => ({ ...state, error: true })) : result = resp.data; 
+          });
+      
+          setState((state) => ({
+            ...state,
+            isFetching: false,
+            isAuthenticated: true,
+            username: "",
+            password: "",
+          }));
+
         }catch(err) {
           setState((state) => ({ ...state, error: true }));
         }
@@ -69,7 +69,7 @@ export default function AuthenticationProvider({ children }) {
           await api.addUser({ username, email, password })
           .then(resp => {
             console.log(resp);
-            if(resp !== undefined){
+            if(resp !== undefined || resp !== null){
               setSignupPayload((SignupPayload)=>({
                 ...SignupPayload,
                 signupSuccess: resp.data,
