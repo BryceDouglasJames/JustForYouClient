@@ -49,7 +49,7 @@ export default function AuthenticationProvider({ children }) {
               setState((state) => ({
                 ...state,
                 isFetching: false,
-                isAuthenticated: resp.data,
+                isAuthenticated: true,
                 username: "",
                 password: "",
               }));
@@ -72,7 +72,7 @@ export default function AuthenticationProvider({ children }) {
             if(resp !== undefined){
               setSignupPayload((SignupPayload)=>({
                 ...SignupPayload,
-                signupSuccess: resp.data,
+                signupSuccess: true,
                 newSignup: false,
                 username: "",
                 password: "",

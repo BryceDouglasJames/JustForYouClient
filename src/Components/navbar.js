@@ -1,10 +1,9 @@
 import React, {useContext, useState, setState} from 'react'
-import { MenuItems } from "./MenuItems"
-import { Button } from "../Components/Button"
 import { Redirect, Link } from 'react-router-dom';
 import { AuthenticationContext } from './User/AuthenticationProvider'
 import "jquery/dist/jquery.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
+import {DropdownButton,Dropdown} from 'react-bootstrap'
 
 // navbar with menu icons 
 export default function Navbar(){
@@ -53,15 +52,24 @@ export default function Navbar(){
                       </li>
                       <li data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                           <Link  className = "nav-link text-center m-auto p-auto" to="/forum" style = {linkStyle}>
-                          &ensp;&ensp;Forum
+                          <DropdownButton id="dropdown-basic-button" title="Forum">
+                           &ensp;&ensp;
+                          <Dropdown.Item href="#/action-1">Resources</Dropdown.Item>
+                          <Dropdown.Item href="#/action-1">Commmunity Outlets</Dropdown.Item>
+                          <Dropdown.Item href="#/action-1">View Community Posts</Dropdown.Item>
+                          </DropdownButton>
                           </Link>
                       </li>
                       <li data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                          <Link  className = "nav-link text-center m-auto p-auto" to="/settings" style = {linkStyle}>
-                          &ensp;&ensp;Settings
+                          <Link  className = "nav-link text-center m-auto p-auto" to="/settings" style = {linkStyle}> 
+                           <DropdownButton id="dropdown-basic-button" title="Settings">
+                           &ensp;&ensp;
+                          <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
+                          <Dropdown.Item href="#/action-1">Logout</Dropdown.Item>
+                          <Dropdown.Item href="#/action-1">Help</Dropdown.Item>
+                          </DropdownButton>
                           </Link>
                       </li>
-                  
                   </div>
               </div>
           </nav>

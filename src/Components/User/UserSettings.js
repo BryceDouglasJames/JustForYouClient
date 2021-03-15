@@ -6,5 +6,6 @@ export default function UserSettings(){
             <br></br><br></br>
             <h2>Hey there, you'll see something about changing your settings!</h2>
         </div>
+        
     )
 }

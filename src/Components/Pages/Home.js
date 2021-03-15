@@ -20,11 +20,9 @@ export default function Home(){
             <>
                 <div className = "m-auto p-auto" style = {{textAlign:"center"}}>
                     <br></br><br></br>
-                    <h2>Hey there, you'll see something here soon for the home page ;)</h2>
+                    <h2>Welcome! <br></br>
+                    <p>Hey there, you'll see something here soon for the home page ;)</p></h2>
                 </div>
-
-
-                
             </>
         );
     }
