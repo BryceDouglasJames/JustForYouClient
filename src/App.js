@@ -38,23 +38,23 @@ function App() {
           <UserProvider>
             <Router>
               <Switch>
-                <Route exact path="/build/home">
+                <Route exact path="/home">
                   <Navbar></Navbar>
                   <Home></Home>
                   <Footer></Footer>
                 </Route>
-                <Route exact path = "/build/"> 
+                <Route exact path = "/"> 
                     <LoginPage></LoginPage>
                 </Route>
-                <Route exact path = "/build/signup">
+                <Route exact path = "/signup">
                     <SignUpControl></SignUpControl>
                 </Route>
-                <Route exact path = "/build/forum">
+                <Route exact path = "/forum">
                   <Navbar></Navbar>
                   <Forum></Forum>
                   <Footer></Footer>
                 </Route>
-                <Route exact path = "/build/settings">
+                <Route exact path = "/settings">
                   <Navbar></Navbar>
                   <UserSettings></UserSettings>
                   <Footer></Footer>
