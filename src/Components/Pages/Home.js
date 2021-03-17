@@ -21,13 +21,14 @@ export default function Home(){
             <>
                 <div className = "m-auto p-auto" style = {{textAlign:"center"}}>
                     <br></br><br></br>
-                    <h2>Welcome! <br></br>
+                    <h2>Welcome! <br></br></h2>
+                    <br></br><br></br>
                 <Container>
                 <Row>
-                    <Col md={12}> Today's Nutrition Challenge!
+                    <Col md={8}>
                     <Card className="text-center">
                         <Card.Body>
-                            <Card.Title></Card.Title>
+                            <Card.Title>Daily Nutrition Challenge!</Card.Title>
                             <Card.Text>
                                 Zinc boosts your body's immune system, helps to heal wounds, helps with hormone production
                                 and digestion, and helps you grow! Eat some food today that'll give you this essential mineral.
@@ -35,11 +36,17 @@ export default function Home(){
                             </Card.Text>
                             <Button variant="primary">Did it?</Button>
                         </Card.Body>
-                        </Card> 
+                    </Card> 
+                    </Col>
+                    <Col md={8}> 
+                    <Card className="text-center">
+                        <Card.Body>
+                            <Card.Title>Today's Survey Questions</Card.Title>
+                        </Card.Body>
+                    </Card> 
                     </Col>
                 </Row>
                 </Container>
-                    <p>Hey there, you'll see something here soon for the home page ;)</p></h2>
                 </div>
             </>
         );
