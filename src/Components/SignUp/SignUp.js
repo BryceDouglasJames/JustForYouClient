@@ -3,7 +3,7 @@ import { Redirect , useHistory} from 'react-router-dom';
 import {AuthenticationContext} from "../User/AuthenticationProvider"
 import UserLoginForm from '../User/UserLoginForm'
 import "bootstrap/dist/css/bootstrap.min.css"
-import '../../style.scss'
+import '../style.scss'
 import '../../App.css'
 
 export default function SignUpPage() {
