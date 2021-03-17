@@ -6,8 +6,8 @@ import "bootstrap/dist/css/bootstrap.min.css"
 
 
 export default function LoginPage(){
-    const {isAuthenticated, newSignup} = new useContext(AuthenticationContext);
-    if(isAuthenticated){
+    const {isAuthenticated, newSignup, sessionActive} = new useContext(AuthenticationContext);
+    if(isAuthenticated && sessionActive){
         return <Redirect to="/home"></Redirect>
     }else if (newSignup){
         return <Redirect to="/signup"></Redirect>

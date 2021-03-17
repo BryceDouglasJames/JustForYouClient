@@ -6,18 +6,20 @@ import React, {
     useEffect, 
 } from "react";
 import {APIContext} from "../APIContext"
+import {UserContext} from "./UserProvider"
 
 export const AuthenticationContext = createContext();
 
 export default function AuthenticationProvider({ children }) {
   const api = useContext(APIContext);
 
-
   //GETTER AND SETTER STATES
-  const [state, setState] = useState({
+  const [authState, setAuthState] = useState({
     isAuthenticated: api.isAuthenticated,
     isChecked: false,
     isFetching: false,
+    userUpdate: false,
+    sessionActive: false,
     error: false,
   });
 
@@ -35,28 +37,48 @@ export default function AuthenticationProvider({ children }) {
     backToLogin: false
   });
 
+
   useEffect(() => {
     //This function handles every authentication state passed from provider children
     async function authenticate({ username, password }) {
-        if (!username || !password) return;
-        setState((state) => ({ ...state, isFetching: true }));
+
+        if (!username || !password){
+          if(sessionStorage.getItem("USERNAME") !== null){
+            setAuthState((authState) => ({...authState, sessionActive: true, isAuthenticated: true}));
+            return;
+          }else{
+            //setAuthState((authState) => ({...authState, sessionActive: false}));
+            return;
+          }
+        }
+
+        setAuthState((authState) => ({ ...authState, isFetching: true }));
         try {
           let result = false;
-          console.log(username);
+          
           await api.authenticateUser({ username, password }).then(resp =>{
-            (resp === null) ? setState((state) => ({ ...state, error: true })) : result = resp.data; 
+            (resp === null) ? setAuthState((authState) => ({ ...authState, error: true })) : result = resp.data; 
           });
       
-          setState((state) => ({
-            ...state,
+          if(result === true){
+            if(sessionStorage.getItem("USERNAME") === null || sessionStorage.getItem("USERNAME").toString() !== username){
+              sessionStorage.setItem("USERNAME", username);
+            }
+          }
+
+          
+          
+          setAuthState((authState) => ({
+            ...authState,
             isFetching: false,
-            isAuthenticated: true,
+            isAuthenticated: result,
+            userUpdate: result,
             username: "",
             password: "",
           }));
 
         }catch(err) {
-          setState((state) => ({ ...state, error: true }));
+          setAuthState((authState) => ({ ...authState, error: true }));
         }
               
     }
@@ -64,7 +86,7 @@ export default function AuthenticationProvider({ children }) {
     //When user decides to signup, send payload and verify with server
     async function signup({username, password, email}){
       if (!username || !password) return;
-      setState((state) => ({ ...state, isFetching: true }));
+      setAuthState((authState) => ({ ...authState, isFetching: true }));
         try {
           await api.addUser({ username, email, password })
           .then(resp => {
@@ -80,7 +102,7 @@ export default function AuthenticationProvider({ children }) {
             }
           })
         }catch(err) {
-          setState((state) => ({ ...state, error: true }));
+          setAuthState((authState) => ({ ...authState, error: true }));
         }
     }
 
@@ -98,10 +120,11 @@ export default function AuthenticationProvider({ children }) {
   return (
     <AuthenticationContext.Provider
       value={{
-        ...state,
+        ...authState,
         ...SignupPayload,
         setLoginPayload,
-        setSignupPayload
+        setSignupPayload,
+        setAuthState
       }}
     >
       {children}

@@ -24,13 +24,13 @@ export default function LoginPage() {
     };
   
     const setPassword = (e) => {
-        let pass = e.target.value;
-        setState((state) => ({ ...state, password: pass}));
+        let password = e.target.value;
+        setState((state) => ({ ...state, password: password}));
         console.log(state);
     };
   
     const onSubmit = (e) => {
-        e.preventDefault();
+        //e.preventDefault();
         setLoginPayload({ username, password });        
     };
 
@@ -104,27 +104,4 @@ export default function LoginPage() {
             </div>
         </form>
     );
-
-
-
-/*<form onSubmit={onSubmit}>
-            <label for="name">Name</label><br></br>
-            <input 
-                type="text"
-                onChange={setUsername}
-            />
-            <br></br><br></br>
-            <label for ="pass">Password</label><br></br>
-            <input 
-                type="password"
-                onChange={setPassword}
-            />
-            <br></br><br></br>
-            <button 
-                type="submit" 
-                value="Add user" 
-            >
-                Log In 
-            </button>
-        </form> */
 }

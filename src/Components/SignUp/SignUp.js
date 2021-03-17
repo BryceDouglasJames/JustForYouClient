@@ -28,8 +28,8 @@ export default function SignUpPage() {
     };
   
     const setPassword = (e) => {
-        let pass = e.target.value;
-        setState((state) => ({ ...state, password: pass}));
+        let password = e.target.value;
+        setState((state) => ({ ...state, password: password}));
     };
 
     const setEmail = (e) => {

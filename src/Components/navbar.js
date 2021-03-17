@@ -3,7 +3,6 @@ import { Redirect, Link } from 'react-router-dom';
 import { AuthenticationContext } from './User/AuthenticationProvider'
 import "jquery/dist/jquery.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
-import {DropdownButton,Dropdown} from 'react-bootstrap'
 
 // navbar with menu icons 
 export default function Navbar(){
@@ -35,40 +34,58 @@ export default function Navbar(){
           <nav className="navbar navbar-expand-lg navbar-dark m-auto" style = {{backgroundImage: "linear-gradient(rgba(110,94,254,0.6)0%, rgba(73,63,252,1)100%)"}}>
               <Link className="navbar-brand" to='/' style = {logoStyle}>
                   
-                <h3 className = "p-4">Just For You</h3>
+                <h1 className = "p-4" style = {{fontFamily: "serif"}}>Just For You</h1>
                   
               </Link>  
+
               <button className="navbar-toggler p-3" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" style = {{position: "initial"}}>
                   <span className="navbar-toggler-icon"></span>
                   <br></br>
               </button>
+
               <div className="collapse navbar-collapse m-auto" id="navbarNavAltMarkup">
+                  
                   <div className="navbar-nav p-auto mx-auto" style={{backgroundRepeat: "repeat", backgroundSize: "cover"}}>
-                      
+                  
+          
+                  
                   <li data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                          <Link  className = "nav-link text-center m-auto p-auto" to="/home" style = {linkStyle}>
-                          &ensp;&ensp;Home
-                          </Link>
-                      </li>
-                      <li data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                          <Link  className = "nav-link text-center m-auto p-auto" to="/forum" style = {linkStyle}>
-                          <DropdownButton id="dropdown-basic-button" title="Forum">
-                          <Dropdown.Item href="#/action-1">Resources</Dropdown.Item>
-                          <Dropdown.Item href="#/action-1">Commmunity Outlets</Dropdown.Item>
-                          <Dropdown.Item href="#/action-1">View Community Posts</Dropdown.Item>
-                          </DropdownButton>
-                          </Link>
-                      </li>
-                      <li data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                          <Link  className = "nav-link text-center m-auto p-auto" to="/settings" style = {linkStyle}> 
-                           <DropdownButton id="dropdown-basic-button" title="Settings">
-                          <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
-                          <Dropdown.Item href="#/action-1">Logout</Dropdown.Item>
-                          <Dropdown.Item href="#/action-1">Help</Dropdown.Item>
-                          </DropdownButton>
-                          </Link>
-                      </li>
-                  </div>
+                    <Link  className = "nav-link text-center m-auto p-auto" to="/home" style = {linkStyle}>
+                      &ensp;&ensp;Home
+                    </Link>
+                  </li>
+
+                  <li data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <a className="nav-link text-center m-auto p-auto" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style = {linkStyle}>
+                      &ensp;&ensp;Forum&#8595;
+                    </a>
+                    <div className="dropdown-menu m-auto p-5" aria-labelledby="navbarDropdown" >
+                      <a className="dropdown-item" href="#">Resources</a>
+                      <a className="dropdown-item" href="#">Commmunity Outlets</a>
+                      <a className="dropdown-item" href="#">View Community Posts</a>
+                      <div className="dropdown-divider"></div>
+                      <Link className = "dropdown-item" to="/forum">Forum Home</Link>
+                    </div>
+                  </li>
+
+                  <li data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <a className="nav-link text-center m-auto p-auto" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style = {linkStyle}>
+                      &ensp;&ensp;Settings&#8595;
+                    </a>
+                    <div className="dropdown-menu m-auto p-5" aria-labelledby="navbarDropdown" >
+                      <a className="dropdown-item" href="#">Preferences</a>
+                      <a className="dropdown-item" href="#">Log Out</a>
+                      <div className="dropdown-divider"></div>
+                      <Link className = "dropdown-item" to="/settings">Account Overview</Link>
+                    </div>
+                  </li>
+                  <br></br>
+                  <li data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <a className="nav-link text-center m-auto p-auto" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style = {linkStyle}>
+                      &ensp;&ensp;User::{sessionStorage.getItem("USERNAME")}
+                    </a>
+                  </li>
+                </div>
               </div>
           </nav>
         </>

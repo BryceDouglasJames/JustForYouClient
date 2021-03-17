@@ -7,62 +7,20 @@ Every user feature should be added here.
 
 import React, {createContext, useContext, useState, useEffect} from "react";
 import {APIContext} from "../APIContext"
-
-/*export const UserContext = new createContext();
-
-export default function UserProvider ({children}){
-
-    const api = useContext(APIContext);
-
-    const [state, setState] = useState({
-        id: null,
-        user: "",
-        isFetching: false,
-        userRole: null,
-        error: false,
-    });
-
-    useEffect(() =>{
-
-        //async function purposed towards updating user status every time a new page is fetched along with error handling
-        //needs an await keyword in order to initiate.
-        async function getCurrentUser() {
-            setState((state) => ({ ...state, isFetching: true }));
-            try {
-              const { id, user: user, userRole } = await api.getCurrentUser();
-              setState((state) => ({
-                ...state,
-                id,
-                user,
-                userRole,
-                error: false,
-              }));
-            } catch (err) {
-              console.log(err);
-              setState((state) => ({ ...state, error: true }));
-            }
-            setState((state) => ({ ...state, isFetching: false }));
-            console.log(state);
-        }
-      
-        //grab the current user
-        getCurrentUser();
-    },[api]);
-
-    return(
-        <UserContext.Provider value = {{...state}}>{children}</UserContext.Provider>
-    )
-}*/
+import { AuthenticationContext } from "./AuthenticationProvider";
 
 export const UserContext = new createContext();
-export default function UserProvider({ provider, children }) {
+
+export default function UserProvider({ children }) {
     const api = useContext(APIContext);
+    let  {isAuthenticated, userUpdate, setAuthState, authState, loginPayload} = useContext(AuthenticationContext);
 
     //GETTER AND SETTER STATE
     const [userState, setUserState] = useState({
       id: null,
-      userName: "",
-      isFetching: false,
+      username: "",
+      password: "",
+      userFetch: false,
       userRole: null,
       showQuestions: true,
       error: false
@@ -70,33 +28,38 @@ export default function UserProvider({ provider, children }) {
   
     useEffect(() => {
       //Sends request to server to get updates about user, session data, cookies, etc.
-      async function getCurrentUser() {
-        setUserState((state) => ({ ...state, isFetching: true }));
+      async function getCurrentUser({ username, password }) {
+        console.log("I MADE IT HERE");
+        if (!username || !password) return;
+        
         try {
-          //const { id, username: userName, userRole } = await api.getCurrentUser();
-          const { id, username: userName, userRole } = {id:"999", username:"Bryce"}
+          
+          await api.getUserAccount({ username, password }).then(resp =>{
+            console.log(resp);
+          });
+
           setUserState((userState) => ({
             ...userState,
-            id,
-            userName,
-            userRole,
             error: false,
           }));
         } catch (err) {
           console.log(err);
           setUserState((userState) => ({ ...userState, error: true }));
         }
-        setUserState((userState) => ({ ...userState, isFetching: false }));
       }
   
-      getCurrentUser();
-    }, [api]);
+      //let {userFetch} = userState;
+      if(isAuthenticated && sessionStorage.getItem("USERNAME") !== null && userUpdate){
+        let username = sessionStorage.getItem("USERNAME") 
+        getCurrentUser({username, password:"password"});
+        setAuthState((authState) => ({...authState, userUpdate: false}))
+      }
+
+    }, [api, isAuthenticated, userState, loginPayload]);
   
-    return (
-      <UserContext.Provider value={{ 
+    return <UserContext.Provider value={{ 
         ...userState,
         setUserState 
-      }}>{children}</UserContext.Provider>
-    );
+      }}>{children}</UserContext.Provider>;
   }
 
