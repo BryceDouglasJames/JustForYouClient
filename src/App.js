@@ -25,7 +25,7 @@ function App() {
   
   const apiInstance = new API({
     callbackInstance: createPHPCallInstance(
-      { baseUrl: "./justforyouapi/public/" }
+      { baseUrl: "http://192.168.64.3/justforyouapi/public/" }
     ),
   });
 

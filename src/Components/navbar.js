@@ -10,7 +10,7 @@ export default function Navbar(){
   const {isAuthenticated} = new useContext(AuthenticationContext);
 
   if(!isAuthenticated){
-    return <Redirect to = "/build/"></Redirect>
+    return <Redirect to = "/"></Redirect>
   }else{
     const logoStyle = {
       width: "70%",

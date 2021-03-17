@@ -10,7 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 export default function LoginPage(){
     const {backToLogin} = new useContext(AuthenticationContext);
     if(backToLogin){
-        return <Redirect to="/build/"></Redirect>
+        return <Redirect to="/"></Redirect>
     }else{
         return <SignUp></SignUp>
     }
