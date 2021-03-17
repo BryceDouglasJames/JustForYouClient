@@ -37,7 +37,7 @@ export class API{
     //handles authentication call
     async authenticateUser({username, password}){
         return await this.API_POST({
-            endpoint: "http://192.168.64.3/justforyouapi/public/users/auth",
+            endpoint: "./justforyouapi/public/users/auth",
             payload: { username, password },
         })
     }
@@ -45,14 +45,14 @@ export class API{
     //handles sneding post payload with new user signup
     async addUser({username, email, password}){
         return await this.API_POST({
-            endpoint: "http://192.168.64.3/justforyouapi/public/users/create",
+            endpoint: "./justforyouapi/public/users/create",
             payload: { username, password, email },
         })
     }
 
     async getUserAccount({username, password}){
         let user = await this.API_POST({
-            endpoint: "http://192.168.64.3/justforyouapi/public/users/auth",
+            endpoint: "./justforyouapi/public/users/auth",
             payload: { username, password },
         })
 

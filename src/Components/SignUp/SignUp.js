@@ -52,7 +52,7 @@ export default function SignUpPage() {
     const onSubmit = (e) => {
         e.preventDefault();
         setSignupPayload({ username, email, password, newSignup: true });
-        return <Redirect to="/"></Redirect>
+        return <Redirect to="/build/"></Redirect>
 
     };
 

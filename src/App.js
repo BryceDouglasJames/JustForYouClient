@@ -25,7 +25,7 @@ function App() {
   
   const apiInstance = new API({
     callbackInstance: createPHPCallInstance(
-      { baseUrl: "http://137.140.141.39/justforyouapi/public/" }
+      { baseUrl: "./justforyouapi/public/" }
     ),
   });
 
@@ -38,23 +38,23 @@ function App() {
           <UserProvider>
             <Router>
               <Switch>
-                <Route exact path="/home">
+                <Route exact path="/build/home">
                   <Navbar></Navbar>
                   <Home></Home>
                   <Footer></Footer>
                 </Route>
-                <Route exact path = "/"> 
+                <Route exact path = "/build/"> 
                     <LoginPage></LoginPage>
                 </Route>
-                <Route exact path = "/signup">
+                <Route exact path = "/build/signup">
                     <SignUpControl></SignUpControl>
                 </Route>
-                <Route exact path = "/forum">
+                <Route exact path = "/build/forum">
                   <Navbar></Navbar>
                   <Forum></Forum>
                   <Footer></Footer>
                 </Route>
-                <Route exact path = "/settings">
+                <Route exact path = "/build/settings">
                   <Navbar></Navbar>
                   <UserSettings></UserSettings>
                   <Footer></Footer>
