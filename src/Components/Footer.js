@@ -1,18 +1,18 @@
 import React from 'react';
-import './Footer.css';
 
-const Footer = () => {
+//footer at a the bottom -common for all routes 
+function Footer () {
   return (
-    <footer>
-      <div>
-        <div className="social">
-        <i className="fab fa-twitter"></i>
-        <i className="fab fa-instagram"></i>
-        <i className="fab fa-facebook-f"></i>
+    <div>
+      <footer class="py-2 bg-dark fixed-botton">
+        <div class="container">
+          <p class=" m-0 text-center text-white ">
+            JustForYou &copy; &nbsp; {new Date().getFullYear()}
+            </p>
         </div>
-        <div className="py-2 text-center footer-style">JustForYou &copy; &nbsp; {new Date().getFullYear()}</div>
-      </div>
-    </footer>
+      </footer>
+    </div>
+
   );
 };
 

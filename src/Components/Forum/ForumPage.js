@@ -1,60 +1,32 @@
 import React from 'react';
-import {Container, Row, Card,Button, Col} from 'react-bootstrap'
-import {DropdownButton, Dropdown} from 'react-bootstrap'
 
 
-export default function ForumPage(){
+
+function ForumPage(){
     return (
-        <div className = "m-auto p-auto" style = {{textAlign:"center"}}>
-            <br></br><br></br>
-            <h1>Got Questions?</h1>
-            <div class="row m-auto p-5" style = {{width: "auto", height: "auto", alignItems: "center"}}>
-            <Container>
-                <Row>
-                    <Col md={4}> Resources
-                    <Card className="text-center">
-                            <Card.Img variant="top" src="forum.jpg" height="300px" width="160px" />
-                        <Card.Body>
-                            <Card.Title></Card.Title>
-                            <Card.Text>
-                                Some quick example text to build on the card title and make up the bulk of
-                                the card's content.
-                            </Card.Text>
-                            <Button variant="primary">Access Resources</Button>
-                        </Card.Body>
-                        </Card> 
-                    </Col>
-                    <Col md={4}>Outlets
-                    <Card className="text-center">
-                            <Card.Img variant="top" src="forum.jpg" height="145px" width="160px" />
-                        <Card.Body>
-                            <Card.Title></Card.Title>
-                            <Card.Text>
-                                Some quick example text to build on the card title and make up the bulk of
-                                the card's content.
-                            </Card.Text>
-                            <Button primary>Outlets</Button>
-                        </Card.Body>
-                        </Card> 
-                    </Col>
-                    <Col md={4}>Weekly Community Updates
-                    <Card className="text-center">
-                            <Card.Img variant="top" src="forum.jpg" height="145px" width="160px" />
-                        <Card.Body>
-                            <Card.Title></Card.Title>
-                            <Card.Text>
-                                Some quick example text to build on the card title and make up the bulk of
-                                the card's content.
-                            </Card.Text>
-                            <Button variant="primary">View Updates</Button>
-                        </Card.Body>
-                        </Card> 
-                    </Col>
-                </Row>
-            </Container>
+        <div className="forum ">
+            <div class="container">
+                <div class="col-sm-4">
+                    <h3 class="font-weight-light text-center">Forum Home Page</h3>
+                </div>
+                <div class="row align-items-center my-4">
+                    <div className = "container m-auto p-3">
+                        <div className = "row m-auto p-auto">
+                            <div className = "card m-auto p-3 col-md-7" style = {{width: "auto", height: "auto", alignItems: "center", backgroundColor: "gainsboro"}}>
+                                <div className = "card-title p-5 m-auto" style = {{textAlign:"center"}}>
+                                    <h3 style={{fontOpticalSizing:'auto'}}>Today's Forum</h3>
+                                </div>
+                                <div className = "card-body m-auto" style = {{border:"2px ridge black", borderRadius:"5px", width:"100%",textAlign:"center"}}>
+                                    <p>Check back soon for latest updates</p>
+                                </div>
+                                <button type = "button" className = "btn btn-outline-secondary m-5">Take a Look!</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
-            
-            <p>Hey there, you'll see forum posts here soon</p>
         </div>
     );
 }
+export default ForumPage;

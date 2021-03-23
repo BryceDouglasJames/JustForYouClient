@@ -28,7 +28,7 @@ export default function Navbar(){
       fontSize: "20px",
       textDecoration: "none",
     }
-    //dropdown menu with other components
+    //dropdown menu components with links 
       return(
         <>
           <nav className="navbar navbar-expand-lg navbar-dark m-auto" style = {{backgroundImage: "linear-gradient(rgba(110,94,254,0.6)0%, rgba(73,63,252,1)100%)"}}>
@@ -60,9 +60,9 @@ export default function Navbar(){
                       &ensp;&ensp;Forum&#8595;
                     </a>
                     <div className="dropdown-menu m-auto p-5" aria-labelledby="navbarDropdown" >
-                      <a className="dropdown-item" href="#">Resources</a>
-                      <a className="dropdown-item" href="#">Commmunity Outlets</a>
-                      <a className="dropdown-item" href="#">View Community Posts</a>
+                      <Link className="dropdown-item" to="/resources" href="#">Resources</Link>
+                      <Link className="dropdown-item" to="/outlets" href="#">Commmunity Outlets</Link>
+                      <Link className="dropdown-item" to="/posts" href="#">View Community Posts</Link>
                       <div className="dropdown-divider"></div>
                       <Link className = "dropdown-item" to="/forum">Forum Home</Link>
                     </div>

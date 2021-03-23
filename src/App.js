@@ -5,6 +5,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
 
+//==========Pages============
+import Resources from './Components/Forum/Resources';
+import Outlets from './Components/Forum/Outlets';
+import Posts from './Components/Forum/Posts';
 //==========COMPONENTS============
 import LoginPage from './Components/Login/LoginPage';
 import SignUp from './Components/SignUp/SignUp';
@@ -25,7 +29,7 @@ function App() {
   
   const apiInstance = new API({
     callbackInstance: createPHPCallInstance(
-      { baseUrl: "http://192.168.64.3/justforyouapi/public/" }
+      { baseUrl: "http://137.140.141.39/justforyouapi/public/" }
     ),
   });
 
@@ -52,6 +56,21 @@ function App() {
                 <Route exact path = "/forum">
                   <Navbar></Navbar>
                   <Forum></Forum>
+                  <Footer></Footer>
+                </Route>
+                <Route exact path = "/resources">
+                  <Navbar></Navbar>
+                  <Resources></Resources>
+                  <Footer></Footer>
+                </Route>
+                <Route exact path = "/posts">
+                  <Navbar></Navbar>
+                  <Posts></Posts>
+                  <Footer></Footer>
+                </Route>
+                <Route exact path = "/outlets">
+                  <Navbar></Navbar>
+                  <Outlets></Outlets>
                   <Footer></Footer>
                 </Route>
                 <Route exact path = "/settings">
