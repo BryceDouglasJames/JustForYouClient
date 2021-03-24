@@ -4,7 +4,7 @@ import React from 'react';
 function Footer () {
   return (
     <div>
-      <footer class="py-2 bg-dark fixed-botton">
+      <footer class="p-2 m-auto bg-dark fixed-bottom">
         <div class="container">
           <p class=" m-0 text-center text-white ">
             JustForYou &copy; &nbsp; {new Date().getFullYear()}

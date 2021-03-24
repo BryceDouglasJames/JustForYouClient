@@ -34,7 +34,7 @@ export default function Navbar(){
           <nav className="navbar navbar-expand-lg navbar-dark m-auto" style = {{backgroundImage: "linear-gradient(rgba(110,94,254,0.6)0%, rgba(73,63,252,1)100%)"}}>
               <Link className="navbar-brand" to='/' style = {logoStyle}>
                   
-                <h1 className = "p-4" style = {{fontFamily: "serif"}}>Just For You</h1>
+                <h1 className = "p-4 font-weight-light">Just For You</h1>
                   
               </Link>  
 

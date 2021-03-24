@@ -1,6 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {UserContext} from "../User/UserProvider"
 import QuestionPopup from "../Assistant/QuestionsPopup"
+import UserInfoForm from "../Assistant/UserInfoForm"
 import "bootstrap/dist/css/bootstrap.min.css"
 import {Container, Row, Card,Button, Col} from 'react-bootstrap'
 
@@ -14,7 +15,10 @@ export default function Home(){
 
     if(showQuestions){
         return(
+            <>
             <QuestionPopup></QuestionPopup>
+            <UserInfoForm></UserInfoForm>
+            </>
         )
     }else{
         return (
