@@ -43,7 +43,6 @@ function App() {
             <Router>
               <Switch>
                 <Route exact path="/home">
-                  <Navbar></Navbar>
                   <Home></Home>
                   <Footer></Footer>
                 </Route>

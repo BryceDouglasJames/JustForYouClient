@@ -77,14 +77,10 @@ export default function Navbar(){
                       <a className="dropdown-item" href="#">Log Out</a>
                       <div className="dropdown-divider"></div>
                       <Link className = "dropdown-item" to="/settings">Account Overview</Link>
+                      <a className="dropdown-item" href="#">User: {sessionStorage.getItem("USERNAME")}</a>
                     </div>
                   </li>
                   <br></br>
-                  <li data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <a className="nav-link text-center m-auto p-auto" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style = {linkStyle}>
-                      &ensp;&ensp;User::{sessionStorage.getItem("USERNAME")}
-                    </a>
-                  </li>
                 </div>
               </div>
           </nav>

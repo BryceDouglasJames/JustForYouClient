@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react';
 import {UserContext} from "../User/UserProvider"
 import QuestionPopup from "../Assistant/QuestionsPopup"
 import UserInfoForm from "../Assistant/UserInfoForm"
+import Navbar from '../navbar';
 import "bootstrap/dist/css/bootstrap.min.css"
 import {Container, Row, Card,Button, Col} from 'react-bootstrap'
 
@@ -9,26 +10,25 @@ import {Container, Row, Card,Button, Col} from 'react-bootstrap'
 export default function Home(){
     const {showQuestions} = new useContext(UserContext);
 
-    const[state, setState] = new useState({
-
-    });
-
-    if(showQuestions){
+    if(sessionStorage.getItem("NEWUSER") !== null && sessionStorage.getItem("NEWUSER") !== false){
+        return(
+            <UserInfoForm></UserInfoForm>
+        )
+    }else if(showQuestions){
         return(
             <>
+            <Navbar></Navbar>
             <QuestionPopup></QuestionPopup>
-            <UserInfoForm></UserInfoForm>
             </>
         )
     }else{
         return (
             <>
+                <Navbar></Navbar>
                 <div className = "m-auto p-auto" style = {{textAlign:"center"}}>
                     <br></br><br></br>
                     
-                    <br></br><br></br>
-                
-                    <div className = "container m-auto p-3">
+                    <div className = "container m-auto p-auto">
                         <div className = "row m-auto p-auto">
                             <div className = "card m-auto p-3 col-md-7" style = {{width: "auto", height: "auto", alignItems: "center", backgroundColor: "gainsboro"}}>
                                 <div className = "card-title p-5 m-auto" style = {{textAlign:"center"}}>

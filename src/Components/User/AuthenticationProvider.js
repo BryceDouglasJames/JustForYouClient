@@ -60,14 +60,17 @@ export default function AuthenticationProvider({ children }) {
             (resp === null) ? setAuthState((authState) => ({ ...authState, error: true })) : result = resp.data; 
           });
       
-          if(result === true){
+          console.log(result[0]);
+          if(result[0] === true){
             if(sessionStorage.getItem("USERNAME") === null || sessionStorage.getItem("USERNAME").toString() !== username){
               sessionStorage.setItem("USERNAME", username);
             }
           }
 
-          
-          
+          if(result[1] === true){
+            sessionStorage.setItem("NEWUSER", true);
+          }
+                    
           setAuthState((authState) => ({
             ...authState,
             isFetching: false,

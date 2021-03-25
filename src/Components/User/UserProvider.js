@@ -23,6 +23,7 @@ export default function UserProvider({ children }) {
       userFetch: false,
       userRole: null,
       showQuestions: true,
+      newUser: false,
       error: false
     });
   
@@ -50,7 +51,7 @@ export default function UserProvider({ children }) {
   
       //let {userFetch} = userState;
       if(isAuthenticated && sessionStorage.getItem("USERNAME") !== null && userUpdate){
-        let username = sessionStorage.getItem("USERNAME") 
+        let username = sessionStorage.getItem("USERNAME")
         getCurrentUser({username, password:"password"});
         setAuthState((authState) => ({...authState, userUpdate: false}))
       }

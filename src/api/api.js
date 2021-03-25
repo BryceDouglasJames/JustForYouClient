@@ -58,6 +58,14 @@ export class API{
         })
     }
 
+    async submitUserInfo({username, Weight, DOB, Height, Activity, Disease}){
+        let encodedKey = btoa(username);
+        return await this.API_POST({
+            endpoint: "http://192.168.64.3/justforyouapi/public/users/settings/basicinfo",
+            payload: { username, Weight, DOB, Height, Activity, Disease, PROVID:encodedKey },
+        })
+    }
+
     //handles sneding post payload with new user signup
     async addUser({username, email, password}){
         return await this.API_POST({
