@@ -13,6 +13,24 @@ function Posts(){
                     </div>
                 </div>
             </div>
+            <div class="media border p-3">
+                <div class="media border p-12">
+                    <div class="media-body">
+                        <h4 class="mt-0">User name<small> <i>Posted on Month Day, Year</i></small></h4>
+                        <p>Generic placeholder for post content...</p>
+                        <div class="media mt-3">
+                            <a class="pr-3">
+                                <img src="avatar.png" alt="User Name" class="mr-3 mt-3 rounded circle" style={{width:45}}>
+
+                                </img>
+                            </a>
+                            <div class="media-body">
+                                <h4>Name of other users <small><i>Posted on Month Day, Year</i></small></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
