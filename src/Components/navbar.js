@@ -47,8 +47,6 @@ export default function Navbar(){
                   
                   <div className="navbar-nav p-auto mx-auto" style={{backgroundRepeat: "repeat", backgroundSize: "cover"}}>
                   
-          
-                  
                   <li data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <Link  className = "nav-link text-center m-auto p-auto" to="/home" style = {linkStyle}>
                       &ensp;&ensp;Home
@@ -85,6 +83,7 @@ export default function Navbar(){
               </div>
           </nav>
         </>
+        
       );
   }
 }
