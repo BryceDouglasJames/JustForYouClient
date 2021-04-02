@@ -19,7 +19,7 @@ export default function AuthenticationProvider({ children }) {
     isChecked: false,
     isFetching: false,
     userUpdate: false,
-    sessionActive: false,
+    sessionActive: true,
     error: false,
   });
 

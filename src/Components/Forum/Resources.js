@@ -10,20 +10,21 @@ function Resources(){
     return (
         <div className="jumbotron text-center">
             <div class="col-lg-3 col-md-6">
-                <form class="form-inline mt-2 ml-2">
-                    <input class="form-control my-0 py-0" type="text" placeholder="Search" style={{maxWidth: 140}} />
-                    <button class="btn btn-info ml-3">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </form>
             </div>
-            <div class="container p-3 my-3 border">
-                <div class="row align-items-center my-4">
-                    <div class="col-lg-5">
-                        <h1 class="font-weight-light">Resources</h1>
+            <div class="container p-3 m-auto" style = {{border:"1px solid black"}}>
+                <div class="row m-auto p-auto">
+                    <div class="col-6">
+                        <h1 class="font-weight-light m-auto p-auto">Resources</h1>
                     </div>
+                    <form class="col-6 form m-auto">
+                            <input class="form-control m-auto p-auto" type="text" placeholder="Search" style={{width:"60%"}} />
+                            <button class="btn btn-info">
+                                Search Keyword
+                            </button>
+                        
+                    </form>
                 </div>
-
+                <br></br><hr className = "solid" style = {{color:"black", width:"100%"}}></hr><br></br>                    
                 <div class="card-deck" style={{maxwidth: 18}}>
                     <div class="row">
                         <div class="col-sm-4">

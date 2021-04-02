@@ -3,7 +3,8 @@ import "./ProfilePage.css";
 
 function ProfilePage(){
     return (
-        <div class="container">
+        <>
+        <div class="container m-auto">
             <div class="row gutters">
                 <div class="col-xs-4 ">
                     <div class="card h-35">
@@ -11,7 +12,6 @@ function ProfilePage(){
                             <div class="account-settings">
                                 <div class="user-profile">
                                     <div class="user-avatar">
-
                                     </div>
                                     <h5 class="user-name">Tester</h5>
                                     <h6 class="user-email">tester@info.com</h6>
@@ -23,13 +23,15 @@ function ProfilePage(){
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                    <br></br><br></br>
+                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 m-auto">
                         <div class="card h-35">
                             <div class="card-body">
                                 <div class="row gutters">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <h6 class="mb-2 text-primary">Personal Details</h6>
+                                        <h3 class="mb-2 m-auto" style = {{textAlign: 'center', color: "black"}}>Change Personal Details</h3>
                                     </div>
+                                    <br></br><br></br><br></br>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="fullName">Full Name</label>
@@ -51,7 +53,7 @@ function ProfilePage(){
                                 </div>
                                 <div class="row gutters">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <h6 class="mt-3 mb-2 text-primary">Address</h6>
+                                        <h6 class="mt-3 mb-2">Address</h6>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
@@ -79,12 +81,11 @@ function ProfilePage(){
                                     </div>
                                 </div>
                             </div>
-                            <div class="row gutters">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="row gutters m-auto">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-auto">
                                     <div class="text-right">
-                                        <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
+                                        <button type="button" id="submit" name="submit" class="btn btn-secondary p-2 m-3">Update</button>
                                         &ensp;&ensp;&ensp;&ensp;
-                                        <button type="button" id="submit" name="submit" class="btn btn-secondary">Update</button>
                                     </div>
                                 </div>
 
@@ -99,6 +100,8 @@ function ProfilePage(){
             </div>
 
         </div>
+        <div className = "p-5"></div>
+        </>
 
 
     );

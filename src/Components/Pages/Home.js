@@ -101,10 +101,10 @@ export default function Home(){
                     <div className = "row m-auto p-auto" >
                         <div className = "card m-auto p-3 col-md-4" style = {{width: "auto", height: "10%", alignItems: "center", backgroundColor: "gainsboro"}}>
                             <div className = "card-title p-5 m-auto " style = {{textAlign:"center"}}>
-                                <p className = "font-weight-light m-auto" style ={{fontSize:"120%"}}>Hello {sessionStorage.getItem("USERNAME")}, great to see you!</p>
+                                <p className = "font-weight-light m-auto" style ={{fontSize:"150%"}}>Hello {sessionStorage.getItem("USERNAME")}, great to see you!</p>
                             </div>
                             <div className = "card-body m-auto" style = {{border:"2px ridge black", borderRadius:"1px", width:"80%",textAlign:"center"}}>
-                                <p  style = {{fontSize:"120%"}}>Age: 21<br></br>BMI: 23.2</p>
+                                <p  style = {{fontSize:"120%"}}>Some info<br></br>Will be here</p>
                             </div>
                             <br></br>
                             <div className = "row m-auto">
@@ -190,8 +190,7 @@ export default function Home(){
                                     <h2 className = "font-weight-light" style={{fontOpticalSizing:'auto'}}>Dietary Health Score</h2>
                                 </div>
                                 <div className = "card-body m-auto" style = {{border:"2px ridge black", borderRadius:"5px", width:"80%",textAlign:"center"}}>
-                                    <p  style = {{fontSize:"22px"}}>We keep track of this score in order for you to gauge where you are are mentally. <br></br><br></br> Here at just for you, we are only here to 
-                                        help you find ways to improve your wellbeing and find the resources you need.</p>
+                                    <p  style = {{fontSize:"22px"}}></p>
                                 </div>
                                 <div className = "row m-auto p-auto">
                                     <button type = "button" style = {{backgroundColor:"rgba(97, 187, 255, 0.7)"}} className = "col btn m-5">Look at dietary resources</button>

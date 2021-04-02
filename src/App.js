@@ -24,13 +24,14 @@ import ProfilePage from './Components/User/ProfilePage';
 import APIProvider from "./Components/APIContext";
 import AuthenticationProvider from "./Components/User/AuthenticationProvider"
 import UserProvider from './Components/User/UserProvider';
+import ActivityDashboard from "./Components/Assistant/ActivityDashboard";
 
 
 function App() {
   
   const apiInstance = new API({
     callbackInstance: createPHPCallInstance(
-      { baseUrl: "http://137.140.141.39/justforyouapi/public/" }
+      { baseUrl: "http://192.168.64.3/justforyouapi/public/" }
     ),
   });
 
@@ -48,7 +49,12 @@ function App() {
                   <Footer></Footer>
                 </Route>
                 <Route exact path = "/"> 
-                    <LoginPage></LoginPage>
+                  <LoginPage></LoginPage>
+                </Route>
+                <Route exact path = "/activity">
+                  <Navbar></Navbar>
+                  <ActivityDashboard></ActivityDashboard>
+                  <Footer></Footer>    
                 </Route>
                 <Route exact path = "/signup">
                     <SignUpControl></SignUpControl>
