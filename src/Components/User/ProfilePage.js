@@ -5,7 +5,7 @@ function ProfilePage(){
     return (
         <div class="container">
             <div class="row gutters">
-                <div class="col-xl-3  col-md-12 col-sm-12 col-12">
+                <div class="col-xs-4 ">
                     <div class="card h-35">
                         <div class="card-body">
                             <div class="account-settings">
