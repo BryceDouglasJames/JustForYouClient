@@ -1,5 +1,9 @@
 import React from 'react';
-
+import Card from 'react-bootstrap/Card';
+import CardDeck from 'react-bootstrap/CardDeck';
+import CardColumns from 'react-bootstrap/CardColumns';
+import Accordion from 'react-bootstrap/Accordion';
+import { GiBookCover ,GiBrain,GiAchievement,GiAlarmClock,GiTalk,GiTabletopPlayers } from "react-icons/gi";
 
 //rendered when the route is "/resources" & contains resource page content 
 function Resources(){
@@ -19,22 +23,95 @@ function Resources(){
                         <h1 class="font-weight-light">Resources</h1>
                     </div>
                 </div>
-                <div class="card border-info mb-3" style={{maxwidth: 18}}>
-                    <div class="card-title border text-red bg-primary mb-3">More Daily Challenges</div>
-                    <br></br> 
-                    <div class="card-title border text-blue bg-success mb-3">Ask Questions</div>
-                    <br></br> 
-                    <div class="card-title border text-black bg-secondary mb-3">Health Facts</div>
-                    <br></br> 
-                    <div class="card-title border text-purple bg-danger mb-3">Reminders</div>
-                    <br></br> 
-                    <div class="card-title border text-black bg-dark mb-3">Schedule A Counseling Session</div>
-                    <div class="card border-info">
-                    <div class="card-title">Health Services Contact Info</div>
+
+                <div class="card-deck" style={{maxwidth: 18}}>
+                    <div class="row">
+                        <div class="col-sm-4">
+                        <Accordion>
+                        <Card class="bg-primary text-white rounded mb-2">
+                            <Accordion.Toggle as={Card.Header} eventKey="0">  <GiAchievement /> More Daily Challenges  </Accordion.Toggle>
+                            <Accordion.Collapse eventKey="0">
+                                <Card.Body class="rounded border bg-light text-dark">Extra challenges for those who want to go the extra mile on their health journey! 
+                                    <br></br>
+                                    <button class="rounded bg-primary text-white">Challenge Me!</button>
+                                </Card.Body>
+                            </Accordion.Collapse>
+                        </Card>
+                        </Accordion>
+                        </div>
+                        <div class="col-sm-4">
+                        <Accordion>
+                        <Card class="bg-success text-white rounded mb-2">
+                            <Accordion.Toggle as={Card.Header} eventKey="0"> <GiBrain />Ask Questions</Accordion.Toggle>
+                            <Accordion.Collapse eventKey="0">
+                                <Card.Body class="rounded border bg-light text-dark">Extra challenges for those who want to go the extra mile on their health journey! 
+                                    <br></br>
+                                    <button class="rounded bg-primary text-white">Challenge Me!</button>
+                                </Card.Body>
+                            </Accordion.Collapse>
+                        </Card>
+                        </Accordion>
+                        </div><div class="col-sm-4">
+                        <Accordion>
+                        <Card class="bg-info text-white rounded mb-2">
+                            <Accordion.Toggle as={Card.Header} eventKey="0"> <GiBookCover />Health Facts</Accordion.Toggle>
+                            <Accordion.Collapse eventKey="0">
+                                <Card.Body class="rounded border bg-light text-dark">Extra challenges for those who want to go the extra mile on their health journey! 
+                                    <br></br>
+                                    <button class="rounded bg-primary text-white">Challenge Me!</button>
+                                </Card.Body>
+                            </Accordion.Collapse>
+                        </Card>
+                        </Accordion>
+                        </div>
+                    </div> 
+                    <div class="row">
+                    <div class="col-sm-4">
+                        <Accordion>
+                        <Card class="bg-danger text-white rounded mb-2">
+                            <Accordion.Toggle as={Card.Header} eventKey="0"> <GiAlarmClock />Reminders</Accordion.Toggle>
+                            <Accordion.Collapse eventKey="0">
+                                <Card.Body class="rounded border bg-light text-dark">Extra challenges for those who want to go the extra mile on their health journey! 
+                                    <br></br>
+                                    <button class="rounded bg-primary text-white">Challenge Me!</button>
+                                </Card.Body>
+                            </Accordion.Collapse>
+                        </Card>
+                        </Accordion>
+                        </div><div class="col-sm-4">
+                        <Accordion>
+                        <Card class="bg-warning text-white rounded mb-2">
+                            <Accordion.Toggle as={Card.Header} eventKey="0"> <GiTabletopPlayers /> Schedule a Counseling Session</Accordion.Toggle>
+                           <Accordion.Collapse eventKey="0">
+                                <Card.Body class="rounded border bg-light text-dark">Extra challenges for those who want to go the extra mile on their health journey! 
+                                    <br></br>
+                                    <button class="rounded bg-primary text-white">Challenge Me!</button>
+                                </Card.Body>
+                            </Accordion.Collapse>
+                        </Card>
+                        </Accordion>
+                        </div><div class="col-sm-4">
+                        <Accordion>
+                        <Card class="bg-dark text-white rounded mb-2">
+                            <Accordion.Toggle as={Card.Header} eventKey="0"> <GiTalk /> Health Services Contact info</Accordion.Toggle>
+                            <Accordion.Collapse eventKey="0">
+                                <Card.Body class="rounded border bg-light text-dark">Extra challenges for those who want to go the extra mile on their health journey! 
+                                    <br></br>
+                                    <button class="rounded bg-primary text-white">Challenge Me!</button>
+                                </Card.Body>
+                            </Accordion.Collapse>
+                        </Card>
+                        </Accordion>
+                        </div>
                     </div>
                     </div>
-                </div>
+        </div>
+
         </div>
     );
 }
 export default Resources;
+
+                /*
+                
+                */

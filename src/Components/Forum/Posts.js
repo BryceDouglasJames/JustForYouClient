@@ -1,9 +1,11 @@
 import React from 'react';
-
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 //rendered when the route is "/posts"
 function Posts(){
     return (
+    <div>
         <div class="jumbotron text-center">
             <div class="container">
                 <div class="row align-items-center my-4">
@@ -13,7 +15,26 @@ function Posts(){
                     </div>
                 </div>
             </div>
-            <div class="media border p-3">
+        </div>
+
+        <Card class="rounded p-5 col-xl-12">
+          <Card.Header>Featured Community Post</Card.Header>
+          <Card.Body>
+            <Card.Title>UserName: Special title</Card.Title>
+            <Card.Text>
+                User Generated post content
+            </Card.Text>
+            <Button>Read Now</Button>
+          </Card.Body>
+          <Card.Footer><small class="text-muted">posted 2 hours ago.</small></Card.Footer>
+        </Card>
+        </div>
+    );}
+export default Posts;
+
+/*
+
+        <div class="media border p-3">
                 <div class="media border p-12">
                     <div class="media-body">
                         <h4 class="mt-0">User name<small> <i>Posted on Month Day, Year</i></small></h4>
@@ -32,6 +53,5 @@ function Posts(){
                 </div>
             </div>
         </div>
-    );
-}
-export default Posts;
+
+        */
