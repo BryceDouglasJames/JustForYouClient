@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-//rendered when the route is "/resources"
+//rendered when the route is "/resources" & contains resource page content 
 function Resources(){
     return (
         <div className="jumbotron text-center">

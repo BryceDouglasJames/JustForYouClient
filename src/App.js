@@ -18,6 +18,7 @@ import Forum from './Components/Forum/ForumPage';
 import UserSettings from './Components/User/UserSettings';
 import SignUpControl from './Components/SignUp/SignUpControl';
 import Footer from './Components/Footer'
+import ProfilePage from './Components/User/ProfilePage';
 
 //==========PROVIDERS============
 import APIProvider from "./Components/APIContext";
@@ -29,7 +30,7 @@ function App() {
   
   const apiInstance = new API({
     callbackInstance: createPHPCallInstance(
-      { baseUrl: "http://192.168.64.3/justforyouapi/public/" }
+      { baseUrl: "http://137.140.141.39/justforyouapi/public/" }
     ),
   });
 
@@ -75,6 +76,7 @@ function App() {
                 <Route exact path = "/settings">
                   <Navbar></Navbar>
                   <UserSettings></UserSettings>
+                  <ProfilePage></ProfilePage>
                   <Footer></Footer>
                 </Route>
               </Switch>
