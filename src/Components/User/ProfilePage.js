@@ -1,5 +1,5 @@
 import React from 'react';
-import "./ProfilePage.css";
+
 
 function ProfilePage(){
     return (
@@ -12,8 +12,9 @@ function ProfilePage(){
                             <div class="account-settings">
                                 <div class="user-profile">
                                     <div class="user-avatar">
+                                        <img img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" width="50" alt="User"></img>
                                     </div>
-                                    <h5 class="user-name">Tester</h5>
+                                    <h5 class="user-name">{sessionStorage.getItem("USERNAME")}</h5>
                                     <h6 class="user-email">tester@info.com</h6>
                                 </div>
                                 <div class="about">
