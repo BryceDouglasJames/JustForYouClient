@@ -30,7 +30,7 @@ export default function LoginPage() {
     };
   
     const onSubmit = (e) => {
-        //e.preventDefault();
+        e.preventDefault();
         setLoginPayload({ username, password });        
     };
 

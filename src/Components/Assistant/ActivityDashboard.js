@@ -2,10 +2,20 @@ import React, {useContext, useEffect, useState} from 'react';
 import {UserContext} from "../User/UserProvider"
 import "bootstrap/dist/css/bootstrap.min.css"
 import {APIContext} from "../APIContext"
+import MentalPage from "./MentalPage"
+import DietPage from "./DietPage"
+import PersonalPage from "./PersonalPage"
+import FitnessPage from "./FitnessPage"
 import { Line } from 'react-chartjs-2';
+import styles from "../../background.css"
+
 
 
 export default function ActivityDashboard(){
+
+    const[state, setState] = new useState({
+        activity: "home"
+    });
 
     const PersonalData = {
         labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
@@ -97,53 +107,357 @@ export default function ActivityDashboard(){
         ]
     }
 
-    return(
-        <div className = "m-auto" style = {{textAlign:"center"}}>
-            <div className = "container m-auto p-auto">
-                <div className = "row m-auto p-auto">
-                    <div className = "col-md-2 m-auto p-5" style = {{height: "75%", backgroundColor:"gainsboro",position: "absolute", left:"0", textAlign:"center", borderRight:"1px solid black", borderBottom:"1px solid black"}}>
-                        <h2 className = "font-weight-light">Dashboard</h2>
-                        <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%", position: "absolute", left:"0", borderRight:"none", borderLeft:"none"}}>Dashboard Home</button>
-                        <br></br><br></br>
-                        <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%", position: "absolute", left:"0", borderRight:"none", borderLeft:"none"}}>Fitness Stats</button>
-                        <br></br><br></br>
-                        <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%", position: "absolute", left:"0", borderRight:"none", borderLeft:"none"}}>Mental Stats</button>
-                        <br></br><br></br>
-                        <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%", position: "absolute", left:"0", borderRight:"none", borderLeft:"none"}}>Personal Stats</button>
-                        <br></br><br></br>
-                        <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%", position: "absolute", left:"0", borderRight:"none", borderLeft:"none"}}>Diet Stats</button>
-                        <br></br><br></br><br></br>
-                        <h2 className = "font-weight-light">Questions</h2>
-                        <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%", position: "absolute", left:"0", borderRight:"none", borderLeft:"none"}}>Fitness Questions</button>
-                        <br></br><br></br>
-                        <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%", position: "absolute", left:"0", borderRight:"none", borderLeft:"none"}}>Mental Questions</button>
-                        <br></br><br></br>
-                        <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%", position: "absolute", left:"0", borderRight:"none", borderLeft:"none"}}>Personal Questions</button>
-                        <br></br><br></br>
-                        <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%", position: "absolute", left:"0", borderRight:"none", borderLeft:"none"}}>Diet Questions</button>                    
-                    </div>
-                    <div className = "col-md-2"></div>
-                    <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-                    <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-                    <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-                    <br></br><br></br>
+    const MentalData = {
+        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        datasets: [
+            {
+                label: 'Mental',
+                fill: true,
+                lineTension: 0.1,
+                backgroundColor: 'rgba(23, 215, 132,0.4)',
+                borderColor: 'rgba(23, 215, 132,1)',
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: 'rgba(23, 215, 132,1)',
+                pointBackgroundColor: '#fff',
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: 'rgba(23, 215, 132,1)',
+                pointHoverBorderColor: 'rgba(220,220,220,1)',
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: [87,73,80,76,87,92,49]
+            }
+        ]
+    }
 
-                    <div className = "col-md-8 m-auto p-auto" style = {{textAlign:"center", justifyContent:"center"}}>
-                        <div className = "row m-auto p-auto" style = {{height: "100%", textAlign:"center", justifyContent:"center"}}>
-                            <div className = "row"><br></br><br></br></div>
-                            <h2 className = "font-weight-light">Weekly Progress</h2>
-                            <Line 
-                                data={PersonalData}
-                                height = {5}
-                                width = {7}
-                            />
+    const FitnessData = {
+        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        datasets: [
+            {
+                label: 'Fitness',
+                fill: true,
+                lineTension: 0.1,
+                backgroundColor: 'rgba(255, 132, 132,0.4)',
+                borderColor: 'rgba(255, 132, 132,1)',
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: 'rgba(255, 132, 132,1)',
+                pointBackgroundColor: '#fff',
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: 'rgba(255, 132, 132,1)',
+                pointHoverBorderColor: 'rgba(220,220,220,1)',
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: [65, 59, 80, 81, 56, 55, 40]
+            }
+        ]
+    }
+
+    const DietData = {
+        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        datasets: [
+            {
+                label: 'Diet',
+                fill: true,
+                lineTension: 0.1,
+                backgroundColor: 'rgba(97, 187, 255,0.4)',
+                borderColor: 'rgba(97, 187, 255,1)',
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: 'rgba(97, 187, 255,1)',
+                pointBackgroundColor: '#fff',
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: 'rgba(97, 187, 255,1)',
+                pointHoverBorderColor: 'rgba(220,220,220,1)',
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: [34, 39, 11, 4, 23, 10, 35]
+            }
+        ]
+    }
+
+    const PersonData = {
+        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        datasets: [
+            {
+                label: 'Personal',
+                fill: true,
+                lineTension: 0.1,
+                backgroundColor: 'rgba(253, 208, 64,0.4)',
+                borderColor: 'rgba(253, 208, 64,1)',
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: 'rgba(253, 208, 64,1)',
+                pointBackgroundColor: '#fff',
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: 'rgba(253, 208, 64,1)',
+                pointHoverBorderColor: 'rgba(220,220,220,1)',
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: [50, 71, 66, 86, 84, 46, 39]
+            }
+        ]
+    }
+
+    const setHome = (e) => {
+        setState((state)=>({...state, activity: "home"}));
+    }
+    const setMental = (e) => {
+        setState((state)=>({...state, activity: "mental"}));
+    }
+    const setFitness = (e) => {
+        setState((state)=>({...state, activity: "fitness"}));
+    }
+    const setDiet = (e) => {
+        setState((state)=>({...state, activity: "diet"}));
+    }
+    const setPersonal = (e) => {
+        setState((state)=>({...state, activity: "personal"}));
+    }
+
+    const {activity} = state;
+    if(activity === "home"){
+        return(
+            <div className = "m-auto gifStyle niceBackground" style = {{textAlign:"center"}}>
+                <br></br><br></br>
+                <div className = "container m-auto p-auto">
+                    <div className = "row m-auto p-auto">
+                        <div className = "col-md-3"></div>
+                        <div className = "col-md-6 m-auto p-5" style = {{height: "80%", backgroundColor:"gainsboro", textAlign:"center",float:"left", border:"1px solid black"}}>    
+                            <div className = "container m-auto p-auto">
+                                <h2 className = "font-weight-light">Dashboard</h2>
+                                <br></br>
+                                <button type = "button" className = "btn btn-dark p-auto" style = {{width:"100%"}} onClick = {setHome}>Dashboard Home</button>
+                                <br></br><br></br>
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}} onClick = {setFitness}>Fitness Stats</button>
+                                <br></br><br></br>
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}} onClick = {setMental}>Mental Stats</button>
+                                <br></br><br></br>
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}} onClick = {setPersonal}>Personal Stats</button>
+                                <br></br><br></br>
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}} onClick = {setDiet}>Diet Stats</button>
+                            </div>
+                            <br></br><br></br>          
+                        </div>
+                        <div className = "col-md-3"></div>
+                        <div className = "row"></div>
+                        <br></br><br></br><br></br><br></br><br></br><br></br>         
+                        <div className = "col-md-12 m-auto p-auto" style = {{textAlign:"center", justifyContent:"center", backgroundColor:"white"}}>
+                            <div className = "row m-auto p-auto" style = {{height: "100%", textAlign:"center", justifyContent:"center"}}>
+                                <div className = "row"><br></br><br></br></div>
+                                <h2 className = "font-weight-light">Weekly Progress</h2>
+                                <Line
+                                    data={PersonalData}
+                                    height = {5}
+                                    width = {7}
+                                />
+                            </div>  
+                        </div>
+                        <div className = "row p-5"></div>
+                    </div>
+                </div>
+            </div>
+        );
+    }else if(activity === "mental"){
+        return(
+            <div className = "m-auto gifStyle niceBackground" style = {{textAlign:"center"}}>
+                <br></br>
+                <br></br>
+                <div className = "container m-auto p-4"style = {{backgroundColor:"white"}}>
+                    <div className = "row m-auto p-auto">
+                        
+                        <div className = "col-md-4 m-auto p-5" style = {{height: "80%", backgroundColor:"gainsboro", textAlign:"center",float:"left", border:"1px solid black"}}>
+                            
+                            <div className = "container m-auto p-auto">
+                                <h2 className = "font-weight-light">Dashboard</h2>
+                                <br></br>
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}} onClick = {setHome}>Dashboard Home</button>
+                                <br></br><br></br>
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}} onClick = {setFitness}>Fitness Stats</button>
+                                <br></br><br></br>
+                                <button type = "button" className = "btn p-auto" style = {{width:"100%", backgroundColor:"#8dceb2"}} onClick = {setHome}>Mental Stats</button>
+                                <br></br><br></br>
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}} onClick = {setPersonal}>Personal Stats</button>
+                                <br></br><br></br>
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}} onClick = {setDiet}>Diet Stats</button>
+                            </div>
+                            <br></br><br></br>          
+                        </div>
+                        <div className = "col-md-1"></div>
+                        <br></br><br></br><br></br>
+                        <div className = "col-md-7 m-auto p-auto" style = {{textAlign:"center", justifyContent:"center"}}>
+                            <div className = "row m-auto p-auto" style = {{height: "100%", textAlign:"center", justifyContent:"center"}}>
+                                <div className = "row"><br></br><br></br></div>
+                                <h2 className = "font-weight-light">Mental Progress</h2>
+                                <Line
+                                    data={MentalData}
+                                    height = {5}
+                                    width = {7}
+                                />
+                            </div>  
                         </div>
                     </div>
-                    
+                </div>
+                <div>
+                    <MentalPage></MentalPage>
                 </div>
                 <div className = "row p-5"></div>
             </div>
-
-        </div>
-    );
+        );
+    }else if(activity === "fitness"){
+        return(
+            <div className = "m-auto gifStyle niceBackground" style = {{textAlign:"center"}}>
+                <br></br>
+                <br></br>
+                <div className = "container m-auto p-4"style = {{backgroundColor:"white"}}>
+                    <div className = "row m-auto p-auto">
+                        
+                        <div className = "col-md-4 m-auto p-5" style = {{height: "80%", backgroundColor:"gainsboro", textAlign:"center",float:"left", border:"1px solid black"}}>
+                            
+                            <div className = "container m-auto p-auto">
+                                <h2 className = "font-weight-light">Dashboard</h2>
+                                <br></br>
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}} onClick = {setHome}>Dashboard Home</button>
+                                <br></br><br></br>
+                                <button type = "button" className = "btn p-auto" style = {{width:"100%", backgroundColor:"#ff8484"}} onClick = {setFitness}>Fitness Stats</button>
+                                <br></br><br></br>
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}} onClick = {setMental}>Mental Stats</button>
+                                <br></br><br></br>
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}} onClick = {setPersonal}>Personal Stats</button>
+                                <br></br><br></br>
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}} onClick = {setDiet}>Diet Stats</button>
+                            </div>
+                            <br></br><br></br>          
+                        </div>
+                        <div className = "col-md-1"></div>
+                        <br></br><br></br><br></br>
+                        <div className = "col-md-7 m-auto p-auto" style = {{textAlign:"center", justifyContent:"center"}}>
+                            <div className = "row m-auto p-auto" style = {{height: "100%", textAlign:"center", justifyContent:"center"}}>
+                                <div className = "row"><br></br><br></br></div>
+                                <h2 className = "font-weight-light">Fitness Progress</h2>
+                                <Line
+                                    data={FitnessData}
+                                    height = {5}
+                                    width = {7}
+                                />
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <FitnessPage></FitnessPage>
+                </div>
+                <div className = "row p-5"></div>
+            </div>
+        );
+    }else if(activity === "personal"){
+        return(
+            <div className = "m-auto gifStyle niceBackground" style = {{textAlign:"center"}}>
+                <br></br>
+                <br></br>
+                <div className = "container m-auto p-4"style = {{backgroundColor:"white"}}>
+                    <div className = "row m-auto p-auto">
+                        
+                        <div className = "col-md-4 m-auto p-5" style = {{height: "80%", backgroundColor:"gainsboro", textAlign:"center",float:"left", border:"1px solid black"}}>
+                            
+                            <div className = "container m-auto p-auto">
+                                <h2 className = "font-weight-light">Dashboard</h2>
+                                <br></br>
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}} onClick = {setHome}>Dashboard Home</button>
+                                <br></br><br></br>
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}} onClick = {setFitness}>Fitness Stats</button>
+                                <br></br><br></br>
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}} onClick = {setMental}>Mental Stats</button>
+                                <br></br><br></br>
+                                <button type = "button" className = "btn p-auto" style = {{width:"100%", backgroundColor:" #fdd040"}} onClick = {setPersonal}>Personal Stats</button>
+                                <br></br><br></br>
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}} onClick = {setDiet}>Diet Stats</button>
+                            </div>
+                            <br></br><br></br>          
+                        </div>
+                        <div className = "col-md-1"></div>
+                        <br></br><br></br><br></br>
+                        <div className = "col-md-7 m-auto p-auto" style = {{textAlign:"center", justifyContent:"center"}}>
+                            <div className = "row m-auto p-auto" style = {{height: "100%", textAlign:"center", justifyContent:"center"}}>
+                                <div className = "row"><br></br><br></br></div>
+                                <h2 className = "font-weight-light">Mental Progress</h2>
+                                <Line
+                                    data={PersonData}
+                                    height = {5}
+                                    width = {7}
+                                />
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <PersonalPage></PersonalPage>
+                </div>
+                <div className = "row p-5"></div>
+            </div>
+        );
+    }else if(activity === "diet"){
+        return(
+            <div className = "m-auto gifStyle niceBackground" style = {{textAlign:"center"}}>
+                <br></br>
+                <br></br>
+                <div className = "container m-auto p-4"style = {{backgroundColor:"white"}}>
+                    <div className = "row m-auto p-auto">
+                        
+                        <div className = "col-md-4 m-auto p-5" style = {{height: "80%", backgroundColor:"gainsboro", textAlign:"center",float:"left", border:"1px solid black"}}>
+                            
+                            <div className = "container m-auto p-auto">
+                                <h2 className = "font-weight-light">Dashboard</h2>
+                                <br></br>
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}} onClick = {setHome}>Dashboard Home</button>
+                                <br></br><br></br>
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}} onClick = {setFitness}>Fitness Stats</button>
+                                <br></br><br></br>
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}} onClick = {setMental}>Mental Stats</button>
+                                <br></br><br></br>
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}} onClick = {setPersonal}>Personal Stats</button>
+                                <br></br><br></br>
+                                <button type = "button" className = "btn p-auto" style = {{width:"100%", backgroundColor:"#61bbff"}} onClick = {setDiet}>Diet Stats</button>
+                            </div>
+                            <br></br><br></br>          
+                        </div>
+                        <div className = "col-md-1"></div>
+                        <br></br><br></br><br></br>
+                        <div className = "col-md-7 m-auto p-auto" style = {{textAlign:"center", justifyContent:"center"}}>
+                            <div className = "row m-auto p-auto" style = {{height: "100%", textAlign:"center", justifyContent:"center"}}>
+                                <div className = "row"><br></br><br></br></div>
+                                <h2 className = "font-weight-light">Mental Progress</h2>
+                                <Line
+                                    data={DietData}
+                                    height = {5}
+                                    width = {7}
+                                />
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <DietPage></DietPage>
+                </div>
+                <div className = "row p-5"></div>
+            </div>
+        );
+    }
+    
 }

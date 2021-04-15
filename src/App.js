@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { createPHPCallInstance} from "./api/fetch";
 import {API} from './api/api';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import 'bootstrap/dist/css/bootstrap.min.css'
+import background from "./BackgroundAmbiance.gif"
 import './App.css';
 
 //==========Pages============
@@ -31,7 +31,7 @@ function App() {
   
   const apiInstance = new API({
     callbackInstance: createPHPCallInstance(
-      { baseUrl: "http://137.140.141.39/justforyouapi/public/" }
+      { baseUrl: "http://192.168.64.3/justforyouapi/public/" }
     ),
   });
 

@@ -53,7 +53,7 @@ export class API{
     //handles authentication call
     async authenticateUser({username, password}){
         return await this.API_POST({
-            endpoint: "http://137.140.141.39/justforyouapi/public/users/auth",
+            endpoint: "http://192.168.64.3/justforyouapi/public/users/auth",
             payload: { username, password },
         })
     }
@@ -61,7 +61,7 @@ export class API{
     async submitUserInfo({username, Weight, DOB, Height, Activity, Disease}){
         let encodedKey = btoa(username);
         return await this.API_POST({
-            endpoint: "http://137.140.141.39/justforyouapi/public/users/settings/basicinfo",
+            endpoint: "http://192.168.64.3/justforyouapi/public/users/settings/basicinfo",
             payload: { username, Weight, DOB, Height, Activity, Disease, PROVID:encodedKey },
         })
     }
@@ -69,14 +69,14 @@ export class API{
     //handles sneding post payload with new user signup
     async addUser({username, email, password}){
         return await this.API_POST({
-            endpoint: "http://137.140.141.39/justforyouapi/public/users/create",
+            endpoint: "http://192.168.64.3/justforyouapi/public/users/create",
             payload: { username, password, email },
         })
     }
 
     async getUserAccount({username, password}){
         let user = await this.API_POST({
-            endpoint: "http://137.140.141.39/justforyouapi/public/users/auth",
+            endpoint: "http://192.168.64.3/justforyouapi/public/users/auth",
             payload: { username, password },
         })
 
@@ -85,7 +85,7 @@ export class API{
 
     async getQuestion(){
         let question = await this.API_GET({
-            endpoint:  "http://137.140.141.39/justforyouapi/public/grab/question"
+            endpoint:  "http://192.168.64.3/justforyouapi/public/grab/question"
         })
         return question;
     }

@@ -3,6 +3,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { AuthenticationContext } from './User/AuthenticationProvider'
 import "jquery/dist/jquery.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
+import "../background.css"
 
 // navbar with menu icons 
 export default function Navbar(){
@@ -31,8 +32,8 @@ export default function Navbar(){
     //dropdown menu components with links 
       return(
         <>
-          <nav className="navbar navbar-expand-lg navbar-dark m-auto" style = {{backgroundImage: "linear-gradient(rgba(110,94,254,0.6)0%, rgba(73,63,252,1)100%)"}}>
-              <Link className="navbar-brand" to='/' style = {logoStyle}>
+          <nav className="navbar navbar-expand-lg navbar-dark m-auto niceBackground" style = {{backgroundImage: "linear-gradient(rgba(110,94,254,0.6)0%, rgba(73,63,252,1)100%)"}}>
+              <Link className="navbar-brand" to='/home' style = {logoStyle}>
                 
                 <h1 className = "p-4 font-weight-light">Just For You</h1>
                   
@@ -60,10 +61,6 @@ export default function Navbar(){
                     <div className="dropdown-menu m-auto p-5" aria-labelledby="navbarDropdown" >
                       <Link className="dropdown-item" to="/activity" href="#">Dashboard</Link>
                       <div className="dropdown-divider"></div>
-                      <Link className="dropdown-item" to="/activity" href="#">Mental Activity</Link>
-                      <Link className="dropdown-item" to="/activity" href="#">Personal Activity</Link>
-                      <Link className = "dropdown-item" to="/activity">Diet Activity</Link>
-                      <Link className = "dropdown-item" to="/activity">Fitness Activity</Link>
                     </div>
                   </li>
 
