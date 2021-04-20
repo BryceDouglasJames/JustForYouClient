@@ -22,7 +22,7 @@ export default function UserProvider({ children }) {
       password: "",
       userFetch: false,
       userRole: null,
-      showQuestions: true,
+      showQuestions: false,
       newUser: false,
       error: false
     });
@@ -30,15 +30,11 @@ export default function UserProvider({ children }) {
     useEffect(() => {
       //Sends request to server to get updates about user, session data, cookies, etc.
       async function getCurrentUser({ username, password }) {
-        console.log("I MADE IT HERE");
         if (!username || !password) return;
-        
         try {
-          
           await api.getUserAccount({ username, password }).then(resp =>{
             console.log(resp);
           });
-
           setUserState((userState) => ({
             ...userState,
             error: false,
@@ -56,7 +52,7 @@ export default function UserProvider({ children }) {
         setAuthState((authState) => ({...authState, userUpdate: false}))
       }
 
-    }, [api, isAuthenticated, userState, loginPayload]);
+    }, [api, isAuthenticated, userState]);
   
     return <UserContext.Provider value={{ 
         ...userState,

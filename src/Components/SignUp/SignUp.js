@@ -1,12 +1,15 @@
 import React, {useContext, useState} from "react"
-import { Redirect , useHistory} from 'react-router-dom';
+import { Redirect , useHistory, Link} from 'react-router-dom';
 import {AuthenticationContext} from "../User/AuthenticationProvider"
+import {APIContext} from "../APIContext"
 import UserLoginForm from '../User/UserLoginForm'
 import "bootstrap/dist/css/bootstrap.min.css"
 import '../style.scss'
 import '../../App.css'
 
 export default function SignUpPage() {
+    const api = useContext(APIContext);
+
     const { setSignupPayload, signupSuccess } = useContext(
       AuthenticationContext
     );
@@ -18,6 +21,7 @@ export default function SignUpPage() {
         username:'',
         email:'',
         password:'',
+        passwordCheck:'',
         isChecked: false
     });
 
@@ -30,6 +34,11 @@ export default function SignUpPage() {
     const setPassword = (e) => {
         let password = e.target.value;
         setState((state) => ({ ...state, password: password}));
+    };
+
+    const setPasswordCheck = (e) => {
+        let passwordCheck = e.target.value;
+        setState((state) => ({ ...state, passwordCheck: passwordCheck}));
     };
 
     const setEmail = (e) => {
@@ -50,13 +59,40 @@ export default function SignUpPage() {
     
     //upon submission, send sign up data across for providers to ingest and handle.
     const onSubmit = (e) => {
-        e.preventDefault();
-        setSignupPayload({ username, email, password, newSignup: true });
-        return <Redirect to="/"></Redirect>
-
+            signup(state);
+            e.preventDefault();
     };
 
-    const { username, password, email } = state;
+    async function signup({username, password, email, passwordCheck}){
+        if (!username || !password || !email) return;
+        
+        if(password !== passwordCheck){
+            alert("Passwords do not match. Please try again.");
+            return;
+        }else{
+            try {
+                await api.addUser({ username, email, password })
+                .then(resp => {
+                    console.log(resp);
+                    if(resp !== undefined || resp !== null){
+                        setSignupPayload((SignupPayload)=>({
+                        ...SignupPayload,
+                        signupSuccess: true,
+                        newSignup: false,
+                        username: username,
+                        password: password,
+                        email: email
+                        }));
+                    }
+                });
+                alert("Signup success! Head back to login to sign in.");
+            }catch(err) {
+                alert(err);
+            }
+        }
+    }
+
+    const { username, password, email, passwordCheck } = state;
 
     return(
         <form onSubmit = {onSubmit}>
@@ -97,7 +133,7 @@ export default function SignUpPage() {
                                 type="password" 
                                 name="password" 
                                 placeholder="Re-enter password"
-                                onChange={setPassword}/>
+                                onChange={setPasswordCheck}/>
                         </div>
                     </div>
                 </div>
@@ -111,14 +147,14 @@ export default function SignUpPage() {
                         Back to login
                     </button>
                     &ensp;&ensp;&ensp;&ensp;
-                    <button 
-                        type="submit" 
-                        className="btn p-2 m-auto" 
-                        style={{fontSize:"18px"}}
-                        value="Sign Up"
-                        onClick={onSubmit}>
-                        Create account
-                    </button>
+                        <button 
+                            type="submit" 
+                            className="btn p-2 m-auto" 
+                            style={{fontSize:"18px"}}
+                            value="Sign Up"
+                            onClick={onSubmit}>
+                            Create account
+                        </button>
                 </div>
             </div>
         </form>

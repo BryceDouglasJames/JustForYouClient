@@ -15,7 +15,8 @@ export default function AuthenticationProvider({ children }) {
 
   //GETTER AND SETTER STATES
   const [authState, setAuthState] = useState({
-    isAuthenticated: api.isAuthenticated,
+    //isAuthenticated: api.isAuthenticated,
+    isAuthenticated: false,
     isChecked: false,
     isFetching: false,
     userUpdate: false,
@@ -23,9 +24,9 @@ export default function AuthenticationProvider({ children }) {
     error: false,
   });
 
-  const [loginPayload, setLoginPayload] = useState({
-    username: "",
-    password: "",
+  const [userState, setUserState] = useState({
+    username: sessionStorage.getItem("USERNAME"),
+    session_id: sessionStorage.getItem("session_id")
   });
 
   const [SignupPayload, setSignupPayload] = useState({
@@ -40,84 +41,54 @@ export default function AuthenticationProvider({ children }) {
 
   useEffect(() => {
     //This function handles every authentication state passed from provider children
-    async function authenticate({ username, password }) {
-
-        if (!username || !password){
-          if(sessionStorage.getItem("USERNAME") !== null){
-            setAuthState((authState) => ({...authState, sessionActive: true, isAuthenticated: true}));
-            return;
-          }else{
-            //setAuthState((authState) => ({...authState, sessionActive: false}));
-            return;
-          }
-        }
-
-        setAuthState((authState) => ({ ...authState, isFetching: true }));
+    async function authenticate(username, session_id) {
+      if (!username || !session_id){
+        return;
+      }else{
         try {
           let result = false;
-          
-          await api.authenticateUser({ username, password }).then(resp =>{
+          await api.authenticateUser({ username, session_id }).then(resp =>{
             (resp === null) ? setAuthState((authState) => ({ ...authState, error: true })) : result = resp.data; 
           });
       
-          console.log(result[0]);
-          if(result[0] === true){
-            if(sessionStorage.getItem("USERNAME") === null || sessionStorage.getItem("USERNAME").toString() !== username){
-              sessionStorage.setItem("USERNAME", username);
-            }
-          }
-
           if(result[1] === true){
             sessionStorage.setItem("NEWUSER", true);
+            setAuthState((authState) => ({
+              ...authState,
+              isFetching: false,
+              isAuthenticated: true,
+              userUpdate: false,
+              username: "",
+              password: "",
+            }));
+          }else if(result[0] === true) {
+            setAuthState((authState) => ({
+              ...authState,
+              isFetching: false,
+              isAuthenticated: true,
+              userUpdate: false,
+              username: "",
+              password: "",
+            }));
           }
-                    
-          setAuthState((authState) => ({
-            ...authState,
-            isFetching: false,
-            isAuthenticated: result,
-            userUpdate: result,
-            username: "",
-            password: "",
-          }));
-
+          else{
+            setAuthState((authState) => ({
+              ...authState,
+              isFetching: false,
+              isAuthenticated: false,
+              userUpdate: false,
+              username: "",
+              password: "",
+            }));
+          }
         }catch(err) {
           setAuthState((authState) => ({ ...authState, error: true }));
-        }
-              
+        }          
+      }
+      setUserState({username: "", session_id: ""});
     }
-
-    //When user decides to signup, send payload and verify with server
-    async function signup({username, password, email}){
-      if (!username || !password) return;
-      setAuthState((authState) => ({ ...authState, isFetching: true }));
-        try {
-          await api.addUser({ username, email, password })
-          .then(resp => {
-            console.log(resp);
-            if(resp !== undefined || resp !== null){
-              setSignupPayload((SignupPayload)=>({
-                ...SignupPayload,
-                signupSuccess: true,
-                newSignup: false,
-                username: "",
-                password: "",
-              }));
-            }
-          })
-        }catch(err) {
-          setAuthState((authState) => ({ ...authState, error: true }));
-        }
-    }
-
-    //CONDITIONAL STATE CONTROL
-    const {newSignup} = SignupPayload;
-    if(!newSignup){
-      authenticate({ ...loginPayload});
-    }else{
-      signup({...SignupPayload});
-    }
-
-  }, [SignupPayload, loginPayload, api]);
+    authenticate(userState.username, userState.session_id);
+  }, [SignupPayload, api, userState, authState]);
 
   //Export provider
   return (
@@ -125,7 +96,7 @@ export default function AuthenticationProvider({ children }) {
       value={{
         ...authState,
         ...SignupPayload,
-        setLoginPayload,
+        setUserState,
         setSignupPayload,
         setAuthState
       }}

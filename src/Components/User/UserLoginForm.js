@@ -3,9 +3,13 @@ import { Redirect } from 'react-router-dom';
 import {AuthenticationContext} from "../User/AuthenticationProvider"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "../style.scss";
+import { useEffect } from "react";
+import {APIContext} from "../APIContext"
+
 
 export default function LoginPage() {
-    const { setLoginPayload, setSignupPayload } = useContext(
+    const api = useContext(APIContext);
+    const { setSignupPayload, setUserState, setAuthState } = useContext(
       AuthenticationContext
     );
   
@@ -31,16 +35,32 @@ export default function LoginPage() {
   
     const onSubmit = (e) => {
         e.preventDefault();
-        setLoginPayload({ username, password });        
+        loginUser(state);
     };
 
     const goToSignUp = (e) =>{
         setSignupPayload({ newSignup: true, backToLogin : false });
     }
 
-  
-    const { username, password } = state;
+    async function loginUser({ username, password }) {
+        if (!username || !password) return;
+        try {
+          await api.loginUser({ username, password }).then(resp =>{
+            if(resp && resp.data !== false){
+                sessionStorage.setItem("USERNAME", username);
+                sessionStorage.setItem("session_id", resp.data);
+                //setAuthState({sessionActive: true})
+                setUserState({username: username, session_id: resp.data});
+            }
+          });
+          setError((error) => ({...error, error: false,}));
+        } catch (err) {
+          console.log(err);
+          setError((userState) => ({ ...userState, error: true }));
+        }
+    }
 
+    const { username, password } = state;
 
     return(
         <form onSubmit={onSubmit}>
