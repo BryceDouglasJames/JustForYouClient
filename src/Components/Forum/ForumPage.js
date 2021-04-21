@@ -1,49 +1,38 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Posts from "../Forum/Posts"
+import Resources from "../Forum/Resources"
+import Outlets from '../Forum/Outlets';
+import Accordion from 'react-bootstrap/Accordion';
+import {GiBrain,GiHelp,GiNewspaper,GiOpenBook, GiTalk,GiConversation} from "react-icons/gi";
 
-
-
-
-function Resources(){
+function ForumPage(){
     return (
         <div class="container-fluid text-center  m-auto">
-            <div class="row content">
-                <div class="col-sm-2 sidenav">
-                <h4>Available Resource</h4>
-                    <p><a href="#">Public Health Newsletter</a></p>
-                    <p><a href="#">Mental Resources</a></p>
-                    <p><Link to="/posts">Community Posts</Link></p>
-                    <p><a href="#">Peoples and Groups</a></p>
-                    <p><a href="#">How to get Help</a></p>
-                    <p><a href="#">More Resources</a></p>
+            <div class="cotainer row content m-auto">
+                <div class="card col-md-2 personal m-auto">
+                <h2>Available Resources <hr></hr> </h2>
+                    <p><a href="#"><Accordion.Toggle>  <GiNewspaper/> Public Health Newsletter </Accordion.Toggle></a></p>
+                    <p><Link to="/resources"><Accordion.Toggle> <GiBrain />Mental Resources</Accordion.Toggle></Link></p>
+                    <p><Link to="/posts"><Accordion.Toggle> <GiTalk />Community Posts</Accordion.Toggle></Link></p>
+                    <p><Link exact path to= "/outlets"><Accordion.Toggle> <GiConversation />People and Groups</Accordion.Toggle></Link></p>
+                    <p><a href="#"><Accordion.Toggle> <GiHelp />How to get help</Accordion.Toggle></a></p>
+                    <p><a href="#"><Accordion.Toggle> <GiOpenBook />More Resources</Accordion.Toggle></a></p>
                 </div>
-                <div class="col-sm-8 text-left">
+                <div class=" container card col-md-8 m-auto">
                     <h1>Forum Home Page</h1>
                     <hr></hr>
-                    <h3></h3>
-                    <p>PlaceHolder...</p>
-                </div>
-                <div class="col-sm-2 sidenav">
-                    <div class="well">
-                        <p>PLACEHOLDER</p>
-                    </div>
-                    <div class="well">
-                        <p>PLACEHOLDER</p>
-                    </div>
-                    <div class="well">
-                        <p>PLACEHOLDER</p>
-                    </div>
-                    <div class="well">
-                        <p>PLACEHOLDER</p>
-                    </div>
-                    <div class="well">
-                        <p>PLACEHOLDER</p>
-                    </div>
+                    <Resources></Resources>
+                    <hr></hr>
+                    <Posts></Posts>
+                    <hr></hr>
+                    
+                    
                 </div>
             </div>
         </div>    
     )
 }
 
-export default Resources
+export default ForumPage
 

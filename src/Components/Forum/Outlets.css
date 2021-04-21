@@ -1,14 +1,17 @@
 .row.content {
     height: 450px;
+ 
 }
 .sidenav{
-    padding-top: 20px;
-    background-color: gray;
-    height: 100%
+    padding-top: 2px;
+    flex-direction: row;
+    background-color: lightgoldenrodyellow;
+    height: 150%
 }
 @media screen and (max-width: 767px) {
     .sidenav {
         height: auto;
+        flex-direction: row;
         padding: 15px;
     }
 }
