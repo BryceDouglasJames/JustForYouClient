@@ -1,14 +1,41 @@
 import React, {useContext, useState, setState} from 'react'
 import { Redirect, Link } from 'react-router-dom';
 import { AuthenticationContext } from './User/AuthenticationProvider'
+import {APIContext} from "./APIContext"
 import "jquery/dist/jquery.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
 import "../background.css"
 
 // navbar with menu icons 
 export default function Navbar(){
+  const api = useContext(APIContext);
 
   const {isAuthenticated} = new useContext(AuthenticationContext);
+
+  const[state, setLogout] = useState(false);
+
+  const startLogout = (e) =>{
+    e.preventdefault();
+    logout(sessionStorage.getItem("USERNAME"));
+  }
+
+  async function logout(username){
+    if (!username) return;
+    try {
+        await api.loginUser({ username })
+        .then(resp => {
+            console.log(resp);
+            if(resp !== undefined || resp !== null){
+                sessionStorage.removeItem("USERNAME");
+                window.location.reload(false);
+            }
+        })
+    }catch(err) {
+        alert(err);
+    }
+    
+}
+
 
   if(!isAuthenticated){
     return <Redirect to = "/"></Redirect>
@@ -83,7 +110,7 @@ export default function Navbar(){
                     </a>
                     <div className="dropdown-menu m-auto p-5" aria-labelledby="navbarDropdown" >
                       <a className="dropdown-item" href="#">Preferences</a>
-                      <a className="dropdown-item" href="#">Log Out</a>
+                      <a className="dropdown-item" href="#" onClick={logout}>Log Out</a>
                       <div className="dropdown-divider"></div>
                       <Link className = "dropdown-item" to="/settings">Account Overview</Link>
                       <a className="dropdown-item" href="#">User: {sessionStorage.getItem("USERNAME")}</a>

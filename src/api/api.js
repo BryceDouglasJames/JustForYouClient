@@ -51,13 +51,19 @@ export class API{
     }
 
     //handles authentication call
-    async authenticateUser({username, password}){
+    async authenticateUser({username, session_id}){
         return await this.API_POST({
-            endpoint: "http://137.140.141.39/justforyouapi/public/users/auth",
-            payload: { username, password },
+            endpoint: "http://192.168.64.3/justforyouapi/public/users/auth",
+            payload: { username, session_id },
         })
     }
 
+    async loginUser({username, password}){
+        return await this.API_POST({
+            endpoint: "http://192.168.64.3/justforyouapi/public/users/login",
+            payload: { username, password },
+        })
+    }
     async submitUserInfo({username, Weight, DOB, Height, Activity, Disease}){
         let encodedKey = btoa(username);
         return await this.API_POST({
@@ -68,6 +74,7 @@ export class API{
 
     //handles sneding post payload with new user signup
     async addUser({username, email, password}){
+        console.log("YAY");
         return await this.API_POST({
             endpoint: "http://137.140.141.39/justforyouapi/public/users/create",
             payload: { username, password, email },
@@ -88,6 +95,13 @@ export class API{
             endpoint:  "http://137.140.141.39/justforyouapi/public/grab/question"
         })
         return question;
+    }
+
+    async getQuote(){
+        let quote = await this.API_GET({
+            endpoint:  "https://quotes.rest/qod"
+        })
+        return quote;
     }
 
     //GETTERS AND SETTERS

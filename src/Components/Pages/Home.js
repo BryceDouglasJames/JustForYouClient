@@ -1,16 +1,43 @@
 import React, {useContext, useState} from 'react';
 import {UserContext} from "../User/UserProvider"
+import {Link} from 'react-router-dom'
 import QuestionPopup from "../Assistant/QuestionsPopup"
 import UserInfoForm from "../Assistant/UserInfoForm"
 import Navbar from '../navbar';
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Doughnut } from 'react-chartjs-2';
+import {APIContext} from "../APIContext"
 
 
 
 //pops up questions upon login & Displays a daily nutrition challenge
 export default function Home(){
+
+    const api = useContext(APIContext);
     const {showQuestions} = new useContext(UserContext);
+    const[quote, setQuote] = new useState({
+        text:"",
+        author:"",
+        category:"",
+        fetch: true
+    });
+
+    async function QOD() {
+        if(quote.fetch){
+            await api.getQuote().then(resp =>{
+                let temptext = resp.data.contents.quotes[0].quote;
+                let tempauthor = resp.data.contents.quotes[0].author;
+                let tempcat = resp.data.contents.quotes[0].category;
+                setQuote((...quote) =>({...quote, text: temptext, author: tempauthor, category: tempcat, fetch: false}));
+            })
+            return
+        }else{
+            return;
+        }
+        
+    }
+    QOD();
+    
 
     const MentalData = {
         labels: ['Mental Score', 'Potential'],
@@ -80,6 +107,7 @@ export default function Home(){
         }]
     }
 
+    const {text, author, category} = quote;
     if(sessionStorage.getItem("NEWUSER") !== null && sessionStorage.getItem("NEWUSER") !== false){
         return(
             <UserInfoForm></UserInfoForm>
@@ -92,7 +120,7 @@ export default function Home(){
             </>
         )
     }else{
-        return (
+        return (        
             <>
                 <Navbar></Navbar>
                 <br></br><br></br>
@@ -104,13 +132,29 @@ export default function Home(){
                                 <p className = "font-weight-light m-auto" style ={{fontSize:"150%"}}>Hello {sessionStorage.getItem("USERNAME")}, great to see you!</p>
                             </div>
                             <div className = "card-body m-auto" style = {{border:"2px ridge black", borderRadius:"1px", width:"80%",textAlign:"center"}}>
-                                <p  style = {{fontSize:"120%"}}>Some info<br></br>Will be here</p>
+                            {
+                                sessionStorage.getItem("pfp")?
+                                    <> 
+                                        <p>You look good!</p>
+                                    </>
+                                :
+                                    <>
+                                    <p>You should add a Profile picture!</p>
+                                        <button>Upload pfp</button>
+                                    </>
+                            }                            
                             </div>
                             <br></br>
                             <div className = "row m-auto">
-                                <button type = "button" className = "col btn btn-dark m-2">Visit dashboard</button>
-                                <button type = "button" className = "col btn btn-dark m-2">Create Post</button>
-                                <button type = "button" className = "col btn btn-dark m-2" >&#9881;<br></br>Account settings</button>
+                                <Link to = "/activity">
+                                    <button type = "button" className = "col btn btn-dark m-2">Visit dashboard</button>
+                                </Link>
+                                <Link to="/posts">
+                                    <button type = "button" className = "col btn btn-dark m-2">Create Post</button>
+                                </Link>
+                                <Link to ="/settings">
+                                    <button type = "button" className = "col btn btn-dark m-2" >&#9881;<br></br>Account settings</button>
+                                </Link>
                             </div>
                         </div>
                         <div className = "col-md-1"></div>
@@ -122,9 +166,12 @@ export default function Home(){
                                     went/what you will do tomorrow.</h3>
                             </div>
                             <br></br><hr className = "solid" style = {{color:"black"}}></hr><br></br>                    
-                            <div class="text-center col m-auto p-2" style = {{border:"2px ridge black", borderRadius:"1px", width:"80%",textAlign:"center"}}>
-                                <h1> Quote of the day:</h1>
-                                <h3>JUST DOOOO IT! -- Shia Labeouf</h3>
+                            <div class="text-center col m-auto p-2 " style = {{border:"2px ridge black", borderRadius:"1px", width:"80%",textAlign:"center"}}>
+                                <h1>Quote of the day:</h1>
+                                <h2 className = "font-weight-light">Category: {category}</h2>
+                                <br></br>
+                                <h3 className = "font-weight-light">{text}<br></br><br></br><i>{author}</i></h3>
+
                             </div>
                         </div>
                     </div>
