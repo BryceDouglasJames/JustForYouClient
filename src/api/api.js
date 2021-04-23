@@ -67,7 +67,7 @@ export class API{
     async submitUserInfo({username, Weight, DOB, Height, Activity, Disease}){
         let encodedKey = btoa(username);
         return await this.API_POST({
-            endpoint: "http://137.140.141.39/justforyouapi/public/users/settings/basicinfo",
+            endpoint: "http://192.168.64.3/justforyouapi/public/users/settings/basicinfo",
             payload: { username, Weight, DOB, Height, Activity, Disease, PROVID:encodedKey },
         })
     }
@@ -76,23 +76,33 @@ export class API{
     async addUser({username, email, password}){
         console.log("YAY");
         return await this.API_POST({
-            endpoint: "http://137.140.141.39/justforyouapi/public/users/create",
+            endpoint: "http://192.168.64.3/justforyouapi/public/users/create",
             payload: { username, password, email },
         })
     }
 
     async getUserAccount({username, password}){
         let user = await this.API_POST({
-            endpoint: "http://137.140.141.39/justforyouapi/public/users/auth",
+            endpoint: "http://192.168.64.3/justforyouapi/public/users/auth",
             payload: { username, password },
         })
 
         return user;
     }
 
+    async setUserPFP({file}){
+        let username = sessionStorage.getItem("USERNAME");
+        let session_id = sessionStorage.getItem("session_id");
+        let filecontext = await this.API_POST({
+            endpoint: "http://192.168.64.3/justforyouapi/public/users/set/pfp",
+            payload: { username, session_id, file },
+        })
+        return filecontext;
+    }
+
     async getQuestion(){
         let question = await this.API_GET({
-            endpoint:  "http://137.140.141.39/justforyouapi/public/grab/question"
+            endpoint:  "http://192.168.64.3/justforyouapi/public/grab/question"
         })
         return question;
     }
@@ -102,6 +112,21 @@ export class API{
             endpoint:  "https://quotes.rest/qod"
         })
         return quote;
+    }
+
+    async getAllPosts(){
+        let posts = await this.API_GET({
+            endpoint:  "http://192.168.64.3/justforyouapi/public/forum/post/getall"
+        })
+        return posts;
+    }
+
+    async deletePost({POSTID}){
+        let del = await this.API_POST({
+            endpoint:  "http://192.168.64.3/justforyouapi/public/forum/post/delete",
+            payload:{username:sessionStorage.getItem("USERNAME"), post_id:POSTID}
+        })
+        return del;
     }
 
     //GETTERS AND SETTERS

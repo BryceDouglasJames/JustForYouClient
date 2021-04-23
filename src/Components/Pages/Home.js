@@ -139,8 +139,10 @@ export default function Home(){
                                     </>
                                 :
                                     <>
-                                    <p>You should add a Profile picture!</p>
-                                        <button>Upload pfp</button>
+                                        <p>You should add a Profile picture!</p>
+                                        <Link to = "/settings">
+                                            <button className = "btn btn-outline-dark">Add profile pic</button>
+                                        </Link>
                                     </>
                             }                            
                             </div>

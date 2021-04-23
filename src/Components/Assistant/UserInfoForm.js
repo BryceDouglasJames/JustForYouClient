@@ -43,8 +43,7 @@ function UserInfoForm () {
     }
 
     const onSubmit = (e) => {
-        //e.preventDefault();
-
+        e.preventDefault();
         let error = "";
         let cont = true;
         console.log(DOB)

@@ -5,11 +5,15 @@ import {APIContext} from "../APIContext"
 import Posts from "../Forum/Posts"
 import styles from "../../background.css"
 import { Line } from 'react-chartjs-2';
+import {AllPosts, getRandomPostByCategory, PersonalLikes, PersonalPosts} from "../AllUserPosts"
+
 
 
 export default function PersonalPage(){
 
     let api = useContext(APIContext);
+    let postArray = getRandomPostByCategory("Personal");
+
 
     const {setUserState} = new useContext(
         UserContext
@@ -72,17 +76,29 @@ export default function PersonalPage(){
                             <br></br><br></br><br></br>
                             <h3>So far you have answered 23 mental related questions.</h3>
                             <br></br>
-                            <h3>You've posted about 13 times in this category.</h3>
+                            <h3>You've posted about {PersonalPosts} times in this category.</h3>
                             <br></br>
-                            <h3>You have a total of 47 likes on your posts. People seem to like you!</h3>
+                            <h3>You have a total of {PersonalLikes} likes on your posts. People seem to like you!</h3>
                             <p></p>
                             <br></br><br></br>
                         </div>
                         <div className ="col-md-1"></div>
                         <div className = "col-md-5 m-auto p-5 font-weight-light" style = {{border: "2px solid black", fontSize:"20px", height: "100%", position:"sticky"}}>
                             <h1>Your posts</h1>
-                            <Posts></Posts>
-                            <Posts></Posts>
+                            {
+                                (postArray[0].POSTID !== undefined) ?
+                                    postArray.map((postdata) =>
+                                        <Posts postinfo = {postdata}></Posts>
+                                    )
+                                :
+                                <>
+                                <br></br>
+                                <h3>No posts for this category.</h3>   
+                                <br></br> 
+                                </>
+                            }  
+                            <button className = "btn btn-dark" style = {{fontSize:"110%"}}><h3>+ Make a new post</h3></button>
+       
                         </div>
                     </div>
                     <br></br><br></br><br></br>
@@ -102,7 +118,7 @@ export default function PersonalPage(){
                         <div className = "col-md-5 m-auto p-5"></div>
                         <div className = "col-md-5 m-auto p-5"></div>
                         <div className = "col-md-5 m-auto p-5" style={{border:"2px solid black", backgroundColor:"white"}}>
-                            <h4>Benn a while? Update your profile here.</h4>
+                            <h4>Been a while? Update your profile here.</h4>
                             <br></br>
                             <button type = "button" className = "btn btn-dark p-auto" style = {{width:"33%"}}>Go to settings</button>    
                         </div>

@@ -2,9 +2,11 @@ import React, {useContext, useState, setState} from 'react'
 import { Redirect, Link } from 'react-router-dom';
 import { AuthenticationContext } from './User/AuthenticationProvider'
 import {APIContext} from "./APIContext"
+import {BsChevronDown} from "react-icons/bs";
 import "jquery/dist/jquery.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
 import "../background.css"
+import GetAllPosts from './AllUserPosts';
 
 // navbar with menu icons 
 export default function Navbar(){
@@ -59,6 +61,7 @@ export default function Navbar(){
     //dropdown menu components with links 
       return(
         <>
+        <GetAllPosts></GetAllPosts>
           <nav className="navbar navbar-expand-lg navbar-dark m-auto niceBackground" style = {{backgroundImage: "linear-gradient(rgba(110,94,254,0.6)0%, rgba(73,63,252,1)100%)"}}>
               <Link className="navbar-brand" to='/home' style = {logoStyle}>
                 
@@ -76,14 +79,8 @@ export default function Navbar(){
                   <div className="navbar-nav p-auto mx-auto" style={{backgroundRepeat: "repeat", backgroundSize: "cover"}}>
                   
                   <li data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <Link  className = "nav-link text-center m-auto p-auto" to="/home" style = {linkStyle}>
-                      &ensp;&ensp;Home
-                    </Link>
-                  </li>
-
-                  <li data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <a className="nav-link text-center m-auto p-auto" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style = {linkStyle}>
-                      &ensp;&ensp;Activity&#8595;
+                      <p>&ensp;&ensp;Activity&emsp;<BsChevronDown/></p>
                     </a>
                     <div className="dropdown-menu m-auto p-5" aria-labelledby="navbarDropdown" >
                       <Link className="dropdown-item" to="/activity" href="#">Dashboard</Link>
@@ -93,7 +90,7 @@ export default function Navbar(){
 
                   <li data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <a className="nav-link text-center m-auto p-auto" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style = {linkStyle}>
-                      &ensp;&ensp;Forum&#8595;
+                      <p>&ensp;&ensp;Forum&emsp;<BsChevronDown/></p>
                     </a>
                     <div className="dropdown-menu m-auto p-5" aria-labelledby="navbarDropdown" >
                       <Link className = "dropdown-item" to="/forum">Forum Home</Link>
@@ -106,7 +103,7 @@ export default function Navbar(){
 
                   <li data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <a className="nav-link text-center m-auto p-auto" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style = {linkStyle}>
-                      &ensp;&ensp;Settings&#8595;
+                      <p>&ensp;&ensp;Settings&emsp;<BsChevronDown/></p>
                     </a>
                     <div className="dropdown-menu m-auto p-5" aria-labelledby="navbarDropdown" >
                       <a className="dropdown-item" href="#">Preferences</a>
