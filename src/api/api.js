@@ -129,6 +129,22 @@ export class API{
         return del;
     }
 
+    async uploadPost(username, title, category, body){
+        let submit = await this.API_POST({
+            endpoint: "http://192.168.64.3/justforyouapi/public/forum/post/create",
+            payload: {username: username, category: category, title: title, body: body}
+        })
+        return submit;
+    }
+
+    async likePost({POSTID}){
+        let like = await this.API_POST({
+            endpoint: "http://192.168.64.3/justforyouapi/public/forum/post/like",
+            payload: {post_id: POSTID}
+        })
+        return like;
+    }
+
     //GETTERS AND SETTERS
     get isAuthenticated() {
         return false;

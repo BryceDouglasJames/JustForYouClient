@@ -66,7 +66,7 @@ export default function GetAllPosts(){
     async function getPosts(){
         
         api.getAllPosts().then(resp =>{
-            if(resp != null && resp.data!=null){
+            if(resp != null && (resp.data!=null || resp.data != undefined)){
                 let temp = resp.data
                 var index = 0;
                 var ml = 0;

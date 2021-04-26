@@ -20,6 +20,7 @@ import SignUpControl from './Components/SignUp/SignUpControl';
 import Footer from './Components/Footer'
 import ProfilePage from './Components/User/ProfilePage';
 import GetAllPosts from "./Components/AllUserPosts"
+import UserPostForm from "./Components/Forum/UserPostForm"
 
 //==========PROVIDERS============
 import APIProvider from "./Components/APIContext";
@@ -29,18 +30,6 @@ import ActivityDashboard from "./Components/Assistant/ActivityDashboard";
 
 
 function App() {
-
-  window.onbeforeunload = function (e) {
-    e = e || window.event;
-
-    // For IE and Firefox prior to version 4
-    if (e) {
-        e.returnValue = 'Any string';
-    }
-
-    // For Safari
-    return 'Any string';
-  };  
   
   const apiInstance = new API({
     callbackInstance: createPHPCallInstance(
@@ -48,9 +37,6 @@ function App() {
     ),
   });
 
-  //First: Need api context.
-  //TODO: Need authentication layer!
-  //Third: Need User context for api
   return (
       <APIProvider api = {apiInstance}>
         <GetAllPosts></GetAllPosts>
@@ -86,6 +72,11 @@ function App() {
                 <Route exact path = "/posts">
                   <Navbar></Navbar>
                   <Posts></Posts>
+                  <Footer></Footer>
+                </Route>
+                <Route exact path = "/posts/new">
+                  <Navbar></Navbar>
+                  <UserPostForm></UserPostForm>
                   <Footer></Footer>
                 </Route>
                 <Route exact path = "/outlets">

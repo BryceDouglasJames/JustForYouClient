@@ -1,4 +1,4 @@
-import React, {Component, useContext} from 'react';
+import React, {useState,  useContext} from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import {BsFillTrashFill} from "react-icons/bs";
@@ -11,6 +11,14 @@ export default function(props){
         let api = useContext(APIContext);
 
         const {POSTID, author, CID, UID, title, body, likes, created_at} = props.postinfo;
+
+        let theseLikes = Number.parseInt(likes);
+
+
+        const [state, setState] = useState({
+            like: theseLikes
+        })
+
     
         var thisCategory = "";
         
@@ -20,15 +28,19 @@ export default function(props){
             })
         }
 
-        async function likehisPost(POSTID){
-            await api.likePost({POSTID}).then(resp =>{
-                window.location.reload(true);
-            })
+        async function likeThisPost(POSTID){
+            await api.likePost({POSTID})
         }
 
         const deleteClicked = (e) =>{
             e.preventDefault();
             deleteThisPost(POSTID)
+        }
+
+        const likeClicked = (e) =>{
+            e.preventDefault();
+            setState({...state, like: state.like+1})
+            likeThisPost(POSTID)
         }
 
         switch(CID){
@@ -49,6 +61,9 @@ export default function(props){
                 break;
         }
 
+
+        let {like} = state;
+
         return(
             <>
                 <div className = "p-3"></div>           
@@ -64,14 +79,14 @@ export default function(props){
                                 {
                                     (sessionStorage.getItem("session_id") === UID)?
                                         <>
-                                            <h4 className="col-md-5 m-auto p-1">&#9734;{likes}</h4>
+                                            <h4 className="col-md-5 m-auto p-1" onClick = {likeClicked}>&#9734;{like}</h4>
                                             <div className = "col-md-2"></div>
                                             <button className = "col-md-5 btn btn-outline-dark" onClick={deleteClicked}>Delete <BsFillTrashFill/></button>
                                         </>
                                     :
                                         <>
                                             <div className = "col"></div>
-                                            <button className="col btn btn-outline-dark">&#9734;{likes}</button>
+                                            <button className="col btn btn-outline-dark" onClick = {likeClicked}>&#9734;{like}</button>
                                             <div className = "col"></div>
                                         </>
                                 }

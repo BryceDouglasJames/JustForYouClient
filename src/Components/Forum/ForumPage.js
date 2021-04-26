@@ -10,7 +10,20 @@ import "../../background.css"
 import {GiBrain,GiHelp,GiNewspaper,GiOpenBook, GiTalk,GiConversation} from "react-icons/gi";
 
 function ForumPage(){
-    let postArray = getRandomPostsByCount(3);
+    let postArray = AllPosts;
+    let tempArray = [{}];
+
+    const selectFilter = (e) =>{
+        console.log("HERE");
+        postArray = tempArray;
+        postArray = [{}];
+        var index = 0;
+        tempArray.forEach(post => {
+            if(post.CID === "3"){
+                postArray[index++] = post;
+            }  
+        });
+    }
     
     return ( 
         <>
@@ -35,7 +48,7 @@ function ForumPage(){
                         </div>    
                         <div className = "col-md-4 m-auto p-auto" style = {{textAlign:"center"}}>
                             <h2 className = "font-weight-light">Sort by</h2>
-                            <select className = "row m-auto p-2" name = "activity" id = "activity" style = {{width:"65%"}}>
+                            <select className = "row m-auto p-2" name = "activity" id = "activity" style = {{width:"65%"}} onChange={selectFilter}>
                                 <option selected="selected">----</option>
                                 <option value = "name">Name A-Z</option>
                                 <option value = "date">Date Created</option>
@@ -58,15 +71,14 @@ function ForumPage(){
                                 )
                             :
                             <>
-                            <br></br>
-                            <h3>No posts?</h3>   
-                            <br></br> 
+                            <div className = "row p-5" style = {{height: "100%"}}></div>
+                            <h3>There aren't any posts to be displayed :(</h3>   
+                            <div className = "row p-5" style = {{height: "100%"}}></div>
                             </>
                         }                        
-                        
                     </div>
                 </div>
-                <div className = "row p-5"></div>
+                <div className = "row p-5" style = {{height: "100%"}}></div>
             </div>
         </>    
     )

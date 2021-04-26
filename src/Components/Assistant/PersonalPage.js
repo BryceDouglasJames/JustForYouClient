@@ -5,6 +5,8 @@ import {APIContext} from "../APIContext"
 import Posts from "../Forum/Posts"
 import styles from "../../background.css"
 import { Line } from 'react-chartjs-2';
+import {Link} from "react-router-dom";
+
 import {AllPosts, getRandomPostByCategory, PersonalLikes, PersonalPosts} from "../AllUserPosts"
 
 
@@ -97,7 +99,10 @@ export default function PersonalPage(){
                                 <br></br> 
                                 </>
                             }  
-                            <button className = "btn btn-dark" style = {{fontSize:"110%"}}><h3>+ Make a new post</h3></button>
+
+                            <Link to = "/posts/new">
+                                <button className = "btn btn-dark" style = {{fontSize:"110%"}}><h3>+ Make a new post</h3></button>
+                            </Link>
        
                         </div>
                     </div>

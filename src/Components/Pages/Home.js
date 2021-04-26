@@ -151,7 +151,10 @@ export default function Home(){
                                 <Link to = "/activity">
                                     <button type = "button" className = "col btn btn-dark m-2">Visit dashboard</button>
                                 </Link>
-                                <Link to="/posts">
+                                <Link to ="/forum">
+                                    <button type = "button" className = "col btn btn-dark m-2" >Head to forum</button>
+                                </Link>
+                                <Link to="/posts/new">
                                     <button type = "button" className = "col btn btn-dark m-2">Create Post</button>
                                 </Link>
                                 <Link to ="/settings">
