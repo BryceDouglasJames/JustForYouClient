@@ -8,7 +8,7 @@ export default function UserPostForm(){
     const api = useContext(APIContext);
 
     const [state, setState] = useState({
-        username: "",
+        username: sessionStorage.getItem("USERNAME"),
         category: null,
         title: "",
         body:""
