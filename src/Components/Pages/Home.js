@@ -36,7 +36,7 @@ export default function Home(){
         }
         
     }
-    QOD();
+    //QOD();
     
 
     const MentalData = {

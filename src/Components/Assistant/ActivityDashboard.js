@@ -8,6 +8,7 @@ import PersonalPage from "./PersonalPage"
 import FitnessPage from "./FitnessPage"
 import { Line } from 'react-chartjs-2';
 import styles from "../../background.css"
+import {MentalScores, DietScores, FitnessScores, PersonalScores} from "../AllUserScores";
 //import {PersonalData, MentalData, CombinedData, FitnessData, DietData} from "./DataValues"
 
 export default function ActivityDashboard(){
@@ -34,7 +35,7 @@ export default function ActivityDashboard(){
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data: [65, 59, 80, 81, 56, 55, 40]
+                data: FitnessScores
             },
             {
                 label: 'Mental',
@@ -55,7 +56,7 @@ export default function ActivityDashboard(){
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data: [87,73,80,76,87,92,49]
+                data: MentalScores
             },
             {
                 label: 'Personal',
@@ -76,7 +77,7 @@ export default function ActivityDashboard(){
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data: [50, 71, 66, 86, 84, 46, 39]
+                data: PersonalScores
             },
             {
                 label: 'Diet',
@@ -97,7 +98,7 @@ export default function ActivityDashboard(){
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data: [34, 39, 11, 4, 23, 10, 35]
+                data: DietScores
             }
         ]
     }
@@ -124,7 +125,7 @@ export default function ActivityDashboard(){
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data: [87,73,80,76,87,92,49]
+                data: MentalScores
             }
         ]
     }
@@ -151,7 +152,7 @@ export default function ActivityDashboard(){
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data: [65, 59, 80, 81, 56, 55, 40]
+                data: FitnessScores
             }
         ]
     }
@@ -178,7 +179,7 @@ export default function ActivityDashboard(){
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data: [34, 39, 11, 4, 23, 10, 35]
+                data: DietScores
             }
         ]
     }
@@ -205,7 +206,7 @@ export default function ActivityDashboard(){
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data: [50, 71, 66, 86, 84, 46, 39]
+                data: PersonalScores
             }
         ]
     }

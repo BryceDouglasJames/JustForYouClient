@@ -6,6 +6,7 @@ import Posts from "../Forum/Posts"
 import styles from "../../background.css"
 import { Line } from 'react-chartjs-2';
 import {Link} from "react-router-dom"
+import QuestionPopup from "./QuestionsPopup"
 import {AllPosts, getRandomPostByCategory, FitnessLikes, FitnessPosts} from "../AllUserPosts"
 
 
@@ -15,38 +16,24 @@ export default function FitnessPage(){
     let api = useContext(APIContext);
     let postArray = getRandomPostByCategory("Fitness");
 
-
-    const {setUserState} = new useContext(
-        UserContext
-    );
-
     const[state, setState] = new useState({
+        showQuestion: false,
         Suggestions: ["Hello"],
     });
+
+    const displayQuestion = (e) =>{
+        e.preventDefault();
+        setState({...state, showQuestion: true});
+    } 
 
     const questionAnswered = (e) =>{
         e.preventDefault();
         let answer = state.answer;
         setState({...state, answered: true});
-        setUserState({showQuestions: false});
+        //setUserState({showQuestions: false});
     }
 
-    useEffect(()=>{
-        async function questionGrabber(){
-            try{
-                setState({
-                    ...state, 
-                });
-
-            }catch(error){
-                console.log(error);
-            }
-        }
-        questionGrabber();
-    }, [setState]);
-
-
-    let {Suggestions} = state;
+    let {Suggestions, showQuestion} = state;
 
     if(Suggestions.length === 0){
         return(
@@ -54,6 +41,8 @@ export default function FitnessPage(){
                 <h1>Hey, looks like this is working</h1>
             </>
         )
+    }else if(showQuestion){
+        return <QuestionPopup category = {"Fitness"}></QuestionPopup>
     }else{
         return(
             <>
@@ -79,9 +68,9 @@ export default function FitnessPage(){
                             <br></br>
                             <h3>You've posted about {FitnessPosts} times in this category.</h3>
                             <br></br>
-                            <h3>You have a total of {FitnessLikes} likes on your posts. People seem to like you!</h3>
-                            <p></p>
-                            <br></br><br></br>
+                            <h3>You have a total of {FitnessLikes} likes on your posts.</h3>
+                            <br></br>
+                            <br></br>
                         </div>
                         <div className ="col-md-1"></div>
                         <div className = "col-md-5 m-auto p-5 font-weight-light" style = {{border: "2px solid black", fontSize:"20px", height: "100%", position:"sticky"}}>
@@ -89,7 +78,7 @@ export default function FitnessPage(){
                             {
                                 (postArray[0].POSTID !== undefined) ?
                                     postArray.map((postdata) =>
-                                        <Posts postinfo = {postdata}></Posts>
+                                        <Posts postinfo = {postdata} style = {{backgroundColor:"white"}}></Posts>
                                     )
                                 :
                                 <>
@@ -103,26 +92,22 @@ export default function FitnessPage(){
                             </Link>                           
                         </div>
                     </div>
+                    <br></br>
+                    <button className = "btn btn-dark m-auto" style = {{width:"65%"}} onClick={displayQuestion}><h2>Answer a fitness question</h2></button>
                     <br></br><br></br><br></br>
                     <div className = "row m-auto p-auto">
                         <h1 className = "p-5">Some things to keep you company</h1>
                         <hr className = "solid" style = {{color:"black"}}></hr>                
-                        <div className = "col-md-5 m-auto p-5" style={{border:"2px solid black", height:"100%", backgroundColor:"white"}}>
-                            <h4>Ask some questions and get some feedback</h4>
-                            <br></br>
-                            <button type = "button" className = "btn btn-dark p-auto" style = {{width:"33%"}}>Diet Questions</button>    
-                        </div>
                         <div className = "col-md-5 m-auto p-5" style={{border:"2px solid black", backgroundColor:"white"}}>
                             <h4>Find some resources to look for guidence or help</h4>
                             <br></br>
-                            <button type = "button" className = "btn btn-dark p-auto" style = {{width:"33%"}}>Resources</button>    
+                            <button type = "button" className = "btn btn-dark p-1 m-auto">See Resources</button>    
                         </div>
-                        <div className = "col-md-5 m-auto p-5"></div>
-                        <div className = "col-md-5 m-auto p-5"></div>
+                        <div className = "col-md-2"></div>
                         <div className = "col-md-5 m-auto p-5" style={{border:"2px solid black", backgroundColor:"white"}}>
                             <h4>Been a while? Update your profile here.</h4>
                             <br></br>
-                            <button type = "button" className = "btn btn-dark p-auto" style = {{width:"33%"}}>Go to settings</button>    
+                            <button type = "button" className = "btn btn-dark p-1 m-auto">Go to settings</button>    
                         </div>
                     </div> 
                 </div>

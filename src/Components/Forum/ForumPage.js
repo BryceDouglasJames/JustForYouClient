@@ -57,19 +57,22 @@ function ForumPage(){
                                 <option value = "mental">Mental</option>
                                 <option value = "personal">Personal</option>
                             </select>
+                            <br></br>
+                            <Link to ="/posts/new">
+                                <button className = "btn btn-outline-dark" style = {{fontSize:"110%"}}><h3>+ Make a new post</h3></button>
+                            </Link>
                         </div>  
                     </div>
                 </div>
                 <div class="container row m-auto">
                     <div className = "col-md-8 m-auto p-2">
                         {
-                            (postArray[0].POSTID !== undefined) ?
-                                postArray.map((postdata) =>
-                                    <>
-                                        <Posts postinfo = {postdata}></Posts>
-                                    </>
+                            (postArray[0].POSTID !== undefined ) ?
+                                postArray.map((postdata) => 
+                                    <Posts postinfo = {postdata}></Posts>
                                 )
                             :
+
                             <>
                             <div className = "row p-5" style = {{height: "100%"}}></div>
                             <h3>There aren't any posts to be displayed :(</h3>   

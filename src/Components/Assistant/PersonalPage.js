@@ -80,7 +80,7 @@ export default function PersonalPage(){
                             <br></br>
                             <h3>You've posted about {PersonalPosts} times in this category.</h3>
                             <br></br>
-                            <h3>You have a total of {PersonalLikes} likes on your posts. People seem to like you!</h3>
+                            <h3>You have a total of {PersonalLikes} likes on your posts.</h3>
                             <p></p>
                             <br></br><br></br>
                         </div>

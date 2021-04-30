@@ -21,12 +21,12 @@ import Footer from './Components/Footer'
 import ProfilePage from './Components/User/ProfilePage';
 import GetAllPosts from "./Components/AllUserPosts"
 import UserPostForm from "./Components/Forum/UserPostForm"
-
 //==========PROVIDERS============
 import APIProvider from "./Components/APIContext";
 import AuthenticationProvider from "./Components/User/AuthenticationProvider"
 import UserProvider from './Components/User/UserProvider';
 import ActivityDashboard from "./Components/Assistant/ActivityDashboard";
+import GetUserScores from "./Components/AllUserScores";
 
 
 function App() {
@@ -40,6 +40,7 @@ function App() {
   return (
       <APIProvider api = {apiInstance}>
         <GetAllPosts></GetAllPosts>
+        <GetUserScores></GetUserScores>
         <AuthenticationProvider>
           <UserProvider>
             <Router>

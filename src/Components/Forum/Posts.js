@@ -12,7 +12,9 @@ export default function(props){
 
         const {POSTID, author, CID, UID, title, body, likes, created_at} = props.postinfo;
 
+
         let theseLikes = Number.parseInt(likes);
+        let thisColor = "";
 
 
         const [state, setState] = useState({
@@ -46,15 +48,19 @@ export default function(props){
         switch(CID){
             case "1":
                 thisCategory = "Mental Health";
+                thisColor =  "container m-auto"
                 break;
-            case "2":
+            case "2":                
                 thisCategory = "General Health";
+                thisColor =  "container m-auto"
                 break;
             case "3":
                 thisCategory = "Diet Health";
+                thisColor =  "container m-auto"
                 break;
             case "4":
                 thisCategory = "Fitness Health";
+                thisColor =  "container m-auto"
                 break;
             default:
                 thisCategory = "No Category"
@@ -66,10 +72,11 @@ export default function(props){
 
         return(
             <>
-                <div className = "p-3"></div>           
-                <div className = "container m-auto" style = {{backgroundColor: "white", border:"2px solid black",  borderRadius: "4px"}}>
+                <div className = "p-3"></div>          
+                
+                    <div className = {thisColor} style = {{border:"2px solid black",  borderRadius: "4px", backgroundColor:"#f1f1f1"}}>
     
-                    <div class="card-body p-2 p-sm-3">
+                    <div class="card-body p-2 p-sm-3" >
                         <div className = "row m-auto p-auto">
                             <div class="media-body m-auto p-auto">
                                 <h4>{author}</h4>

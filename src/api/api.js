@@ -1,43 +1,44 @@
 //import axios from 'axios'
 export class API{
-    userRoles = {
-        0: "Admin",
-        1: "User"
-    };
 
     constructor({ callbackInstance }) {
         this.callbackInstance = callbackInstance;
         this.headers = {};
     }
 
-    //universal post function. Returns response for user to synthesize.
+/**********************UNIVERSAL GET/POST METHODS************************/
     async API_POST({endpoint, payload}){
-        //for the purpose of sending data neatly, we create a form so that a key can be assigned to each value
         let response;
+
+        /**
+         * Every post request needs to be formatted into form data for the 
+         * sake of easy digestion.
+         */
         let formattedPayload = new FormData();
         for(var key in payload){
             formattedPayload.append(key, payload[key]);
         };
 
-        console.log(formattedPayload);
         try{
-            //wait for response from server, if there is an error do not move forward.
+            /*
+            *use API context instance to make call using axios
+            */
             await this.callbackInstance.post(endpoint, formattedPayload)            
             .then(resp =>{
                 response = resp;
             });
         }catch(error){
-            console.log(error);
             response = null;
         }
-        console.log(response);
         return response;
     }
 
     async API_GET({endpoint}){
         let response;
         try{
-            //wait for response from server, if there is an error do not move forward.
+            /*
+            *use API context instance to make call using axios
+            */            
             await this.callbackInstance.get(endpoint)            
             .then(resp =>{
                 response = resp;
@@ -46,11 +47,18 @@ export class API{
             console.log(error);
             response = null;
         }
-        console.log(response);
+        //console.log(response);
         return response;
     }
 
-    //handles authentication call
+/*****************************************************************/
+
+
+
+
+
+/*******************USER SESSION LOGIN/LOGOUT AND AUTH CALLS********************/
+
     async authenticateUser({username, session_id}){
         return await this.API_POST({
             endpoint: "http://192.168.64.3/justforyouapi/public/users/auth",
@@ -64,17 +72,30 @@ export class API{
             payload: { username, password },
         })
     }
+
+/*******************************************************************************/
+
+
+
+
+
+/*****************************USER CONTROLLER CALLS************************************/
+
     async submitUserInfo({username, Weight, DOB, Height, Activity, Disease}){
+
+        /*
+        *For the user data table, each user key is encoded to base64 for the 
+        *sake of not reusing their usernames for the key
+        */
         let encodedKey = btoa(username);
+
         return await this.API_POST({
             endpoint: "http://192.168.64.3/justforyouapi/public/users/settings/basicinfo",
             payload: { username, Weight, DOB, Height, Activity, Disease, PROVID:encodedKey },
         })
     }
 
-    //handles sneding post payload with new user signup
     async addUser({username, email, password}){
-        console.log("YAY");
         return await this.API_POST({
             endpoint: "http://192.168.64.3/justforyouapi/public/users/create",
             payload: { username, password, email },
@@ -82,13 +103,83 @@ export class API{
     }
 
     async getUserAccount({username, password}){
-        let user = await this.API_POST({
+        return await this.API_POST({
             endpoint: "http://192.168.64.3/justforyouapi/public/users/auth",
             payload: { username, password },
         })
-
-        return user;
     }
+
+/*******************************************************************************/
+
+
+
+
+
+/**********************************POST MANAGEMNET CALLS**************************************/
+
+    async getAllPosts(){
+        return await this.API_GET({
+            endpoint:  "http://192.168.64.3/justforyouapi/public/forum/post/getall"
+        })
+    }
+
+    async deletePost({POSTID}){
+        return await this.API_POST({
+            endpoint:  "http://192.168.64.3/justforyouapi/public/forum/post/delete",
+            payload:{username:sessionStorage.getItem("USERNAME"), post_id:POSTID}
+        })
+    }
+
+    async uploadPost(username, title, category, body){
+        return await this.API_POST({
+            endpoint: "http://192.168.64.3/justforyouapi/public/forum/post/create",
+            payload: {username: username, category: category, title: title, body: body}
+        })
+    }
+
+    async likePost({POSTID}){
+        return await this.API_POST({
+            endpoint: "http://192.168.64.3/justforyouapi/public/forum/post/like",
+            payload: {post_id: POSTID}
+        })
+    }
+
+/*******************************************************************************/
+
+
+
+
+
+/**************************************QUESTION CONTROL CALLS***************************************/
+
+    async getQuestion(){
+        return await this.API_GET({
+            endpoint:  "http://192.168.64.3/justforyouapi/public/grab/question"
+        })
+    }
+
+    async getQuestionByCategory(Category){
+        return await this.API_POST({
+            endpoint:  "http://192.168.64.3/justforyouapi/public/grab/question/category",
+            payload: {category: Category}
+        })
+    }
+
+    async sendQuestionAnswer({state}){
+        let user = state.username;
+        let aid = state.AID;
+        let answer = state.questionAnswer
+        return await this.API_POST({
+            endpoint:  "http://192.168.64.3/justforyouapi/public/grab/question/answered",
+            payload: {username: user, AID: aid, questionAnswer: answer}
+        })
+    }
+
+/*******************************************************************************/
+
+
+
+/***************************************MIS USER FUNCTIONS**************************************/
 
     async setUserPFP({file}){
         let username = sessionStorage.getItem("USERNAME");
@@ -100,54 +191,25 @@ export class API{
         return filecontext;
     }
 
-    async getQuestion(){
-        let question = await this.API_GET({
-            endpoint:  "http://192.168.64.3/justforyouapi/public/grab/question"
-        })
-        return question;
-    }
-
     async getQuote(){
-        let quote = await this.API_GET({
+        return await this.API_GET({
             endpoint:  "https://quotes.rest/qod"
         })
-        return quote;
     }
 
-    async getAllPosts(){
-        let posts = await this.API_GET({
-            endpoint:  "http://192.168.64.3/justforyouapi/public/forum/post/getall"
+/*******************************************************************************/
+
+
+/************************************ACTIVITY SCORES/ ASSISTANT METHODS***************************************/
+    async getScores(){
+        return await this.API_POST({
+            endpoint: "http://192.168.64.3/justforyouapi/public/testing/scores",
+            payload: {username: sessionStorage.getItem("USERNAME")}
         })
-        return posts;
     }
+/*******************************************************************************/
 
-    async deletePost({POSTID}){
-        let del = await this.API_POST({
-            endpoint:  "http://192.168.64.3/justforyouapi/public/forum/post/delete",
-            payload:{username:sessionStorage.getItem("USERNAME"), post_id:POSTID}
-        })
-        return del;
-    }
 
-    async uploadPost(username, title, category, body){
-        let submit = await this.API_POST({
-            endpoint: "http://192.168.64.3/justforyouapi/public/forum/post/create",
-            payload: {username: username, category: category, title: title, body: body}
-        })
-        return submit;
-    }
 
-    async likePost({POSTID}){
-        let like = await this.API_POST({
-            endpoint: "http://192.168.64.3/justforyouapi/public/forum/post/like",
-            payload: {post_id: POSTID}
-        })
-        return like;
-    }
-
-    //GETTERS AND SETTERS
-    get isAuthenticated() {
-        return false;
-    }
 }
 

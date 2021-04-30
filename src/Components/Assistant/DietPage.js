@@ -79,7 +79,7 @@ export default function DietPage(){
                             <br></br>
                             <h3>You've posted about {DietPosts} times in this category.</h3>
                             <br></br>
-                            <h3>You have a total of {DietLikes} likes on your posts. People seem to like you!</h3>
+                            <h3>You have a total of {DietLikes} likes on your posts.</h3>
                             <p></p>
                             <br></br><br></br>
                         </div>

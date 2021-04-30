@@ -3,58 +3,94 @@ import {UserContext} from "../User/UserProvider"
 import "bootstrap/dist/css/bootstrap.min.css"
 import {APIContext} from "../APIContext"
 
-export default function QuestionPopup(){
+export default function(props){
 
     let api = useContext(APIContext);
+    let answerIndex = 1;
+    let category = props.category
+    let CategoryName = "";
+    let response = "";
+
+    switch(category){
+        case "Mental":
+            category = "1";
+            CategoryName = "Mental Health"
+            break;
+        case "General":
+            category = "2";
+            CategoryName = "General Health";
+            break;
+        case "Diet":
+            category = "3";
+            CategoryName = "Diet Health";
+            break;
+        case "Fitness":
+            category = "4";
+            CategoryName = "Fitness";
+            break;
+        default:
+            category="-1";
+            break
+    }
 
     const {setUserState} = new useContext(
         UserContext
     );
 
     const[state, setState] = new useState({
+        username: sessionStorage.getItem("USERNAME"),
+        AID: 0,
         question: "",
         answers: [],
         questionAnswer: 0,
-        answered: false
+        answered: false,
+        canFetch: true
     });
 
     const questionAnswered = (e) =>{
         e.preventDefault();
-        let answer = state.answer;
-        setState({...state, answered: true});
-        setUserState({showQuestions: false});
+        sendAnswer({state});
+        //window.location.reload(false);
+    }
+
+    const selectAnswer = (e) =>{
+        e.preventDefault();
+        let index = e.target.value;
+        console.log(index);
+        setState({...state, questionAnswer: index});
+    }
+
+    async function sendAnswer(){
+        try{
+            await api.sendQuestionAnswer({state});
+        }catch(error){
+            console.log(error);
+        }
     }
 
     useEffect(()=>{
         async function questionGrabber(){
             try{
-                let response = "";
-                let answerString = "";
-                await api.getQuestion().then(resp=>response = resp.data);
+                await api.getQuestionByCategory("1").then(resp=>{
+                        response = resp.data                    
+                });
 
-                /*console.log(response.Answers)
-                for(let i = 0; i < response.Answers.length; i++){
-                    let temp = parseInt(response.Answers[i]);
-                    if(isNaN(temp)){
-                        answerString = answerString + response.Answers[i];
-                    }else{
-                        answerString = answerString + response.Answers[i];
-                    }
-                }*/
-
-                console.log(answerString);
                 setState({
                     ...state, 
+                    AID: response.Question_ID,
                     question: response.Question_Text,
-                    answers: response.Answers
+                    answers: response.Answers,
+                    canFetch: false
                 });
 
             }catch(error){
                 console.log(error);
             }
         }
-        questionGrabber();
-    }, [setState]);
+        if(state.canFetch === true){
+            questionGrabber();
+        }
+    }, [setState, state]);
 
 
     let {question, answers} = state;
@@ -62,15 +98,16 @@ export default function QuestionPopup(){
     if(question === ""){
         return(
             <>
-                <h1 className = "m-auto"></h1>
+                <h1 className = "m-auto">Seems like there are no questions to show...</h1>
             </>
         )
     }else{
-        
         return(
             <div className = "row m-auto p-5">
                     <div className = "card m-auto p-3" style = {{width: "auto", height: "auto", alignItems: "center", backgroundColor: "gainsboro"}}>
                         <div className = "card-title p-5 m-auto" style = {{textAlign:"center"}}>
+                            <h2>{CategoryName}</h2>
+                            <hr></hr>
                             <h3 style={{fontSize:"100%"}}>{question}</h3>
                         </div>
                         <div className = "card-body m-auto" style = {{border:"2px ridge black", borderRadius:"5px", width:"100%"}}>
@@ -80,15 +117,13 @@ export default function QuestionPopup(){
                                     Object.entries(JSON.parse(answers)).map((key,i, s)=>(
                                         <>
                                         <div className="row m-auto p-auto">
-                                            <div className = "col-1">
-                                                <input type="checkbox" class="form-check-input"/>
-                                            </div>
-                                            <div className = "col-11 m-auto p-auto">
-                                                <p>{
-                                                //format the key looks like garbage but it works
-                                                key.toString().substring(2,key.toString().length)
-                                                }</p>
-
+                                            <div className = "col m-auto">
+                                                <button className = "btn btn-outline-dark" value = {answerIndex++} onClick = {selectAnswer} style = {{width:"100%"}}>
+                                                {
+                                                    //format the key looks like garbage but it works
+                                                    key.toString().substring(2,key.toString().length)
+                                                }
+                                                </button>
                                             </div>
                                         </div>
                                         <br></br> 
@@ -98,7 +133,7 @@ export default function QuestionPopup(){
 
                             </div>
                         </div>
-                        <button type = "button" className = "btn btn-outline-secondary m-5" onClick={questionAnswered}>Submit</button>
+                        <button type = "button" className = "btn btn-dark m-5" onClick={questionAnswered}>Submit answer</button>
                     </div>
                 </div>
         );
