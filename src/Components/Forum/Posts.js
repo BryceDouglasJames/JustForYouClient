@@ -1,12 +1,8 @@
 import React, {useState,  useContext} from 'react';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 import {BsFillTrashFill} from "react-icons/bs";
 import {APIContext} from "../APIContext"
 
-
-
-export default function(props){
+export default function Posts(props){
 
         let api = useContext(APIContext);
 

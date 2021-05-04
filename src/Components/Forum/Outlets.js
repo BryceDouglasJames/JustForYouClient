@@ -8,9 +8,9 @@ function Outlets(){
             <div class="row content">
                 <div class="col-sm-2 sidenav">
                 <h4>Outlet Links</h4>
-                    <p><a href="#">Link</a></p>
-                    <p><a href="#">Link</a></p>
-                    <p><a href="#">Link</a></p>
+                    <p>LINK</p>
+                    <p>LINK</p>
+                    <p>LINK</p>
                 </div>
                 <div class="col-sm-8 text-left">
                     <h1>JustForYou Outlets</h1>

@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from 'react';
+import React, {useContext} from 'react';
 import {APIContext} from "./APIContext"
 
 export const AllPosts = [{}];
@@ -66,7 +66,7 @@ export default function GetAllPosts(){
     async function getPosts(){
         
         api.getAllPosts().then(resp =>{
-            if(resp != null && (resp.data!=null || resp.data != undefined)){
+            if(resp !== null && (resp.data!==null || resp.data !== undefined)){
                 let temp = resp.data
                 var index = 0;
                 var ml = 0;

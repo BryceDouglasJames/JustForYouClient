@@ -13,7 +13,7 @@ export const UserContext = new createContext();
 
 export default function UserProvider({ children }) {
     const api = useContext(APIContext);
-    let  {isAuthenticated, userUpdate, setAuthState, authState, loginPayload} = useContext(AuthenticationContext);
+    let  {isAuthenticated, userUpdate, setAuthState} = useContext(AuthenticationContext);
 
     //GETTER AND SETTER STATE
     const [userState, setUserState] = useState({
@@ -52,7 +52,7 @@ export default function UserProvider({ children }) {
         setAuthState((authState) => ({...authState, userUpdate: false}))
       }
 
-    }, [api, isAuthenticated, userState]);
+    });
   
     return <UserContext.Provider value={{ 
         ...userState,

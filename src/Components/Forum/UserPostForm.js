@@ -1,5 +1,4 @@
 import React, {useState, useContext} from "react"
-import {Redirect} from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
 import {APIContext} from "../APIContext"
 
@@ -50,7 +49,7 @@ export default function UserPostForm(){
         e.preventDefault();
         setState({...state, username: sessionStorage.getItem("USERNAME")})
         sendPost({state});
-        //window.location.reload(true);
+        window.location.reload(true);
     }
 
     async function sendPost({state}){
@@ -58,8 +57,6 @@ export default function UserPostForm(){
             alert("Post uploaded!");
         })
     }
-
-    const{category, body, title} = state;
 
     return(
         <div className = "forum">

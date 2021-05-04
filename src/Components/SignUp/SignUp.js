@@ -1,8 +1,6 @@
 import React, {useContext, useState} from "react"
-import { Redirect , useHistory, Link} from 'react-router-dom';
 import {AuthenticationContext} from "../User/AuthenticationProvider"
 import {APIContext} from "../APIContext"
-import UserLoginForm from '../User/UserLoginForm'
 import "bootstrap/dist/css/bootstrap.min.css"
 import '../style.scss'
 import '../../App.css'
@@ -10,11 +8,9 @@ import '../../App.css'
 export default function SignUpPage() {
     const api = useContext(APIContext);
 
-    const { setSignupPayload, signupSuccess } = useContext(
+    const { setSignupPayload } = useContext(
       AuthenticationContext
     );
-
-    const history = useHistory();
 
     //constrols state of function features
     const [state, setState] = new useState({
@@ -45,11 +41,6 @@ export default function SignUpPage() {
         let mail = e.target.value;
         setState((state) => ({ ...state, email: mail}));
     };
-
-    const setRemember = (e) =>{
-        let check = e.target.value;
-        setState((state)=>({...state, isChecked: check}));
-    }
 
     //pushed request to go back to the provider
     const goToLogin = (e) =>{
@@ -92,16 +83,11 @@ export default function SignUpPage() {
         }
     }
 
-    const { username, password, email, passwordCheck } = state;
-
     return(
         <form onSubmit = {onSubmit}>
             <div className="base-container">
                 <div className="header">Sign Up</div>
                 <div className="content" >
-                    <div className="image">
-                        <center> <img src="mh.png" height="60px" width="60px" /></center>
-                    </div>
                     <div className="form">
                         <div className="form-group">
                             <label htmlFor="username">Username</label>

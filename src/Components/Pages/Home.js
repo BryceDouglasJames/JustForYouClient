@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {UserContext} from "../User/UserProvider"
 import {Link} from 'react-router-dom'
 import QuestionPopup from "../Assistant/QuestionsPopup"
@@ -6,44 +6,19 @@ import UserInfoForm from "../Assistant/UserInfoForm"
 import Navbar from '../navbar';
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Doughnut } from 'react-chartjs-2';
-import {APIContext} from "../APIContext"
-
-
+import {temptext, tempauthor, tempcat} from "../QOD"
+import {TodaysFitnessScore, TodaysDietScore, TodaysMentalScore, TodaysPersonalScore} from "../AllUserScores";
 
 //pops up questions upon login & Displays a daily nutrition challenge
 export default function Home(){
 
-    const api = useContext(APIContext);
     const {showQuestions} = new useContext(UserContext);
-    const[quote, setQuote] = new useState({
-        text:"",
-        author:"",
-        category:"",
-        fetch: true
-    });
-
-    async function QOD() {
-        if(quote.fetch){
-            await api.getQuote().then(resp =>{
-                let temptext = resp.data.contents.quotes[0].quote;
-                let tempauthor = resp.data.contents.quotes[0].author;
-                let tempcat = resp.data.contents.quotes[0].category;
-                setQuote((...quote) =>({...quote, text: temptext, author: tempauthor, category: tempcat, fetch: false}));
-            })
-            return
-        }else{
-            return;
-        }
-        
-    }
-    //QOD();
-    
 
     const MentalData = {
         labels: ['Mental Score', 'Potential'],
         datasets: [{
             label: 'Mental Score',
-            data: [78, 22],
+            data: [TodaysMentalScore, 100-TodaysMentalScore],
             backgroundColor: [
                 'rgba(23, 215, 132, 0.4)',
                 'rgba(155, 155, 155, 0.4)',
@@ -60,7 +35,7 @@ export default function Home(){
         labels: ['Fitness Score', 'Potential'],
         datasets: [{
             label: 'Fitness Score',
-            data: [42, 58],
+            data: [TodaysFitnessScore, 100-TodaysFitnessScore],
             backgroundColor: [
                 'rgba(255, 132, 132, 0.4)',
                 'rgba(155, 155, 155, 0.4)',
@@ -77,7 +52,7 @@ export default function Home(){
         labels: ['Diet Score', 'Potential'],
         datasets: [{
             label: 'Diet Score',
-            data: [85, 15],
+            data: [TodaysDietScore, 100-TodaysDietScore],
             backgroundColor: [
                 'rgba(97, 187, 255, 0.4)',
                 'rgba(155, 155, 155, 0.4)',
@@ -94,7 +69,7 @@ export default function Home(){
         labels: ['Personal Score', 'Potential'],
         datasets: [{
             label: 'Personal Score',
-            data: [64, 36],
+            data: [TodaysPersonalScore, 100-TodaysPersonalScore],
             backgroundColor: [
                 'rgba(253, 208, 64, 0.4)',
                 'rgba(155, 155, 155, 0.4)',
@@ -107,7 +82,6 @@ export default function Home(){
         }]
     }
 
-    const {text, author, category} = quote;
     if(sessionStorage.getItem("NEWUSER") !== null && sessionStorage.getItem("NEWUSER") !== false){
         return(
             <UserInfoForm></UserInfoForm>
@@ -173,9 +147,9 @@ export default function Home(){
                             <br></br><hr className = "solid" style = {{color:"black"}}></hr><br></br>                    
                             <div class="text-center col m-auto p-2 " style = {{border:"2px ridge black", borderRadius:"1px", width:"80%",textAlign:"center"}}>
                                 <h1>Quote of the day:</h1>
-                                <h2 className = "font-weight-light">Category: {category}</h2>
+                                <h2 className = "font-weight-light">Category: {tempcat}</h2>
                                 <br></br>
-                                <h3 className = "font-weight-light">{text}<br></br><br></br><i>{author}</i></h3>
+                                <h3 className = "font-weight-light">{temptext}<br></br><br></br><i>{tempauthor}</i></h3>
 
                             </div>
                         </div>

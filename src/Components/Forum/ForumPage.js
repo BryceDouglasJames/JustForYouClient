@@ -1,13 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Posts from "../Forum/Posts"
-import Resources from "../Forum/Resources"
-import Outlets from '../Forum/Outlets';
 import "bootstrap/dist/css/bootstrap.min.css"
-import GetAllPosts, {AllPosts} from "../AllUserPosts" 
-import {getRandomPostsByCount} from "../AllUserPosts"
+import {AllPosts} from "../AllUserPosts" 
 import "../../background.css"
-import {GiBrain,GiHelp,GiNewspaper,GiOpenBook, GiTalk,GiConversation} from "react-icons/gi";
+import {GiBrain,GiHelp,GiNewspaper,GiOpenBook, GiConversation} from "react-icons/gi";
 
 function ForumPage(){
     let postArray = AllPosts;
@@ -27,7 +24,6 @@ function ForumPage(){
     
     return ( 
         <>
-            <GetAllPosts></GetAllPosts>
             <div class="container-fluid text-center m-auto forum">
                 <br></br><br></br>
                 <div class="container m-auto">

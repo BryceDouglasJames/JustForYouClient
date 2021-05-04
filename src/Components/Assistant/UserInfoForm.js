@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import {APIContext} from "../APIContext"
 
 //footer at a the bottom -common for all routes 
@@ -63,7 +63,7 @@ function UserInfoForm () {
 
     }
 
-    let{ username, Weight, DOB, Height, Activity, Disease, errorMessage, formatted } = infoState;
+    let{ username, DOB, errorMessage } = infoState;
 
     async function submitUserForm({Weight, DOB, Height, Activity, Disease}){
 

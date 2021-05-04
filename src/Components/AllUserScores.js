@@ -1,14 +1,20 @@
-import React, {useEffect, useContext} from 'react';
+import React, {useContext} from 'react';
 import {APIContext} from "./APIContext"
 
-export let MentalScores = [];
-export let PersonalScores = [];
-export let DietScores = [];
-export let FitnessScores = [];
+export var MentalScores = [];
+export var PersonalScores = [];
+export var DietScores = [];
+export var FitnessScores = [];
+
+export var TodaysMentalScore
+export var TodaysPersonalScore 
+export var TodaysDietScore 
+export var TodaysFitnessScore
 
 export default function GetUserScores(){
     let api = useContext(APIContext);
-    
+    let date = new Date();
+    let today = date.getDay() - 1;
 
     async function getScores(){
         let tempMentalScores = [];
@@ -26,7 +32,33 @@ export default function GetUserScores(){
                         tempMentalScores[4] = parseFloat(temp.Friday);
                         tempMentalScores[5] = parseFloat(temp.Saturday);
                         tempMentalScores[6] = parseFloat(temp.Sunday);
+                        TodaysMentalScore = tempMentalScores[today];
                         MentalScores = tempMentalScores;
+
+                        /*
+                        *This is meant to update the score by the last day the user had if they havent logged 
+                        *in for some time
+                        */
+                       if(TodaysMentalScore === 0){
+                        for(var i = today; i >= 0; i--){
+                            if(tempMentalScores[i] !== 0){
+                                TodaysMentalScore = tempMentalScores[i];
+                                tempMentalScores[today] = tempMentalScores[i];
+                                break;
+                            }
+                        }
+                        if(TodaysMentalScore === 0){
+                            for(i = 6; i >=0; i--){
+                                if(tempMentalScores[i] !== 0){
+                                    TodaysMentalScore = tempMentalScores[i];
+                                    tempMentalScores[today] = tempMentalScores[i];
+                                    break;
+                                }
+                            }
+                        }
+                        MentalScores = tempMentalScores;
+
+                    }
                     }else if(temp.Activity_Index.includes("Diet")){
                         tempDietScores[0] = parseFloat(temp.Monday);
                         tempDietScores[1] = parseFloat(temp.Tuesday);
@@ -35,7 +67,34 @@ export default function GetUserScores(){
                         tempDietScores[4] = parseFloat(temp.Friday);
                         tempDietScores[5] = parseFloat(temp.Saturday);
                         tempDietScores[6] = parseFloat(temp.Sunday);
+                        TodaysDietScore = tempDietScores[today];
                         DietScores = tempDietScores;
+
+                        /*
+                        *This is meant to update the score by the last day the user had if they havent logged 
+                        *in for some time
+                        */
+                       if(TodaysDietScore === 0){
+                        for(i = today; i >= 0; i--){
+                            if(tempDietScores[i] !== 0){
+                                TodaysDietScore = tempDietScores[i];
+                                tempDietScores[today] = tempDietScores[i];
+                                break;
+                            }
+                        }
+                        if(TodaysDietScore === 0){
+                            for(i = 6; i >=0; i--){
+                                if(tempDietScores[i] !== 0){
+                                    TodaysDietScore = tempDietScores[i];
+                                    tempDietScores[today] = tempDietScores[i];
+                                    break;
+                                }
+                            }
+                        }
+
+                        DietScores = tempDietScores;
+                    }
+
                     }else if(temp.Activity_Index.includes("Fitness")){
                         tempFitnessScores[0] = parseFloat(temp.Monday);
                         tempFitnessScores[1] = parseFloat(temp.Tuesday);
@@ -44,7 +103,34 @@ export default function GetUserScores(){
                         tempFitnessScores[4] = parseFloat(temp.Friday);
                         tempFitnessScores[5] = parseFloat(temp.Saturday);
                         tempFitnessScores[6] = parseFloat(temp.Sunday);
+                        TodaysFitnessScore = tempFitnessScores[today];
                         FitnessScores = tempFitnessScores;
+
+                        /*
+                        *This is meant to update the score by the last day the user had if they havent logged 
+                        *in for some time
+                        */
+                       if(TodaysFitnessScore === 0){
+                        for(i = today; i >= 0; i--){
+                            if(tempFitnessScores[i] !== 0){
+                                TodaysFitnessScore = tempFitnessScores[i];
+                                tempFitnessScores[today] = tempFitnessScores[i];
+                                break;
+                            }
+                        }
+                        if(TodaysFitnessScore === 0){
+                            for(i = 6; i >=0; i--){
+                                if(tempFitnessScores[i] !== 0){
+                                    TodaysFitnessScore = tempFitnessScores[i];
+                                    tempFitnessScores[today] = tempFitnessScores[i];
+                                    break;
+                                }
+                            }
+                        }
+                        FitnessScores = tempFitnessScores;
+
+                    }
+
                     }else if(temp.Activity_Index.includes("Personal")){
                         tempPersonalScores[0] = parseFloat(temp.Monday);
                         tempPersonalScores[1] = parseFloat(temp.Tuesday);
@@ -53,10 +139,36 @@ export default function GetUserScores(){
                         tempPersonalScores[4] = parseFloat(temp.Friday);
                         tempPersonalScores[5] = parseFloat(temp.Saturday);
                         tempPersonalScores[6] = parseFloat(temp.Sunday);
+                        TodaysPersonalScore = tempPersonalScores[today];
+                        PersonalScores = tempPersonalScores;
+
+                        /*
+                        *This is meant to update the score by the last day the user had if they havent logged 
+                        *in for some time
+                        */
+                        if(TodaysPersonalScore === 0){
+                            for(i = today; i >= 0; i--){
+                                if(tempPersonalScores[i] !== 0){
+                                    TodaysPersonalScore = tempPersonalScores[i];
+                                    tempPersonalScores[today] = tempPersonalScores[i];
+                                    break;
+                                }
+                            }
+                            if(TodaysPersonalScore === 0){
+                                for(i = 6; i >=0; i--){
+                                    if(tempPersonalScores[i] !== 0){
+                                        TodaysPersonalScore = tempPersonalScores[i];
+                                        tempPersonalScores[today] = tempPersonalScores[i];
+                                        break;
+                                    }
+                                }
+                            }
+                        }
                         PersonalScores = tempPersonalScores;
                     }
                 });
             });
+
         }catch(error){
 
         }

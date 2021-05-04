@@ -1,4 +1,4 @@
-import React, {useContext, useState, setState} from 'react'
+import React, {useContext} from 'react'
 import { Redirect, Link } from 'react-router-dom';
 import { AuthenticationContext } from './User/AuthenticationProvider'
 import {APIContext} from "./APIContext"
@@ -6,20 +6,12 @@ import {BsChevronDown} from "react-icons/bs";
 import "jquery/dist/jquery.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
 import "../background.css"
-import GetAllPosts from './AllUserPosts';
 
 // navbar with menu icons 
 export default function Navbar(){
   const api = useContext(APIContext);
 
   const {isAuthenticated} = new useContext(AuthenticationContext);
-
-  const[state, setLogout] = useState(false);
-
-  const startLogout = (e) =>{
-    e.preventdefault();
-    logout(sessionStorage.getItem("USERNAME"));
-  }
 
   async function logout(username){
     if (!username) return;
@@ -37,7 +29,6 @@ export default function Navbar(){
     }
     
 }
-
 
   if(!isAuthenticated){
     return <Redirect to = "/"></Redirect>
@@ -61,7 +52,6 @@ export default function Navbar(){
     //dropdown menu components with links 
       return(
         <>
-        <GetAllPosts></GetAllPosts>
           <nav className="navbar navbar-expand-lg navbar-dark m-auto niceBackground" style = {{backgroundImage: "linear-gradient(rgba(110,94,254,0.6)0%, rgba(73,63,252,1)100%)"}}>
               <Link className="navbar-brand" to='/home' style = {logoStyle}>
                 
@@ -78,39 +68,34 @@ export default function Navbar(){
                   
                   <div className="navbar-nav p-auto mx-auto" style={{backgroundRepeat: "repeat", backgroundSize: "cover"}}>
                   
-                  <li data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <a className="nav-link text-center m-auto p-auto" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style = {linkStyle}>
+                  <li data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-label="Toggle navigation">
+                    <a className="nav-link text-center m-auto p-auto" href="drop" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style = {linkStyle}>
                       <p>&ensp;&ensp;Activity&emsp;<BsChevronDown/></p>
                     </a>
                     <div className="dropdown-menu m-auto p-5" aria-labelledby="navbarDropdown" >
                       <Link className="dropdown-item" to="/activity" href="#">Dashboard</Link>
-                      <div className="dropdown-divider"></div>
                     </div>
                   </li>
 
-                  <li data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <a className="nav-link text-center m-auto p-auto" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style = {linkStyle}>
+                  <li data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-label="Toggle navigation">
+                    <a className="nav-link text-center m-auto p-auto" href="drop" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style = {linkStyle}>
                       <p>&ensp;&ensp;Forum&emsp;<BsChevronDown/></p>
                     </a>
                     <div className="dropdown-menu m-auto p-5" aria-labelledby="navbarDropdown" >
                       <Link className = "dropdown-item" to="/forum">Forum Home</Link>
-                      <div className="dropdown-divider"></div>
-                      <Link className="dropdown-item" to="/resources" href="#">Resources</Link>
-                      <Link className="dropdown-item" to="/outlets" href="#">Commmunity Outlets</Link>
-                      <Link className="dropdown-item" to="/posts" href="#">View Community Posts</Link>
+                      <Link className="dropdown-item" to="/resources" href="drop">Resources</Link>
                     </div>
                   </li>
 
-                  <li data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <a className="nav-link text-center m-auto p-auto" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style = {linkStyle}>
+                  <li data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-label="Toggle navigation">
+                    <a className="nav-link text-center m-auto p-auto" href="drop" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style = {linkStyle}>
                       <p>&ensp;&ensp;Settings&emsp;<BsChevronDown/></p>
                     </a>
                     <div className="dropdown-menu m-auto p-5" aria-labelledby="navbarDropdown" >
-                      <a className="dropdown-item" href="#">Preferences</a>
-                      <a className="dropdown-item" href="#" onClick={logout}>Log Out</a>
+                      <a className="dropdown-item" href="drop">User: {sessionStorage.getItem("USERNAME")}</a>
                       <div className="dropdown-divider"></div>
                       <Link className = "dropdown-item" to="/settings">Account Overview</Link>
-                      <a className="dropdown-item" href="#">User: {sessionStorage.getItem("USERNAME")}</a>
+                      <a className="dropdown-item" href="drop" onClick={logout}>Log Out</a>
                     </div>
                   </li>
                   <br></br>

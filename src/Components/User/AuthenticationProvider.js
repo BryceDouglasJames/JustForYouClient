@@ -1,4 +1,3 @@
-import { data } from "jquery";
 import React, {
     createContext, 
     useContext, 
@@ -6,7 +5,6 @@ import React, {
     useEffect, 
 } from "react";
 import {APIContext} from "../APIContext"
-import {UserContext} from "./UserProvider"
 
 export const AuthenticationContext = createContext();
 

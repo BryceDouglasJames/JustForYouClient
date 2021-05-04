@@ -1,15 +1,13 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {UserContext} from "../User/UserProvider"
 import "bootstrap/dist/css/bootstrap.min.css"
 import {APIContext} from "../APIContext"
 
-export default function(props){
+export default function QuestionPopup(props){
 
     let api = useContext(APIContext);
     let answerIndex = 1;
     let category = props.category
     let CategoryName = "";
-    let response = "";
 
     switch(category){
         case "Mental":
@@ -33,13 +31,10 @@ export default function(props){
             break
     }
 
-    const {setUserState} = new useContext(
-        UserContext
-    );
-
     const[state, setState] = new useState({
         username: sessionStorage.getItem("USERNAME"),
         AID: 0,
+        CAID: category,
         question: "",
         answers: [],
         questionAnswer: 0,
@@ -50,7 +45,7 @@ export default function(props){
     const questionAnswered = (e) =>{
         e.preventDefault();
         sendAnswer({state});
-        //window.location.reload(false);
+        window.location.reload(false);
     }
 
     const selectAnswer = (e) =>{
@@ -70,9 +65,11 @@ export default function(props){
 
     useEffect(()=>{
         async function questionGrabber(){
+            let response = "";
             try{
-                await api.getQuestionByCategory("1").then(resp=>{
-                        response = resp.data                    
+                await api.getQuestionByCategory(category).then(resp=>{
+                        response = resp.data
+                        console.log(resp);                    
                 });
 
                 setState({
@@ -90,7 +87,7 @@ export default function(props){
         if(state.canFetch === true){
             questionGrabber();
         }
-    }, [setState, state]);
+    });
 
 
     let {question, answers} = state;
@@ -112,7 +109,6 @@ export default function(props){
                         </div>
                         <div className = "card-body m-auto" style = {{border:"2px ridge black", borderRadius:"5px", width:"100%"}}>
                             <div className="container" style ={{textAlign:"center"}}>
-                                
                                 {
                                     Object.entries(JSON.parse(answers)).map((key,i, s)=>(
                                         <>

@@ -2,7 +2,6 @@
 import React, { useContext } from 'react'
 import { Redirect } from 'react-router-dom';
 import { AuthenticationContext } from '../User/AuthenticationProvider'
-import UserLoginForm from '../User/UserLoginForm'
 import SignUp from './SignUp'
 import "bootstrap/dist/css/bootstrap.min.css"
 

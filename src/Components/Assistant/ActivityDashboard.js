@@ -1,17 +1,19 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {UserContext} from "../User/UserProvider"
+import React, {useState} from 'react';
 import "bootstrap/dist/css/bootstrap.min.css"
-import {APIContext} from "../APIContext"
 import MentalPage from "./MentalPage"
 import DietPage from "./DietPage"
 import PersonalPage from "./PersonalPage"
 import FitnessPage from "./FitnessPage"
 import { Line } from 'react-chartjs-2';
-import styles from "../../background.css"
 import {MentalScores, DietScores, FitnessScores, PersonalScores} from "../AllUserScores";
-//import {PersonalData, MentalData, CombinedData, FitnessData, DietData} from "./DataValues"
 
 export default function ActivityDashboard(){
+    console.log(MentalScores);
+    console.log(DietScores);
+    console.log(FitnessScores);
+    console.log(PersonalScores);
+
+
 
     let CombinedData = {
         labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],

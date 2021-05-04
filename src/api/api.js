@@ -168,10 +168,11 @@ export class API{
     async sendQuestionAnswer({state}){
         let user = state.username;
         let aid = state.AID;
+        let caid = state.CAID;
         let answer = state.questionAnswer
         return await this.API_POST({
             endpoint:  "http://192.168.64.3/justforyouapi/public/grab/question/answered",
-            payload: {username: user, AID: aid, questionAnswer: answer}
+            payload: {username: user, AID: aid, CAID: caid, questionAnswer: answer}
         })
     }
 

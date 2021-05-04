@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { createPHPCallInstance} from "./api/fetch";
 import {API} from './api/api';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import background from "./BackgroundAmbiance.gif"
 import './App.css';
 
 //==========Pages============
@@ -11,7 +10,6 @@ import Outlets from './Components/Forum/Outlets';
 import Posts from './Components/Forum/Posts';
 //==========COMPONENTS============
 import LoginPage from './Components/Login/LoginPage';
-import SignUp from './Components/SignUp/SignUp';
 import Navbar from './Components/navbar';
 import Home from './Components/Pages/Home';
 import Forum from './Components/Forum/ForumPage';
@@ -27,6 +25,7 @@ import AuthenticationProvider from "./Components/User/AuthenticationProvider"
 import UserProvider from './Components/User/UserProvider';
 import ActivityDashboard from "./Components/Assistant/ActivityDashboard";
 import GetUserScores from "./Components/AllUserScores";
+import QOD from "./Components/QOD"
 
 
 function App() {
@@ -41,6 +40,7 @@ function App() {
       <APIProvider api = {apiInstance}>
         <GetAllPosts></GetAllPosts>
         <GetUserScores></GetUserScores>
+        <QOD></QOD>
         <AuthenticationProvider>
           <UserProvider>
             <Router>

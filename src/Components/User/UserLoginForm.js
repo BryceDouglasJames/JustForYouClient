@@ -1,21 +1,15 @@
 import React, {useContext, useState} from "react"
-import { Redirect } from 'react-router-dom';
 import {AuthenticationContext} from "../User/AuthenticationProvider"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "../style.scss";
-import { useEffect } from "react";
 import {APIContext} from "../APIContext"
 
 
 export default function LoginPage() {
     const api = useContext(APIContext);
-    const { setSignupPayload, setUserState, setAuthState } = useContext(
+    const { setSignupPayload, setUserState } = useContext(
       AuthenticationContext
     );
-  
-    const [error, setError] = new useState({
-        error: false
-    });
 
     const [state, setState] = useState({
       username: "",
@@ -49,18 +43,14 @@ export default function LoginPage() {
             if(resp && resp.data !== false){
                 sessionStorage.setItem("USERNAME", username);
                 sessionStorage.setItem("session_id", resp.data);
-                //setAuthState({sessionActive: true})
                 setUserState({username: username, session_id: resp.data});
             }
           });
-          setError((error) => ({...error, error: false,}));
         } catch (err) {
           console.log(err);
-          setError((userState) => ({ ...userState, error: true }));
         }
     }
 
-    const { username, password } = state;
 
     return(
         <form onSubmit={onSubmit}>
@@ -68,9 +58,6 @@ export default function LoginPage() {
                 <div className="header">Welcome to Just For You</div>
                 <div className="content" style = {{animation: "fadeIn ease 10s", WebkitAnimation: "fadeIn ease 10s"}}>
                     <br></br><br></br>
-                    <div className="image">
-                        <center> <img src="mh.png" height="60px" width="60px" /></center>
-                    </div>
                     <div className="form" >
                         <div className="form-group">
                             <label htmlFor="username">Username</label >
