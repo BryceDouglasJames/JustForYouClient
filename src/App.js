@@ -4,28 +4,27 @@ import {API} from './api/api';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 
-//==========Pages============
+//==========COMPONENTS============
 import Resources from './Components/Forum/Resources';
 import Outlets from './Components/Forum/Outlets';
-import Posts from './Components/Forum/Posts';
-//==========COMPONENTS============
 import LoginPage from './Components/Login/LoginPage';
-import Navbar from './Components/navbar';
+import Navbar from './Components/Navbar';
 import Home from './Components/Pages/Home';
 import Forum from './Components/Forum/ForumPage';
-import UserSettings from './Components/User/UserSettings';
 import SignUpControl from './Components/SignUp/SignUpControl';
 import Footer from './Components/Footer'
 import ProfilePage from './Components/User/ProfilePage';
-import GetAllPosts from "./Components/AllUserPosts"
 import UserPostForm from "./Components/Forum/UserPostForm"
+
 //==========PROVIDERS============
 import APIProvider from "./Components/APIContext";
 import AuthenticationProvider from "./Components/User/AuthenticationProvider"
 import UserProvider from './Components/User/UserProvider';
 import ActivityDashboard from "./Components/Assistant/ActivityDashboard";
-import GetUserScores from "./Components/AllUserScores";
-import QOD from "./Components/QOD"
+import GetUserScores from "./Components/HydrationProviders/AllUserScores";
+import GetAllPosts from "./Components/HydrationProviders/AllUserPosts"
+import AllUserProfileStats from "./Components/HydrationProviders/AllUserProfileStats"
+import QOD from "./Components/HydrationProviders/QOD"
 
 
 function App() {
@@ -36,10 +35,13 @@ function App() {
     ),
   });
 
+  
+
   return (
       <APIProvider api = {apiInstance}>
         <GetAllPosts></GetAllPosts>
         <GetUserScores></GetUserScores>
+        <AllUserProfileStats></AllUserProfileStats>
         <QOD></QOD>
         <AuthenticationProvider>
           <UserProvider>
@@ -70,11 +72,6 @@ function App() {
                   <Resources></Resources>
                   <Footer></Footer>
                 </Route>
-                <Route exact path = "/posts">
-                  <Navbar></Navbar>
-                  <Posts></Posts>
-                  <Footer></Footer>
-                </Route>
                 <Route exact path = "/posts/new">
                   <Navbar></Navbar>
                   <UserPostForm></UserPostForm>
@@ -87,7 +84,6 @@ function App() {
                 </Route>
                 <Route exact path = "/settings">
                   <Navbar></Navbar>
-                  <UserSettings></UserSettings>
                   <ProfilePage></ProfilePage>
                   <Footer></Footer>
                 </Route>

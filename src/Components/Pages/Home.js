@@ -3,17 +3,19 @@ import {UserContext} from "../User/UserProvider"
 import {Link} from 'react-router-dom'
 import QuestionPopup from "../Assistant/QuestionsPopup"
 import UserInfoForm from "../Assistant/UserInfoForm"
-import Navbar from '../navbar';
+import Navbar from '../Navbar';
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Doughnut } from 'react-chartjs-2';
-import {temptext, tempauthor, tempcat} from "../QOD"
-import {TodaysFitnessScore, TodaysDietScore, TodaysMentalScore, TodaysPersonalScore} from "../AllUserScores";
+import {temptext, tempauthor, tempcat} from "../HydrationProviders/QOD"
+import {TodaysFitnessScore, TodaysDietScore, TodaysMentalScore, TodaysPersonalScore} from "../HydrationProviders/AllUserScores";
 
-//pops up questions upon login & Displays a daily nutrition challenge
 export default function Home(){
-
     const {showQuestions} = new useContext(UserContext);
 
+
+    {/*
+    *   OBJECTS CONTAINING GRAPH PROPERTIES AND VALUES
+    */}
     const MentalData = {
         labels: ['Mental Score', 'Potential'],
         datasets: [{
@@ -30,7 +32,9 @@ export default function Home(){
             borderWidth: 2
         }]
     }
-
+    {/*
+    *   FITNESS DATA PROPERTIES
+    */}
     const FitnessData = {
         labels: ['Fitness Score', 'Potential'],
         datasets: [{
@@ -47,7 +51,9 @@ export default function Home(){
             borderWidth: 2
         }]
     }
-
+    {/*
+    * DIET DATA PROPERTIES
+    */}
     const DietData = {
         labels: ['Diet Score', 'Potential'],
         datasets: [{
@@ -64,7 +70,9 @@ export default function Home(){
             borderWidth: 2
         }]
     }
-
+    {/*
+    * PERSONAL DATA PROPERTIES
+    */}
     const PersonalData = {
         labels: ['Personal Score', 'Potential'],
         datasets: [{
@@ -82,16 +90,12 @@ export default function Home(){
         }]
     }
 
+    {/*
+    *   IF THE USER IS NEW, RENDER INFROMATION FORM AND CREATE PROFILE
+    */}
     if(sessionStorage.getItem("NEWUSER") !== null && sessionStorage.getItem("NEWUSER") !== false){
         return(
             <UserInfoForm></UserInfoForm>
-        )
-    }else if(showQuestions){
-        return(
-            <>
-            <Navbar></Navbar>
-            <QuestionPopup></QuestionPopup>
-            </>
         )
     }else{
         return (        
@@ -102,9 +106,17 @@ export default function Home(){
                 <div className = "container m-auto p-3">
                     <div className = "row m-auto p-auto" >
                         <div className = "card m-auto p-3 col-md-4" style = {{width: "auto", height: "10%", alignItems: "center", backgroundColor: "gainsboro"}}>
+
+                            {/*
+                            * USER CARD GREETING
+                            */}
                             <div className = "card-title p-5 m-auto " style = {{textAlign:"center"}}>
                                 <p className = "font-weight-light m-auto" style ={{fontSize:"150%"}}>Hello {sessionStorage.getItem("USERNAME")}, great to see you!</p>
                             </div>
+
+                            {/*
+                            *   TODO: ONCE USER REPO IS IN EFFECT, RETRIEVE AND DISPLAY PROFILE PICTURE
+                            */}
                             <div className = "card-body m-auto" style = {{border:"2px ridge black", borderRadius:"1px", width:"80%",textAlign:"center"}}>
                             {
                                 sessionStorage.getItem("pfp")?
@@ -118,9 +130,13 @@ export default function Home(){
                                             <button className = "btn btn-outline-dark">Add profile pic</button>
                                         </Link>
                                     </>
-                            }                            
+                            }             
                             </div>
                             <br></br>
+
+                            {/*
+                            * USER CARD BUTTONS
+                            */}
                             <div className = "row m-auto">
                                 <Link to = "/activity">
                                     <button type = "button" className = "col btn btn-dark m-2">Visit dashboard</button>
@@ -137,6 +153,11 @@ export default function Home(){
                             </div>
                         </div>
                         <div className = "col-md-1"></div>
+
+
+                        {/*
+                        *   CHALLANGE/QOD CONTAINER 
+                        */}
                         <div className = "col-md-7 m-auto p-3" style = {{backgroundColor:""}}>
                             <div class="text-center col m-auto p-2" style = {{border:"2px ridge black", borderRadius:"1px", width:"80%",textAlign:"center"}}>
                                 <h1>Daily personal challenge</h1>
@@ -150,14 +171,20 @@ export default function Home(){
                                 <h2 className = "font-weight-light">Category: {tempcat}</h2>
                                 <br></br>
                                 <h3 className = "font-weight-light">{temptext}<br></br><br></br><i>{tempauthor}</i></h3>
-
                             </div>
                         </div>
+
                     </div>
                     <br></br><br></br>
                     <h1 className = "m-auto p-5">Let's take a look at your progress so far.</h1>
                 </div>
-                <br></br><hr className = "solid m-auto p-2"></hr><br></br>                    
+
+
+                <br></br><hr className = "solid m-auto p-2"></hr><br></br>     
+
+                    {/*
+                    *   MENTAL INFO HOME ROW 
+                    */}               
                     <div className = "container m-auto p-auto">
                         <div className = "row m-auto p-auto">
                             <div className = "card m-auto p-3 col-md-7" style = {{width: "auto", height: "auto", alignItems: "center", backgroundColor: "gainsboro"}}>
@@ -172,8 +199,6 @@ export default function Home(){
                                     <button type = "button" style = {{backgroundColor:"rgba(23, 215, 132, 0.7)"}} className = "col btn m-5">See mental health resources</button>
                                     <button type = "button" style = {{backgroundColor:"rgba(23, 215, 132, 0.7)"}} className = "col btn m-5" p-auto>View progress report</button>
                                 </div>
-                                
-
                             </div>
                             <div className = "col-sm-5 m-auto p-5">
                                 <p>Mental Pie Chart</p>
@@ -185,6 +210,10 @@ export default function Home(){
                         </div>
                     </div>
                     <br></br><hr className = "solid m-auto p-2"></hr><br></br>
+
+                    {/*
+                    *   FITTNESS INFO HOME ROW 
+                    */} 
                     <div className = "container m-auto p-auto">
                         <div className = "row m-auto p-auto">
                             <div className = "col-sm-5 m-auto p-5">
@@ -209,6 +238,10 @@ export default function Home(){
                         </div>
                     </div>
                     <br></br><hr className = "solid m-auto p-2"></hr><br></br>
+
+                    {/*
+                    *   DIET INFO HOME ROW 
+                    */} 
                     <div className = "container m-auto p-auto">
                         <div className = "row m-auto p-auto">
                             <div className = "card m-auto p-3 col-md-7" style = {{width: "auto", height: "auto", alignItems: "center", backgroundColor: "gainsboro"}}>
@@ -222,8 +255,6 @@ export default function Home(){
                                     <button type = "button" style = {{backgroundColor:"rgba(97, 187, 255, 0.7)"}} className = "col btn m-5">Look at dietary resources</button>
                                     <button type = "button" style = {{backgroundColor:"rgba(97, 187, 255, 0.7)"}} className = "col btn m-5" p-auto>View progress report</button>
                                 </div>
-                                
-
                             </div>
                             <div className = "col-sm-5 m-auto p-5">
                                 <p>Diet Pie Chart</p>
@@ -235,6 +266,10 @@ export default function Home(){
                         </div>
                     </div>
                     <br></br><hr className = "solid m-auto p-2"></hr><br></br>
+
+                    {/*
+                    *   PERSONAL INFO HOME ROW 
+                    */} 
                     <div className = "container m-auto p-auto">
                         <div className = "row m-auto p-auto">
                             <div className = "col-sm-5 m-auto p-5">

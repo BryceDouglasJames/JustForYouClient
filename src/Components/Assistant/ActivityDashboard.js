@@ -5,16 +5,14 @@ import DietPage from "./DietPage"
 import PersonalPage from "./PersonalPage"
 import FitnessPage from "./FitnessPage"
 import { Line } from 'react-chartjs-2';
-import {MentalScores, DietScores, FitnessScores, PersonalScores} from "../AllUserScores";
+import {MentalScores, DietScores, FitnessScores, PersonalScores} from "../HydrationProviders/AllUserScores";
 
 export default function ActivityDashboard(){
-    console.log(MentalScores);
-    console.log(DietScores);
-    console.log(FitnessScores);
-    console.log(PersonalScores);
 
-
-
+    /*
+    *   THIS/THESE OBJECT(S) SATISFIES THE PROPERTIES TOWARDS INGESTING 
+    *   ALL THE USERS CATEGORY DATA AND DISPLAYING THE RESULTS.
+    */
     let CombinedData = {
         labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
         datasets: [
@@ -105,6 +103,10 @@ export default function ActivityDashboard(){
         ]
     }
     
+
+    /*
+    *OBJECT FOR DISPLAYING THE GRAPHING OF MENTAL DATA
+    */
     let MentalData = {
         labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
         datasets: [
@@ -132,6 +134,10 @@ export default function ActivityDashboard(){
         ]
     }
     
+
+    /*
+    *OBJECT FOR DISPLAYING THE GRAPHING OF FITNESS DATA
+    */
     let FitnessData = {
         labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
         datasets: [
@@ -159,6 +165,10 @@ export default function ActivityDashboard(){
         ]
     }
     
+
+    /*
+    *OBJECT FOR DISPLAYING THE GRAPHING OF DIET DATA
+    */
     let DietData = {
         labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
         datasets: [
@@ -186,7 +196,10 @@ export default function ActivityDashboard(){
         ]
     }
     
-   let PersonalData = {
+    /*
+    *OBJECT FOR DISPLAYING THE GRAPHING OF PERSONAL DATA
+    */
+    let PersonalData = {
         labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
         datasets: [
             {
@@ -213,11 +226,21 @@ export default function ActivityDashboard(){
         ]
     }
 
+
+    /*
+    *   This state controls the whats displayed when user clicks on activity
+    *   tab.
+    */
     const[state, setState] = new useState({
         activity: "home"
     });
 
 
+    /*
+    * 
+    *   STATE HANDLERS
+    * 
+    */
     const setHome = (e) => {
         setState((state)=>({...state, activity: "home"}));
     }
@@ -234,7 +257,13 @@ export default function ActivityDashboard(){
         setState((state)=>({...state, activity: "personal"}));
     }
 
+
+    /*
+    *   CREATE VARIABLES FROM STATE ATRRIBUTE
+    */
     const {activity} = state;
+
+
     if(activity === "home"){
         return(
             <div className = "m-auto gifStyle niceBackground" style = {{textAlign:"center"}}>
@@ -242,6 +271,8 @@ export default function ActivityDashboard(){
                 <div className = "container m-auto p-auto">
                     <div className = "row m-auto p-auto">
                         <div className = "col-md-3"></div>
+
+                        {/* DASHBOARD BUTTON COL */}
                         <div className = "col-md-6 m-auto p-5" style = {{height: "80%", backgroundColor:"gainsboro", textAlign:"center",float:"left", border:"1px solid black"}}>    
                             <div className = "container m-auto p-auto">
                                 <h2 className = "font-weight-light">Dashboard</h2>
@@ -260,7 +291,9 @@ export default function ActivityDashboard(){
                         </div>
                         <div className = "col-md-3"></div>
                         <div className = "row"></div>
-                        <br></br><br></br><br></br><br></br><br></br><br></br>         
+                        <br></br><br></br><br></br><br></br><br></br><br></br>
+
+                        {/* GRAPH DISPLAY CONTAINER */}      
                         <div className = "col-md-12 m-auto p-auto" style = {{textAlign:"center", justifyContent:"center", backgroundColor:"white"}}>
                             <div className = "row m-auto p-auto" style = {{height: "100%", textAlign:"center", justifyContent:"center"}}>
                                 <div className = "row"><br></br><br></br></div>
@@ -285,8 +318,8 @@ export default function ActivityDashboard(){
                 <div className = "container m-auto p-4"style = {{backgroundColor:"white"}}>
                     <div className = "row m-auto p-auto">
                         
+                        {/* DASHBOARD BUTTON COL */}
                         <div className = "col-md-4 m-auto p-5" style = {{height: "80%", backgroundColor:"gainsboro", textAlign:"center",float:"left", border:"1px solid black"}}>
-                            
                             <div className = "container m-auto p-auto">
                                 <h2 className = "font-weight-light">Dashboard</h2>
                                 <br></br>
@@ -304,6 +337,8 @@ export default function ActivityDashboard(){
                         </div>
                         <div className = "col-md-1"></div>
                         <br></br><br></br><br></br>
+
+                        {/* GRAPH DISPLAY CONTAINER */}      
                         <div className = "col-md-7 m-auto p-auto" style = {{textAlign:"center", justifyContent:"center"}}>
                             <div className = "row m-auto p-auto" style = {{height: "100%", textAlign:"center", justifyContent:"center"}}>
                                 <div className = "row"><br></br><br></br></div>
@@ -318,6 +353,7 @@ export default function ActivityDashboard(){
                     </div>
                 </div>
                 <div>
+                    {/* DISPLAY MENTAL PAGE COMPONENT */}
                     <MentalPage></MentalPage>
                 </div>
                 <div className = "row p-5"></div>
@@ -330,9 +366,9 @@ export default function ActivityDashboard(){
                 <br></br>
                 <div className = "container m-auto p-4"style = {{backgroundColor:"white"}}>
                     <div className = "row m-auto p-auto">
-                        
+
+                        {/* DASHBOARD BUTTON COL */}
                         <div className = "col-md-4 m-auto p-5" style = {{height: "80%", backgroundColor:"gainsboro", textAlign:"center",float:"left", border:"1px solid black"}}>
-                            
                             <div className = "container m-auto p-auto">
                                 <h2 className = "font-weight-light">Dashboard</h2>
                                 <br></br>
@@ -350,6 +386,8 @@ export default function ActivityDashboard(){
                         </div>
                         <div className = "col-md-1"></div>
                         <br></br><br></br><br></br>
+
+                        {/* GRAPH DISPLAY CONTAINER */}      
                         <div className = "col-md-7 m-auto p-auto" style = {{textAlign:"center", justifyContent:"center"}}>
                             <div className = "row m-auto p-auto" style = {{height: "100%", textAlign:"center", justifyContent:"center"}}>
                                 <div className = "row"><br></br><br></br></div>
@@ -364,6 +402,7 @@ export default function ActivityDashboard(){
                     </div>
                 </div>
                 <div>
+                    {/* DISPLAY FITNESS PAGE COMPONENT */}
                     <FitnessPage></FitnessPage>
                 </div>
                 <div className = "row p-5"></div>
@@ -377,6 +416,7 @@ export default function ActivityDashboard(){
                 <div className = "container m-auto p-4"style = {{backgroundColor:"white"}}>
                     <div className = "row m-auto p-auto">
                         
+                        {/* DASHBOARD BUTTON COL */}
                         <div className = "col-md-4 m-auto p-5" style = {{height: "80%", backgroundColor:"gainsboro", textAlign:"center",float:"left", border:"1px solid black"}}>
                             
                             <div className = "container m-auto p-auto">
@@ -396,6 +436,8 @@ export default function ActivityDashboard(){
                         </div>
                         <div className = "col-md-1"></div>
                         <br></br><br></br><br></br>
+                        
+                        {/* GRAPH DISPLAY CONTAINER */}      
                         <div className = "col-md-7 m-auto p-auto" style = {{textAlign:"center", justifyContent:"center"}}>
                             <div className = "row m-auto p-auto" style = {{height: "100%", textAlign:"center", justifyContent:"center"}}>
                                 <div className = "row"><br></br><br></br></div>
@@ -410,6 +452,7 @@ export default function ActivityDashboard(){
                     </div>
                 </div>
                 <div>
+                    {/* DISPLAY PERSONAL PAGE COMPONENT */}
                     <PersonalPage></PersonalPage>
                 </div>
                 <div className = "row p-5"></div>
@@ -423,8 +466,8 @@ export default function ActivityDashboard(){
                 <div className = "container m-auto p-4"style = {{backgroundColor:"white"}}>
                     <div className = "row m-auto p-auto">
                         
+                        {/* DASHBOARD BUTTON COL */}
                         <div className = "col-md-4 m-auto p-5" style = {{height: "80%", backgroundColor:"gainsboro", textAlign:"center",float:"left", border:"1px solid black"}}>
-                            
                             <div className = "container m-auto p-auto">
                                 <h2 className = "font-weight-light">Dashboard</h2>
                                 <br></br>
@@ -442,6 +485,8 @@ export default function ActivityDashboard(){
                         </div>
                         <div className = "col-md-1"></div>
                         <br></br><br></br><br></br>
+                        
+                        {/* GRAPH DISPLAY CONTAINER */}      
                         <div className = "col-md-7 m-auto p-auto" style = {{textAlign:"center", justifyContent:"center"}}>
                             <div className = "row m-auto p-auto" style = {{height: "100%", textAlign:"center", justifyContent:"center"}}>
                                 <div className = "row"><br></br><br></br></div>
@@ -456,6 +501,7 @@ export default function ActivityDashboard(){
                     </div>
                 </div>
                 <div>
+                    {/* DISPLAY Diet PAGE COMPONENT */}
                     <DietPage></DietPage>
                 </div>
                 <div className = "row p-5"></div>

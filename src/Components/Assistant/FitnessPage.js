@@ -3,38 +3,56 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import Posts from "../Forum/Posts"
 import {Link} from "react-router-dom"
 import QuestionPopup from "./QuestionsPopup"
-import {getRandomPostByCategory, FitnessLikes, FitnessPosts} from "../AllUserPosts"
-import {TodaysFitnessScore} from "../AllUserScores";
+import {getRandomPostByCategory, FitnessLikes, FitnessPosts} from "../HydrationProviders/AllUserPosts"
+import {TodaysFitnessScore} from "../HydrationProviders/AllUserScores";
 
 
 export default function FitnessPage(){
-
     let postArray = getRandomPostByCategory("Fitness");
 
+    {/*
+    *   HANDLES STATE FOR DISPLAYING A QUESTION WHEN PROMPTED
+    */}  
     const[state, setState] = new useState({
         showQuestion: false,
         Suggestions: ["Hello"],
     });
 
+    {/*
+    *   QUESTION DISPLAY HANDLER
+    */}  
     const displayQuestion = (e) =>{
         e.preventDefault();
         setState({...state, showQuestion: true});
     } 
 
+    {/*
+    *   ASSIGN STATE VARIABLES
+    */}  
     let {Suggestions, showQuestion} = state;
 
-    console.log(TodaysFitnessScore);
+    {/*
+    *   TODO: GET RID OF ONCE YOU HAVE SUGGESTIONS
+    */}  
     if(Suggestions.length === 0){
         return(
             <>
                 <h1>Hey, looks like this is working</h1>
             </>
         )
-    }else if(showQuestion){
+    }else 
+    
+    {/*
+    *  IF QUESTION STATE IS TRIGGERED, DISPLAY QUESTION 
+    */}  
+    if(showQuestion){
         return <QuestionPopup category = {"Fitness"}></QuestionPopup>
     }else{
         return(
             <>
+                {/*
+                *   DISPLAY USER SOCRE AND AFFIRMATION
+                */}  
                 <div className = "row m-auto p-2">
                     <div className = "row m-auto p-auto">
                         <div className = "m-auto p-auto font-weight-light" style = {{textAlign:"center"}}>
@@ -53,9 +71,17 @@ export default function FitnessPage(){
                         </div>
                     </div>
                 </div>
-                <br></br><hr className = "solid" style = {{color:"black"}}></hr>                
+                <br></br><hr className = "solid" style = {{color:"black"}}></hr>  
+
+                {/*
+                *   FITNESS TAB CONTAINER
+                */}              
                 <div className = "p-5 m-auto fitness">
                     <div className = "row m-auto p-auto ">
+
+                        {/*
+                        *   SUGGESTIONS/POSTS RECORD
+                        */}
                         <div className = "col-md-6 m-auto p-5 font-weight-light" style = {{width:"100%", fontSize:"20px", textAlign: "center"}}>
                             <h3>So far you have answered 23 mental related questions.</h3>
                             <br></br>
@@ -72,6 +98,11 @@ export default function FitnessPage(){
                             <br></br><br></br>
                         </div>
                         <div className ="col-md-1"></div>
+
+
+                        {/*
+                        *   POST DISPLAY CONTAINER
+                        */}
                         <div className = "col-md-5 m-auto p-5 font-weight-light" style = {{border: "2px solid black", fontSize:"20px", height: "100%", position:"sticky"}}>
                             <h1>Your posts</h1>
                             {
@@ -86,14 +117,27 @@ export default function FitnessPage(){
                                 <br></br> 
                                 </>
                             }
+
+                            {/*
+                            *   NEW POST BUTTON
+                            */}
                             <Link to = "/posts/new">
                                 <button className = "btn btn-dark" style = {{fontSize:"110%"}}><h3>+ Make a new post</h3></button>
                             </Link>                           
                         </div>
                     </div>
+
+                    {/*
+                    *   QUESTION DISPLAY BUTTON CONTAINER
+                    */}
                     <br></br><br></br><br></br>
                     <button className = "btn btn-dark m-auto p-auto" style = {{width:"100%", fontSize:"70%"}} onClick={displayQuestion}><h3>Answer fitness questions</h3></button>
                     <br></br><br></br><br></br><br></br><br></br><br></br>
+
+
+                    {/*
+                    *   ACTIVITY TAB FOOTER   
+                    */}
                     <div className = "row m-auto p-auto">
                         <hr className = "solid" style = {{color:"black"}}></hr>                
                         <div className = "col-md-5 m-auto p-5" style={{border:"2px solid black", backgroundColor:"white"}}>
@@ -109,6 +153,7 @@ export default function FitnessPage(){
                             <button type = "button" className = "btn btn-dark p-1 m-auto">Go to settings</button>    
                         </div>
                     </div> 
+                    
                 </div>
             </>
         );

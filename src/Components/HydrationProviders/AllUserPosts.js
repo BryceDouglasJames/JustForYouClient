@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {APIContext} from "./APIContext"
+import {APIContext} from "../APIContext"
 
 export const AllPosts = [{}];
 

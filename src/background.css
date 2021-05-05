@@ -57,11 +57,6 @@
 	left: 0;
 }
 
-.gifStyle {
-	/*background-image: url('https://acegif.com/wp-content/gifs/water-11.gif');
-	background-size: fit;*/
-}
-
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;

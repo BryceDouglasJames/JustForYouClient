@@ -7,12 +7,11 @@ import '../../App.css'
 
 export default function SignUpPage() {
     const api = useContext(APIContext);
+    const { setSignupPayload } = useContext(AuthenticationContext);
 
-    const { setSignupPayload } = useContext(
-      AuthenticationContext
-    );
-
-    //constrols state of function features
+    {/*
+    *   CONTROLS STATE FOR SIGNUP FIELDS
+    */} 
     const [state, setState] = new useState({
         username:'',
         email:'',
@@ -21,47 +20,52 @@ export default function SignUpPage() {
         isChecked: false
     });
 
-    //GETTERS AND SETTERS
+    {/*
+    *   STATE HANDLER FUNCTIONS
+    */} 
     const setUsername = (e) => {
         let user = e.target.value;
         setState((state) => ({ ...state, username: user}));
     };
-  
     const setPassword = (e) => {
         let password = e.target.value;
         setState((state) => ({ ...state, password: password}));
     };
-
     const setPasswordCheck = (e) => {
         let passwordCheck = e.target.value;
         setState((state) => ({ ...state, passwordCheck: passwordCheck}));
     };
-
     const setEmail = (e) => {
         let mail = e.target.value;
         setState((state) => ({ ...state, email: mail}));
-    };
-
-    //pushed request to go back to the provider
+    };   
     const goToLogin = (e) =>{
         e.preventDefault();
         setSignupPayload({ newSignup: false, backToLogin : true }); 
     }
-    
-    //upon submission, send sign up data across for providers to ingest and handle.
+
+    {/*
+    *   WHEN FORM IS SUBMITTED, SEND USER SIGNUP INFO TO API HANDLER
+    */}  
     const onSubmit = (e) => {
-            signup(state);
-            e.preventDefault();
+        e.preventDefault();
+        signup(state);
+        window.location.reload(false);
     };
 
     async function signup({username, password, email, passwordCheck}){
+        {/*
+        *   IF FIELDS ARE EMPTY, DO NOTHING
+        */}  
         if (!username || !password || !email) return;
-        
         if(password !== passwordCheck){
             alert("Passwords do not match. Please try again.");
             return;
         }else{
             try {
+                {/*
+                *   SEND USER SIGNUP INFO TO SERVER AND HANDLE STATES UPON RESPONSE
+                */}  
                 await api.addUser({ username, email, password })
                 .then(resp => {
                     console.log(resp);
@@ -83,6 +87,10 @@ export default function SignUpPage() {
         }
     }
 
+    
+    {/*
+    *   SIGNUP FIELDS
+    */}  
     return(
         <form onSubmit = {onSubmit}>
             <div className="base-container">

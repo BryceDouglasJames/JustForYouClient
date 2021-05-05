@@ -109,6 +109,14 @@ export class API{
         })
     }
 
+    async getProfileStats(){
+        
+        return await this.API_POST({
+            endpoint: "http://192.168.64.3/justforyouapi/public/users/settings/get/basicinfo",
+            payload: { username: sessionStorage.getItem("USERNAME")}
+        })
+    }
+
 /*******************************************************************************/
 
 
