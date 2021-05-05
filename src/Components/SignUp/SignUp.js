@@ -50,7 +50,7 @@ export default function SignUpPage() {
     const onSubmit = (e) => {
         e.preventDefault();
         signup(state);
-        window.location.reload(false);
+        window.location.reload(true);
     };
 
     async function signup({username, password, email, passwordCheck}){

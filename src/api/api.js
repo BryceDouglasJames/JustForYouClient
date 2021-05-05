@@ -109,8 +109,18 @@ export class API{
         })
     }
 
+    async updateUserStats( {state} ){
+        let user = state.username;
+        let height = state.Height;
+        let weight = state.Weight;
+        let active = state.Activity;
+        return await this.API_POST({
+            endpoint: "http://192.168.64.3/justforyouapi/public/users/settings/update/basicinfo",
+            payload: { username: user, Height:height, Weight:weight, Activity:active }
+        })
+    }
+
     async getProfileStats(){
-        
         return await this.API_POST({
             endpoint: "http://192.168.64.3/justforyouapi/public/users/settings/get/basicinfo",
             payload: { username: sessionStorage.getItem("USERNAME")}
