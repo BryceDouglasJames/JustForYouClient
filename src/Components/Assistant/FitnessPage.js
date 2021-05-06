@@ -3,13 +3,13 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import Posts from "../Forum/Posts"
 import {Link} from "react-router-dom"
 import QuestionPopup from "./QuestionsPopup"
-import {getRandomPostByCategory, FitnessLikes, FitnessPosts} from "../HydrationProviders/AllUserPosts"
+import {getRandomPostByCategory, FitnessLikes, FitnessPosts, FitnessQuestionsAnswered} from "../HydrationProviders/AllUserPosts"
 import {TodaysFitnessScore} from "../HydrationProviders/AllUserScores";
 
 
 export default function FitnessPage(){
     let postArray = getRandomPostByCategory("Fitness");
-
+    console.log(FitnessQuestionsAnswered);
     {/*
     *   HANDLES STATE FOR DISPLAYING A QUESTION WHEN PROMPTED
     */}  
@@ -83,7 +83,7 @@ export default function FitnessPage(){
                         *   SUGGESTIONS/POSTS RECORD
                         */}
                         <div className = "col-md-6 m-auto p-5 font-weight-light" style = {{width:"100%", fontSize:"20px", textAlign: "center"}}>
-                            <h3>So far you have answered 23 mental related questions.</h3>
+                            <h3>So far you have answered {FitnessQuestionsAnswered} mental related questions.</h3>
                             <br></br>
                             <h3>You've posted about {FitnessPosts} times in this category.</h3>
                             <br></br>

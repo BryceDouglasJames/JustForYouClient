@@ -155,6 +155,13 @@ export class API{
         })
     }
 
+    async getPostCount(){
+        return await this.API_POST({
+            endpoint: "http://192.168.64.3/justforyouapi/public/grab/question/answered/category",
+            payload: {username: sessionStorage.getItem("USERNAME")}
+        })
+    }
+
     async likePost({POSTID}){
         return await this.API_POST({
             endpoint: "http://192.168.64.3/justforyouapi/public/forum/post/like",

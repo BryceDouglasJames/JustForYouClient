@@ -2,7 +2,9 @@ import React, {useContext, useState} from "react"
 import {AuthenticationContext} from "../User/AuthenticationProvider"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "../style.scss";
+import "../../background.css"
 import {APIContext} from "../APIContext"
+
 
 
 export default function LoginPage() {
@@ -54,9 +56,13 @@ export default function LoginPage() {
 
     return(
         <form onSubmit={onSubmit}>
-            <div className="base-container">
-                <div className="header">Welcome to Just For You</div>
-                <div className="content" style = {{animation: "fadeIn ease 10s", WebkitAnimation: "fadeIn ease 10s"}}>
+        <div className = "m-auto p-2 forum" style ={{width:"100vw", height:"100vh"}}>
+            <div className = "row p-5"></div>
+            <div className = "row p-3"></div>
+
+            <div className="base-container m-auto p-3" style = {{backgroundColor:"gainsboro", width:"40%"}}>
+                <div className="header"><h1 className = "m-auto font-weight-light" style = {{fontSize:"200%"}}>Just For You</h1></div>
+                <div className="content">
                     <br></br><br></br>
                     <div className="form" >
                         <div className="form-group">
@@ -97,18 +103,9 @@ export default function LoginPage() {
                     </button>
                 </div>
                 <br></br><br></br>
-                <div name="form-group">
-                    <div name="custom-control custom-checkbox" className = "p-auto m-auto">
-                        <input 
-                            type="checkbox" 
-                            name="custom-control-input" 
-                            id="customCheck" 
-                        />
-                        &ensp;&ensp;
-                        <label name="custom-control-label" htmlFor="customCheck1">Remember me</label>
-                    </div>
-                </div>
             </div>
+        
+        </div>
         </form>
     );
 }

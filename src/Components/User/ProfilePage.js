@@ -80,18 +80,18 @@ function ProfilePage(){
                     <div className = "row p-5 "></div>
                     <h1 className="m-auto font-weight-light" style = {{textAlign:"center"}}> {sessionStorage.getItem("USERNAME")}'s Profile</h1>
                     <div className = "row"></div>
-                    <div class="container row p-5 m-auto" style = {{textAlign:"center"}}>
+                    <div class="container row p-5 m-auto" style = {{textAlign:"center", fontFamily:"Comic Sans"}}>
                         <br></br>
                         <div className = "col m-4 p-3" style = {{backgroundColor:"white", border:"2px solid black"}}>
-                            <h3 class="font-style-light">Weight <br></br> {weight} lbs </h3>
+                            <h3 className="font-style-light">Weight <br></br> {weight} lbs </h3>
                         </div>
                         <br></br>
                         <div className = "col m-4 p-3" style = {{backgroundColor:"white", border:"2px solid black"}}>
-                            <h3 class="font-style-light">Height <br></br> {height}" </h3>
+                            <h3 className="font-style-light">Height <br></br> {height}" </h3>
                         </div>
                         <br></br>
                         <div className = "col m-4 p-3" style = {{backgroundColor:"white", border:"2px solid black"}}>
-                            <h3 class="font-style-light" >Activity <br></br>{activity}</h3>
+                            <h3 className="font-style-light" >Activity <br></br>{activity}</h3>
                         </div>
                         <br></br>
                         <div className = "col m-4 p-3" style = {{backgroundColor:"white", border:"2px solid black"}}>

@@ -21,6 +21,6 @@ export default function QOD(){
             return e;
         }   
     }
-    QOD();
+    //QOD();
     return(<></>);
 }

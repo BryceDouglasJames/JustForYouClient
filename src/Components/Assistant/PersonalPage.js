@@ -4,7 +4,7 @@ import Posts from "../Forum/Posts"
 import {Link} from "react-router-dom";
 import {TodaysPersonalScore} from "../HydrationProviders/AllUserScores";
 import QuestionPopup from "./QuestionsPopup"
-import {getRandomPostByCategory, PersonalLikes, PersonalPosts} from "../HydrationProviders/AllUserPosts"
+import {getRandomPostByCategory, PersonalLikes, PersonalPosts, PersonalQuestionsAnswered} from "../HydrationProviders/AllUserPosts"
 
 export default function PersonalPage(){
     let postArray = getRandomPostByCategory("Personal");
@@ -82,7 +82,7 @@ export default function PersonalPage(){
                         *   SUGGESTIONS/POSTS RECORD
                         */}
                         <div className = "col-md-6 m-auto p-5 font-weight-light" style = {{width:"100%", fontSize:"20px", textAlign: "center"}}>
-                            <h3>So far you have answered 23 mental related questions.</h3>
+                            <h3>So far you have answered {PersonalQuestionsAnswered} mental related questions.</h3>
                             <br></br>
                             <h3>You've posted about {PersonalPosts} times in this category.</h3>
                             <br></br>

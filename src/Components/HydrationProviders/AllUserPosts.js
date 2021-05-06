@@ -15,6 +15,12 @@ export var PersonalPosts = 0;
 export var MentalLikes = 0;
 export var MentalPosts = 0;
 
+export var MentalQuestionsAnswered;
+export var DietQuestionsAnswered;
+export var PersonalQuestionsAnswered;
+export var FitnessQuestionsAnswered;
+
+
 export function getRandomPostByCategory(category){
     var thisCategory;
     let tempArray = [{}];
@@ -64,7 +70,6 @@ export default function GetAllPosts(){
     let api = useContext(APIContext);
 
     async function getPosts(){
-        
         api.getAllPosts().then(resp =>{
             if(resp !== null && (resp.data!==null || resp.data !== undefined)){
                 let temp = resp.data
@@ -112,6 +117,27 @@ export default function GetAllPosts(){
         })
     }
 
+    async function getAnswerCount(){
+        try{
+            api.getPostCount().then(resp=>{
+                if(resp !== undefined && resp !== null){
+                    var tempMentalQuestionsAnswered = resp.data[0];
+                    var tempPersonalQuestionsAnswered = resp.data[1];
+                    var tempDietQuestionsAnswered = resp.data[2];
+                    var tempFitnessQuestionsAnswered = resp.data[3];
+
+                    DietQuestionsAnswered = tempDietQuestionsAnswered; 
+                    PersonalQuestionsAnswered = tempPersonalQuestionsAnswered;
+                    MentalQuestionsAnswered = tempMentalQuestionsAnswered;
+                    FitnessQuestionsAnswered = tempFitnessQuestionsAnswered;
+                }
+            });
+        }catch(e){
+            console.log(e);
+        }
+    }
+
     getPosts();
+    getAnswerCount();
     return(<></>);
 }
