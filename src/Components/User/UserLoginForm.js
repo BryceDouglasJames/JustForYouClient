@@ -56,12 +56,12 @@ export default function LoginPage() {
 
     return(
         <form onSubmit={onSubmit}>
-        <div className = "m-auto p-2 forum" style ={{width:"100vw", height:"100vh"}}>
+        <div className = "m-auto forum">
             <div className = "row p-5"></div>
             <div className = "row p-3"></div>
 
-            <div className="base-container m-auto p-3" style = {{backgroundColor:"gainsboro", width:"40%"}}>
-                <div className="header"><p className = "m-auto" style = {{fontSize:"200%"}}>Just For You</p></div>
+            <div className="base-container m-auto " style = {{width:"80vw", height:"110%", textAlign:"center"}}>
+                <p className = "m-auto" style = {{fontSize:"200%"}}>Just For You</p>
                 <div className="content">
                     <br></br><br></br>
                     <div className="form" >
@@ -104,7 +104,8 @@ export default function LoginPage() {
                 </div>
                 <br></br><br></br>
             </div>
-        
+            <div className = "row p-5"></div>
+            <div className = "row p-5"></div>
         </div>
         </form>
     );
