@@ -1,3 +1,8 @@
+/*
+*   HUGE THANKS TO https://www.chartjs.org/ FOr THE GRAPICAL VISUALS
+*   AND BOOTSTRAP FOR STYLING
+*/
+
 import React, {useContext} from 'react';
 import {UserContext} from "../User/UserProvider"
 import {Link} from 'react-router-dom'

@@ -1,3 +1,8 @@
+/*
+*   HUGE THANKS TO https://www.chartjs.org/ FOr THE GRAPICAL VISUALS
+*   AND BOOTSTRAP FOR STYLING
+*/
+
 import React, {useState} from 'react';
 import "bootstrap/dist/css/bootstrap.min.css"
 import MentalPage from "./MentalPage"
