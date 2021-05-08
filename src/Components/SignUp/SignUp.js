@@ -4,6 +4,7 @@ import {APIContext} from "../APIContext"
 import "bootstrap/dist/css/bootstrap.min.css"
 import '../style.scss'
 import '../../App.css'
+import "../../background.css"
 
 export default function SignUpPage() {
     const api = useContext(APIContext);
@@ -93,8 +94,10 @@ export default function SignUpPage() {
     */}  
     return(
         <form onSubmit = {onSubmit}>
+            <div className = "forum">
+            <div className = "row p-5"></div>
             <div className="base-container">
-                <div className="header">Sign Up</div>
+                <div className="header"><h2>Sign Up</h2></div>
                 <div className="content" >
                     <div className="form">
                         <div className="form-group">
@@ -151,6 +154,11 @@ export default function SignUpPage() {
                         </button>
                 </div>
             </div>
+            <div className = "row p-5"></div>
+            <div className = "row p-5"></div>
+
+            </div>
         </form>
+        
     );
 }

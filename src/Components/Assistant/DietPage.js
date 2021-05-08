@@ -5,6 +5,7 @@ import {Link} from "react-router-dom"
 import {TodaysDietScore} from "../HydrationProviders/AllUserScores";
 import QuestionPopup from "./QuestionsPopup"
 import {getRandomPostByCategory, DietLikes, DietPosts, DietQuestionsAnswered} from "../HydrationProviders/AllUserPosts"
+import {dietSuggestions} from "../HydrationProviders/AllUserSuggestions";
 
 
 export default function DietPage(){
@@ -48,6 +49,8 @@ export default function DietPage(){
     if(showQuestion){
         return <QuestionPopup category = {"Diet"}></QuestionPopup>
     }else{
+        var sug1 = dietSuggestions[Math.floor(Math.random()*dietSuggestions.length)];
+        var sug2 = dietSuggestions[Math.floor(Math.random()*dietSuggestions.length)];
         return(
             <>
                 {/*
@@ -90,11 +93,8 @@ export default function DietPage(){
                             <h3>You have a total of {DietLikes} likes on your posts.</h3>
                             <br></br><br></br><br></br>
                             <h2>Assistant Suggestions</h2>
-                            <p>Have you every sat and read without being told to do so? Try it out for an hour a day this week.</p>
-                            <br></br>
-                            <p>Call an old friend. Or, try reaching out to some relative and catch up.</p>
-                            <br></br>
-                            <p>Write down 5 things you wish to accomlish in the next month and make a plan on how you can accompish each goal.</p>
+                            <h3>{sug1}</h3>
+                            <h3>{sug2}</h3>
                             <br></br><br></br>
                         </div>
                         <div className ="col-md-1"><></></div>
@@ -139,16 +139,11 @@ export default function DietPage(){
                     <div className = "row m-auto p-auto">
                     <hr className = "solid" style = {{color:"black"}}></hr>                
                         <div className = "col-md-5 m-auto p-5" style={{border:"2px solid black", backgroundColor:"white"}}>
-                            <h4>Find some resources to look for guidence or help</h4>
-                            <br></br>
-                            <button type = "button" className = "btn btn-dark p-1 m-auto">See Resources</button>    
-                        </div>
-                        <div className = "col-md-2"></div>
-                        <br></br>
-                        <div className = "col-md-5 m-auto p-5" style={{border:"2px solid black", backgroundColor:"white"}}>
                             <h4>Been a while? Update your profile here.</h4>
                             <br></br>
-                            <button type = "button" className = "btn btn-dark p-1 m-auto">Go to settings</button>    
+                            <Link to = "/settings">
+                                <button type = "button" className = "btn btn-dark p-1 m-auto">Go to settings</button>    
+                            </Link>
                         </div>
                     </div> 
                 </div>

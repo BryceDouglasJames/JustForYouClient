@@ -35,15 +35,21 @@ function ForumPage(){
                         <div className = "col-md-8 m-auto p-auto">
                             <h2 className = "font-weight-light">Forum</h2>
                             <br></br>
-                            <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}} ><GiNewspaper/>&ensp;Public Health News</button>
+                            <a href = "https://www.sciencedaily.com/news/science_society/public_health/">
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}}><GiNewspaper/>&ensp;Public Health News</button>
+                            </a>
                             <br></br><br></br>
-                            <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}}><GiBrain/>&ensp;Mental Resources</button>
+                            <a href = "https://www.crisistextline.org/text-us/">
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}}><GiBrain/>&ensp;Mental Resources</button>
+                            </a>
                             <br></br><br></br>
-                            <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}}><GiConversation />&ensp;People and Groups</button>
+                            <a href = "https://www.nami.org/Support-Education">
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}}><GiConversation />&ensp;People and Groups</button>
+                            </a>
                             <br></br><br></br>
-                            <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}}><GiHelp />&ensp;How to get help</button>
-                            <br></br><br></br>
-                            <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}}><GiOpenBook />&ensp;More Resources</button>
+                            <a href = "https://www.mhanational.org/finding-help-when-get-it-and-where-go">
+                                <button type = "button" className = "btn btn-outline-dark p-auto" style = {{width:"100%"}}><GiHelp />&ensp;How to get help</button>
+                            </a>
                             <br></br><br></br>
                         </div>
 

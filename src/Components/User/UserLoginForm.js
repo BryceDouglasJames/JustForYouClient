@@ -61,7 +61,7 @@ export default function LoginPage() {
             <div className = "row p-3"></div>
 
             <div className="base-container m-auto p-3" style = {{backgroundColor:"gainsboro", width:"40%"}}>
-                <div className="header"><h1 className = "m-auto font-weight-light" style = {{fontSize:"200%"}}>Just For You</h1></div>
+                <div className="header"><p className = "m-auto" style = {{fontSize:"200%"}}>Just For You</p></div>
                 <div className="content">
                     <br></br><br></br>
                     <div className="form" >
@@ -87,7 +87,7 @@ export default function LoginPage() {
                     <button 
                         type="submit" 
                         value="Login"
-                        className="btn px-2 m-auto" 
+                        className="btn btn-dark m-auto" 
                         style={{fontSize:"18px"}}
                         onClick={onSubmit}>
                         Login
@@ -96,7 +96,7 @@ export default function LoginPage() {
                     <button 
                         type="button"
                         value="Login"
-                        className="btn px-2 m-auto" 
+                        className="btn btn-dark m-auto" 
                         style={{fontSize:"18px"}}
                         onClick={goToSignUp}>
                         Sign Up

@@ -25,6 +25,7 @@ import GetUserScores from "./Components/HydrationProviders/AllUserScores";
 import GetAllPosts from "./Components/HydrationProviders/AllUserPosts"
 import AllUserProfileStats from "./Components/HydrationProviders/AllUserProfileStats"
 import QOD from "./Components/HydrationProviders/QOD"
+import AllUserSuggestions from "./Components/HydrationProviders/AllUserSuggestions";
 
 
 function App() {
@@ -35,13 +36,12 @@ function App() {
     ),
   });
 
-  
-
   return (
       <APIProvider api = {apiInstance}>
         <GetAllPosts></GetAllPosts>
         <GetUserScores></GetUserScores>
         <AllUserProfileStats></AllUserProfileStats>
+        <AllUserSuggestions></AllUserSuggestions>
         <QOD></QOD>
         <AuthenticationProvider>
           <UserProvider>
@@ -65,11 +65,6 @@ function App() {
                 <Route exact path = "/forum">
                   <Navbar></Navbar>
                   <Forum></Forum>
-                  <Footer></Footer>
-                </Route>
-                <Route exact path = "/resources">
-                  <Navbar></Navbar>
-                  <Resources></Resources>
                   <Footer></Footer>
                 </Route>
                 <Route exact path = "/posts/new">

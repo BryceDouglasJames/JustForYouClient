@@ -193,11 +193,14 @@ export default function Home(){
                                 </div>
                                 <div className = "card-body m-auto" style = {{border:"2px ridge black", borderRadius:"5px", width:"80%",textAlign:"center"}}>
                                     <p  style = {{fontSize:"22px"}}>We keep track of this score in order for you to gauge where you are are mentally. <br></br><br></br> Here at just for you, we are only here to 
-                                        help you find ways to improve your wellbeing and find the resources you need.</p>
+                                        help you find ways to improve your wellbeing and find the resources you need.
+                                    </p>
                                 </div>
                                 <div className = "row m-auto p-auto">
-                                    <button type = "button" style = {{backgroundColor:"rgba(23, 215, 132, 0.7)"}} className = "col btn m-5">See mental health resources</button>
-                                    <button type = "button" style = {{backgroundColor:"rgba(23, 215, 132, 0.7)"}} className = "col btn m-5" p-auto>View progress report</button>
+                                    <Link to ="/activity">
+                                        <br></br>
+                                        <button type = "button" style = {{backgroundColor:"rgba(23, 215, 132, 0.7)"}} className = "col btn m-auto p-3" p-auto>View progress report</button>
+                                    </Link>
                                 </div>
                             </div>
                             <div className = "col-sm-5 m-auto p-5">
@@ -228,11 +231,16 @@ export default function Home(){
                                     <h2 className = "font-weight-light" style={{fontOpticalSizing:'auto'}}>Personal Fitness Score</h2>
                                 </div>
                                 <div className = "card-body m-auto" style = {{border:"2px ridge black", borderRadius:"5px", width:"80%",textAlign:"center"}}>
-                                    <p  style = {{fontSize:"22px"}}></p>
+                                        <p style = {{fontSize:"20px"}}>Let's put in some work! Whether you want to take it easy or not, any activity is good activity.
+                                            <br></br><br></br>
+                                            Answer some questions and see what you can work on to put you in the best shape.
+                                        </p>
                                 </div>
                                 <div className = "row m-auto p-auto">
-                                    <button type = "button" style = {{backgroundColor:"rgba(255, 132, 132, 0.7)"}} className = "col btn m-5">View Fitness Resources</button>
-                                    <button type = "button" style = {{backgroundColor:"rgba(255, 132, 132, 0.7)"}} className = "col btn m-5" p-auto>View progress report</button>
+                                    <Link to ="/activity">
+                                        <br></br>
+                                        <button type = "button" style = {{backgroundColor:"rgba(255, 132, 132, 0.7)"}} className = "col btn m-auto p-3" p-auto>View progress report</button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -249,11 +257,17 @@ export default function Home(){
                                     <h2 className = "font-weight-light" style={{fontOpticalSizing:'auto'}}>Dietary Health Score</h2>
                                 </div>
                                 <div className = "card-body m-auto" style = {{border:"2px ridge black", borderRadius:"5px", width:"80%",textAlign:"center"}}>
-                                    <p  style = {{fontSize:"22px"}}></p>
+                                    <p  style = {{fontSize:"22px"}}>
+                                        It seems everyone has been on a diet before...but who is still on it? 
+                                        <br></br><br></br>
+                                        We keep progress of how your diet habits are so you can gauge if you're making progress. What's on the menu tonight?
+                                    </p>
                                 </div>
                                 <div className = "row m-auto p-auto">
-                                    <button type = "button" style = {{backgroundColor:"rgba(97, 187, 255, 0.7)"}} className = "col btn m-5">Look at dietary resources</button>
-                                    <button type = "button" style = {{backgroundColor:"rgba(97, 187, 255, 0.7)"}} className = "col btn m-5" p-auto>View progress report</button>
+                                    <Link to ="/activity">
+                                        <br></br>
+                                        <button type = "button" style = {{backgroundColor:"rgba(97, 187, 255, 0.7)"}} className = "col btn m-auto p-3" p-auto>View progress report</button>
+                                    </Link>
                                 </div>
                             </div>
                             <div className = "col-sm-5 m-auto p-5">
@@ -284,11 +298,16 @@ export default function Home(){
                                     <h2 className = "font-weight-light" style={{fontOpticalSizing:'auto'}}>Personal Overall Score</h2>
                                 </div>
                                 <div className = "card-body m-auto" style = {{border:"2px ridge black", borderRadius:"5px", width:"80%",textAlign:"center"}}>
-                                    <p  style = {{fontSize:"22px"}}></p>
+                                    <p  style = {{fontSize:"22px"}}>This score is ment to gauge some general activites you participate in. 
+                                        <br></br><br></br>
+                                        Did you get enough sleep? Have you thought about picking up a hobby? Let's see what you can do!
+                                    </p>                                
                                 </div>
                                 <div className = "row m-auto p-auto">
-                                    <button type = "button" style = {{backgroundColor:"rgba(253, 208, 64, 0.7)"}} className = "col btn m-5">View Fitness Resources</button>
-                                    <button type = "button" style = {{backgroundColor:"rgba(253, 208, 64, 0.7)"}} className = "col btn m-5" p-auto>View progress report</button>
+                                    <Link to = "/activity">
+                                        <br></br>
+                                        <button type = "button" style = {{backgroundColor:"rgba(253, 208, 64, 0.7)"}} className = "col btn m-auto p-3" p-auto>View progress report</button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

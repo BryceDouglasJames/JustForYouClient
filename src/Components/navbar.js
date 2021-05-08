@@ -102,7 +102,6 @@ export default function Navbar(){
                     </a>
                     <div className="dropdown-menu m-auto p-5" aria-labelledby="navbarDropdown" >
                       <Link className = "dropdown-item" to="/forum">Forum Home</Link>
-                      <Link className="dropdown-item" to="/resources" href="drop">Resources</Link>
                     </div>
                   </li>
 
