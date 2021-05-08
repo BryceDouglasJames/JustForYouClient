@@ -203,7 +203,7 @@ export class API{
 
     async getSuggestions(){
         return await this.API_GET({
-            endpoint: "http://192.168.64.3/justforyouapi/public/users/suggestions"
+            endpoint: "http://192.168.64.3/justforyouapi/public/grab/question/answered"
         });
     }
 
